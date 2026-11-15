@@ -10,7 +10,7 @@
       </template>
       <template #center>
         <!-- Opens the search, as ⌘K and / do. -->
-        <UDashboardSearchButton label="Find a station or line…" color="neutral" class="w-full max-w-[420px]" @click="store.OPEN_DIALOG('search')" />
+        <UDashboardSearchButton label="Find a station or line…" color="neutral" class="w-full max-w-105" @click="store.OPEN_DIALOG('search')" />
       </template>
       <UButton v-if="phone" icon="i-lucide-search" color="neutral" variant="ghost" square aria-label="Search" @click="store.OPEN_DIALOG('search')" />
     </SiteHeader>
@@ -109,7 +109,7 @@
         <main class="absolute inset-0">
           <!-- MapLibre sets `position: relative` on its container, unlayered, so it beats Tailwind's `absolute`: the wrapper positions, the container fills it. -->
           <div class="absolute inset-0">
-            <div ref="mapElement" class="h-full w-full" />
+            <div ref="mapElement" class="size-full" />
           </div>
 
           <PlanLegend
@@ -163,8 +163,8 @@
             <!-- The same wrapper as the map's: MapLibre makes the minimap's container relative too. -->
             <div
               v-show="chrome.minimap"
-              class="pointer-events-auto h-[124px] w-[200px] overflow-hidden rounded-lg border-[3px] border-white shadow-[0_8px_30px_rgba(21,32,48,0.1)] dark:border-(--ui-bg)">
-              <div ref="minimapElement" class="h-full w-full" aria-label="Overview of the whole city" />
+              class="pointer-events-auto h-31 w-50 overflow-hidden rounded-lg border-[3px] border-white shadow-[0_8px_30px_rgba(21,32,48,0.1)] dark:border-(--ui-bg)">
+              <div ref="minimapElement" class="size-full" aria-label="Overview of the whole city" />
             </div>
             <TimeControl
               v-if="range"

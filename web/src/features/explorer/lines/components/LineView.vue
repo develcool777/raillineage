@@ -9,7 +9,7 @@
         <h3 v-if="position > 0" class="eyebrow text-muted pb-1">Branch from {{ run[0]?.name }}</h3>
         <!-- A line diagram: the line down the side, a stop at each station. -->
         <ol class="relative -mx-2" role="list">
-          <span class="absolute top-4 bottom-4 left-[17px] w-1 rounded-full" :style="{ background: lineColor(line.color) }" />
+          <span class="absolute top-4 bottom-4 left-4.25 w-1 rounded-full" :style="{ background: lineColor(line.color) }" />
           <li v-for="(stop, place) in run" :key="`${stop.id}-${place}`" :class="{ 'opacity-60': position > 0 && place === 0 }">
             <ListRow class="relative gap-3" @click="emit('station', stop.id)">
               <span class="flex w-5 flex-none justify-center">

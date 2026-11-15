@@ -12,6 +12,7 @@ import { importsConfig } from './eslint/imports.config.js';
 import { javascriptConfig } from './eslint/javascript.config.js';
 import { jsdocConfig } from './eslint/jsdoc.config.js';
 import { storesConfig } from './eslint/stores.config.js';
+import { tailwindConfig } from './eslint/tailwind.config.js';
 import { testsConfig } from './eslint/tests.config.js';
 import { typescriptConfig } from './eslint/typescript.config.js';
 import { vueConfig } from './eslint/vue.config.js';
@@ -50,5 +51,6 @@ export default defineConfig(
   storesConfig,
   filesConfig,
   vueConfig,
+  tailwindConfig,
   testsConfig,
 );

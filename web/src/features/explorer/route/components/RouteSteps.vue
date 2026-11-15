@@ -3,7 +3,7 @@
   <ol class="flex flex-col" role="list" :aria-label="`The way taking ${Math.round(route.minutes)} min`">
     <li v-for="(leg, position) in route.legs" :key="position" class="relative pb-4 pl-7">
       <template v-if="leg.kind === 'ride'">
-        <span class="absolute top-2 -bottom-2 left-[5px] w-1 rounded-full" :style="{ background: lineColor(leg.color) }" />
+        <span class="absolute top-2 -bottom-2 left-1.25 w-1 rounded-full" :style="{ background: lineColor(leg.color) }" />
         <span class="bg-default absolute top-0.5 left-0 size-3.5 rounded-full border-[3px]" :style="{ borderColor: lineColor(leg.color) }" />
         <div class="flex items-center justify-between gap-2">
           <UButton
@@ -31,7 +31,7 @@
           <template #content>
             <ul class="mt-1" role="list">
               <li v-for="stop in leg.stops.slice(1, -1)" :key="stop.id" class="relative flex h-6 items-center">
-                <span class="bg-default absolute -left-[26px] size-2.5 rounded-full border-2" :style="{ borderColor: lineColor(leg.color) }" />
+                <span class="bg-default absolute -left-6.5 size-2.5 rounded-full border-2" :style="{ borderColor: lineColor(leg.color) }" />
                 <UButton :label="stop.name" color="neutral" variant="link" size="xs" class="text-default p-0" @click="emit('station', stop.id)" />
               </li>
             </ul>
@@ -40,7 +40,7 @@
         <p v-else class="text-muted mt-1 text-xs tabular-nums">{{ rideSummary(leg) }}</p>
       </template>
       <template v-else>
-        <span class="border-accented absolute top-5 -bottom-1 left-[6px] border-l-2 border-dotted" />
+        <span class="border-accented absolute top-5 -bottom-1 left-1.5 border-l-2 border-dotted" />
         <UIcon name="i-lucide-footprints" class="text-muted absolute top-0.5 left-0 size-3.5" />
         <p class="text-default text-xs leading-5">
           Walk to <span class="font-semibold">{{ leg.to.name }}</span>

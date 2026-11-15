@@ -293,6 +293,10 @@ nameCompare)` (`@railtime/core/collection.utils`), not `a - b || nameCompare`.
   keyed apart, so one never takes the other's state (`vue/v-if-else-key`). A template's expressions
   are held to a script's (`vue/eqeqeq`, `vue/no-implicit-coercion`…), but for its guard clauses: the
   empty state first, `v-if="!from"`, what it shows in `v-else`.
+- **A Tailwind class is its token** (`better-tailwindcss/enforce-canonical-classes`,
+  `enforce-shorthand-classes`, `eslint/tailwind.config.js`): `w-5.5`, not `w-[22px]`; `size-full`, not
+  `w-full h-full`; read against the theme in `web/src/css/main.css`, Nuxt UI's included. `pnpm eslint-fix`
+  rewrites them.
 
 ## Tests
 

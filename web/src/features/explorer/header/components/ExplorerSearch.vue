@@ -9,7 +9,7 @@
     title="Search"
     description="Find a station, a line or a city">
     <template #item-leading="{ item }">
-      <span v-if="'colors' in item" class="flex w-[22px] flex-none items-center gap-0.5">
+      <span v-if="'colors' in item" class="flex w-5.5 flex-none items-center gap-0.5">
         <span v-for="color in item.colors" :key="color" class="h-1.5 flex-1 rounded-full" :style="{ background: color }" />
       </span>
       <UIcon v-else name="i-lucide-map-pin" class="text-dimmed size-4" />

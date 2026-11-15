@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-[50px]">
+  <div class="relative h-12.5">
     <div
       ref="bar"
       class="absolute inset-x-0 top-0 h-8 cursor-pointer touch-none select-none"
@@ -18,23 +18,23 @@
       <span
         v-for="tick in ticks"
         :key="tick.index"
-        class="tick absolute w-[3px] -translate-x-1/2 rounded-sm"
+        class="tick absolute w-0.75 -translate-x-1/2 rounded-sm"
         :class="TICK_LOOK[tick.mark]"
         :style="{ left: percent(tick.left), bottom: `${14 + tick.level * 5}px`, background: tickColor(tick) }"
         :title="tick.label" />
 
-      <div class="bg-accented absolute top-[24px] left-0 h-1 rounded-full" :style="{ width: percent(share) }" />
-      <div class="bg-primary absolute top-[24px] left-0 h-1 rounded-full" :class="{ glide: playing }" :style="{ width: percent(Math.min(thumb, share)) }" />
+      <div class="bg-accented absolute top-6 left-0 h-1 rounded-full" :style="{ width: percent(share) }" />
+      <div class="bg-primary absolute top-6 left-0 h-1 rounded-full" :class="{ glide: playing }" :style="{ width: percent(Math.min(thumb, share)) }" />
       <!-- A plan's changes, after every date: their track dashed, as on the map. -->
       <template v-if="scale.plannedCount > 0">
-        <div class="dashed absolute top-[24px] right-0 h-1 text-(--ui-border-accented)" :style="{ left: percent(share) }" />
+        <div class="dashed absolute top-6 right-0 h-1 text-(--ui-border-accented)" :style="{ left: percent(share) }" />
         <div
-          class="dashed text-primary absolute top-[24px] h-1"
+          class="dashed text-primary absolute top-6 h-1"
           :class="{ glide: playing }"
           :style="{ left: percent(share), width: percent(Math.max(0, thumb - share)) }" />
       </template>
       <div
-        class="border-primary bg-default shadow-card absolute top-[19px] size-3.5 -translate-x-1/2 rounded-full border-[3px]"
+        class="border-primary bg-default shadow-card absolute top-4.75 size-3.5 -translate-x-1/2 rounded-full border-[3px]"
         :class="{ glide: playing }"
         :style="{ left: percent(thumb) }" />
     </div>
@@ -42,7 +42,7 @@
     <template v-for="(entry, position) in labels" :key="entry.text">
       <span
         v-if="!entry.place"
-        class="text-muted absolute top-[33px] text-[11px] tabular-nums"
+        class="text-muted absolute top-8.25 text-[11px] tabular-nums"
         :class="labelAlign(entry.left)"
         :style="{ left: percent(entry.left) }">
         {{ entry.text }}
@@ -56,7 +56,7 @@
           :label="entry.text"
           color="neutral"
           variant="link"
-          class="text-highlighted absolute top-[31px] p-0 text-[11px] font-semibold"
+          class="text-highlighted absolute top-7.75 p-0 text-[11px] font-semibold"
           :class="labelAlign(entry.left)"
           :style="{ left: percent(entry.left) }"
           @click="emit('leave', entry.place)" />

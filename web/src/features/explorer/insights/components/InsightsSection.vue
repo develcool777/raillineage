@@ -49,7 +49,7 @@
         <section class="flex flex-col gap-1">
           <h3 class="eyebrow text-muted px-2 pb-1">Longest lines</h3>
           <ListRow v-for="line in records.longest" :key="line.id" @click="emit('line', line.id)">
-            <span class="h-1.5 w-[22px] flex-none rounded-full" :style="{ background: lineColor(line.color) }" />
+            <span class="h-1.5 w-5.5 flex-none rounded-full" :style="{ background: lineColor(line.color) }" />
             <span class="text-highlighted min-w-0 flex-1 truncate text-sm">{{ line.name }}</span>
             <span class="text-muted flex-none text-xs tabular-nums">{{ formatMetric(line.km, 'km') }}</span>
           </ListRow>
