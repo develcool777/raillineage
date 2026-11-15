@@ -30,8 +30,8 @@
 </template>
 
 <script setup lang="ts">
-  import { PREVIEW_SIZE, PREVIEW_THEMES } from '@railtime/data/preview.constants';
-  import type { CityIndexEntry } from '@railtime/schema/cityIndex.types';
+  import { PREVIEW_SIZE, PREVIEW_THEMES } from '@raillineage/data/preview.constants';
+  import type { CityIndexEntry } from '@raillineage/schema/cityIndex.types';
   import { computed } from 'vue';
   import { useHead } from '#imports';
   import { cityNameOf, previewUrlOf } from '~/utils/city.utils';

@@ -1,5 +1,5 @@
-import type { Theme } from '@railtime/network/facts.types';
-import { BasemapStill } from '@railtime/renderer/basemapStill.service';
+import type { Theme } from '@raillineage/network/facts.types';
+import { BasemapStill } from '@raillineage/renderer/basemapStill.service';
 import type { PreviewWindow } from './preview.types.ts';
 
 // The page Chrome draws previews in, bundled by esbuild (`PreviewRenderer`): one `BasemapStill` per

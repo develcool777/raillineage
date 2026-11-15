@@ -1,4 +1,4 @@
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import type { TrackSegment } from '../../../src/engine/engine.types';
 import type { TrainRun } from '../../../src/trains/trains.types';
 

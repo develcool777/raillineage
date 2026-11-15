@@ -1,6 +1,6 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { required } from '@railtime/core/required.utils';
-import { lineId, networkId, planId, stationId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { required } from '@raillineage/core/required.utils';
+import { lineId, networkId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { engineOf } from '../../../src/engine/engine.utils';
 import { statsDrawn } from '../../../src/engine/history.utils';

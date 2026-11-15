@@ -1,6 +1,6 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import { mercatorY } from '@railtime/core/geometry.utils';
-import { required } from '@railtime/core/required.utils';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { mercatorY } from '@raillineage/core/geometry.utils';
+import { required } from '@raillineage/core/required.utils';
 import { atZoom } from '../layers/style.utils';
 import type { Palette } from '../layers/theme.types';
 import { channelsOf } from '../support/drawing.utils';

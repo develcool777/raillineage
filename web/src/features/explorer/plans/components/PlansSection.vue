@@ -33,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { PlanInfo } from '@railtime/network/facts.types';
-  import type { PlanId } from '@railtime/schema/network.types';
+  import type { PlanInfo } from '@raillineage/network/facts.types';
+  import type { PlanId } from '@raillineage/schema/network.types';
   import { computed } from 'vue';
   import { PLAN_STATUSES } from '~/constants/plan.constants';
   import { formatPlanFacts, lineColor } from '~/utils/format.utils';

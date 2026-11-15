@@ -1,4 +1,4 @@
-import { COVERAGE_DISTANCES } from '@railtime/network/coverage.constants';
+import { COVERAGE_DISTANCES } from '@raillineage/network/coverage.constants';
 import { formatWalk } from '~/utils/format.utils';
 
 /** The distances coverage may count within, as the Coverage section's switch offers them. */

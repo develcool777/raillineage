@@ -1,6 +1,6 @@
-import { byCodeUnits } from '@railtime/core/text.utils';
-import { playbackOf } from '@railtime/renderer/testing/playback';
-import { lineId, planId } from '@railtime/schema/testing/ids';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import { playbackOf } from '@raillineage/renderer/testing/playback';
+import { lineId, planId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { cityNetwork, lineSplits, playPlan, playWholeHistory } from '../../../support/history.utils';
 

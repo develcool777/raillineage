@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { Credit } from '@railtime/renderer/transitMap.types';
+  import type { Credit } from '@raillineage/renderer/transitMap.types';
 
   defineProps<{
     /** What the map shows owes, each linked to its source where it has one. */

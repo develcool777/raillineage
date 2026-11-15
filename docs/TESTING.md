@@ -7,16 +7,16 @@ Each package keeps its tests beside its code, as dataroom-ui does inside its one
 
 ```text
 packages/network/
-  vitest.config.ts          the package's project (`pnpm --filter @railtime/network test-unit`)
+  vitest.config.ts          the package's project (`pnpm --filter @raillineage/network test-unit`)
   test/unit/                mirrors src/, a test a file, named for it: test/unit/engine/timeline.service.test.ts
                             tests src/engine/timeline.service.ts, timeline.utils.test.ts its utils
   test/support/             what tests share: factories/ (tinyNetwork, planOnlyNetwork, boundaries,
-                            hiddenNetwork, routeNetwork: exported as `@railtime/network/testing/*` for the other
+                            hiddenNetwork, routeNetwork: exported as `@raillineage/network/testing/*` for the other
                             packages' tests), facts.utils.ts
 packages/renderer/
   test/unit/                mirrors src/, as network's; transitMap.service.spec.ts tests the contract whole
   test/support/             fakeMap, playback.utils.ts (a player wired as the map wires it, and what
-                            the map draws: `@railtime/renderer/testing/playback` for data's city tests)
+                            the map draws: `@raillineage/renderer/testing/playback` for data's city tests)
 packages/data/
   test/unit/<feature>/      mirrors src/<feature>/: summary/, boundary/, preview/ (a command each)
   test/unit/city.utils.test.ts  finding the cities and reading their files
@@ -65,7 +65,7 @@ web/test/e2e/               the built site in Chromium (Playwright, `*.e2e.ts`, 
   inside an `if` (`vitest/no-conditional-expect`): gather what a loop finds, then check it once
   (`expect(far).toEqual(far.map(() => Infinity))`).
 - A `console.warn` or `console.error` during a test fails it (`vitest.setup.ts`).
-- **The site in a browser** (`pnpm --filter @railtime/web test-e2e`; CI runs it): `nuxt generate`'s build,
+- **The site in a browser** (`pnpm --filter @raillineage/web test-e2e`; CI runs it): `nuxt generate`'s build,
   served as Cloudflare serves it (`web/test/e2e/serve.json`: a page's folder at its address with a slash),
   in Playwright's Chromium (`web/playwright.config.ts`). Only what a browser alone shows: a city opening on
   its map, the address read back after a reload, playback, the layout on a phone, a page that is not

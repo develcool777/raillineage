@@ -2,7 +2,7 @@ import typescript from 'typescript';
 import type { ObjectType, Type, TypeChecker, TypeReference } from 'typescript';
 
 /**
- * The tag `Brand` (`@railtime/core/brand.types`) puts on a type: a property keyed by its unique
+ * The tag `Brand` (`@raillineage/core/brand.types`) puts on a type: a property keyed by its unique
  * symbol `brand`, which TypeScript names `__@brand@<id>`. Found by its tag, not by its name, so a
  * brand added later is one too.
  */

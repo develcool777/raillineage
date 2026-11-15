@@ -1,4 +1,4 @@
-# @railtime/network
+# @raillineage/network
 
 A city's network through time, and every fact about it: what it is and was on any date, its lines,
 stations, routes, how far one gets, how much of the city is near a station, how it grew, and each
@@ -6,7 +6,7 @@ change in words. Pure: no map, no clock; the renderer, the app, `packages/data` 
 it (`../../ARCHITECTURE.md`).
 
 ```ts
-import { NetworkFacts } from '@railtime/network/facts.service';
+import { NetworkFacts } from '@raillineage/network/facts.service';
 
 const facts = NetworkFacts.create(network, { plan, hidden, today }); // a plan built on it, if one is asked for; lines hidden left out
 facts.range; // { start, end, today }: end is past today when a dated change is
@@ -39,7 +39,7 @@ facts.coverage(boundary).stationsHeld(); // the share of its stations the outlin
 Behind it is `NetworkEngine` (`engineOf(facts)`; `engine.service`, `engine.types`, `engine.utils`): the
 index, the timeline and each opening's `growths`, the range. It is the raw network the renderer plays and
 draws, and nothing else's: `web`, `data` and `video` cannot import it (ESLint), and that import is the only way to it. Dates, geometry and `required` are
-`@railtime/core`'s. A line's colour is a `LineColor`,
+`@raillineage/core`'s. A line's colour is a `LineColor`,
 `{ light, dark }`: no question takes a theme. `testing/*` exports the networks and outlines the tests
 share.
 
@@ -47,7 +47,7 @@ A station's names in other languages (`names`) are on its label, beneath its Eng
 `then.station(id).otherNames`.
 
 **Plans.** `NetworkFacts.create(network, { plan })` builds one of the network's `plans` on it
-(`buildPlan` in `@railtime/schema`). A plan is undated: the timeline puts its sections after every
+(`buildPlan` in `@raillineage/schema`). A plan is undated: the timeline puts its sections after every
 dated step, as `planned` steps at time `Infinity`, and the player plays them one by one once the
 clock reaches its end, the clock standing there. Their track is drawn dashed in its line's colour, growing too, a
 station only they reach is a ring, their `StepInfo.time` is `null`, and `TimeState.inPlan` is true

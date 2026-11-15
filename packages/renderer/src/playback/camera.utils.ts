@@ -1,6 +1,6 @@
-import { RADIANS_PER_DEGREE } from '@railtime/core/geometry.constants';
-import type { Bounds, LngLat } from '@railtime/core/geometry.types';
-import { offsetKm } from '@railtime/core/geometry.utils';
+import { RADIANS_PER_DEGREE } from '@raillineage/core/geometry.constants';
+import type { Bounds, LngLat } from '@raillineage/core/geometry.types';
+import { offsetKm } from '@raillineage/core/geometry.utils';
 import type { MapOptions } from 'maplibre-gl';
 import type { ChaseTarget } from '../steps/animation.types';
 import { OPENING_MAX_ZOOM, OPENING_SIDE_PADDING } from '../transitMap.constants';

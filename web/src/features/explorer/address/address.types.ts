@@ -1,6 +1,6 @@
-import type { CoverageDistance, Moment } from '@railtime/network/facts.types';
-import type { MapView, ViewMode } from '@railtime/renderer/transitMap.types';
-import type { LineId, PlanId, StationId } from '@railtime/schema/network.types';
+import type { CoverageDistance, Moment } from '@raillineage/network/facts.types';
+import type { MapView, ViewMode } from '@raillineage/renderer/transitMap.types';
+import type { LineId, PlanId, StationId } from '@raillineage/schema/network.types';
 import type { PlayerSettings, Section } from '~/features/explorer/explorer.types';
 import type { RouteEnds } from '~/features/explorer/tools.types';
 

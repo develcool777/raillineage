@@ -1,5 +1,5 @@
-import type { StationId } from '@railtime/schema/network.types';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import type { StationId } from '@raillineage/schema/network.types';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import type { LineSegment, TrackSegment } from '../../../src/engine/engine.types';
 import { engineOf } from '../../../src/engine/engine.utils';

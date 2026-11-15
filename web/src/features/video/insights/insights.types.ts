@@ -1,4 +1,4 @@
-import type { CoverageInfo, CoverageYear, DecadeOpenings, NetworkRecords, NetworkStats } from '@railtime/network/facts.types';
+import type { CoverageInfo, CoverageYear, DecadeOpenings, NetworkRecords, NetworkStats } from '@raillineage/network/facts.types';
 import type { YearPoint } from '~/utils/yearChart.types';
 
 /** A panel round the map. */

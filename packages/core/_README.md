@@ -1,4 +1,4 @@
-# @railtime/core
+# @raillineage/core
 
 Helpers about nothing in rail, each written once and used by more than one package: the bottom
 of the stack, depending on nothing (`../../ARCHITECTURE.md`). A helper that a second package needs moves

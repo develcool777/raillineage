@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { ChangeInfo } from '@railtime/network/facts.types';
+  import type { ChangeInfo } from '@raillineage/network/facts.types';
   import { computed, nextTick, onMounted, ref, useTemplateRef, watch } from 'vue';
   import { CHANGE_ROW_ESTIMATE, DECADE_HEADING_ESTIMATE } from '~/features/explorer/changes/changes.constants';
   import type { ChangeRow } from '~/features/explorer/changes/changes.types';

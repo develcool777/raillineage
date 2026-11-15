@@ -1,7 +1,7 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import { required } from '@railtime/core/required.utils';
-import type { LineSegment } from '@railtime/network/engine.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { required } from '@raillineage/core/required.utils';
+import type { LineSegment } from '@raillineage/network/engine.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { FeatureCollection, LineFeature, NetworkSnapshot, PointFeature, StationLines, StationsFound } from './snapshot.types';
 import type { RenderState, ResolvedLine, SideBySide } from './style.types';
 import { offsetFor, resolveLine } from './style.utils';

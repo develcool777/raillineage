@@ -1,8 +1,8 @@
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { PlanInfo } from '@railtime/network/facts.types';
-import type { ViewMode } from '@railtime/renderer/transitMap.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { Network } from '@railtime/schema/network.types';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { PlanInfo } from '@raillineage/network/facts.types';
+import type { ViewMode } from '@raillineage/renderer/transitMap.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { Network } from '@raillineage/schema/network.types';
 
 /**
  * What a moment of the video is: loading its map, ready to start, its title, the history playing; the

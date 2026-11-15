@@ -1,4 +1,4 @@
-import type { LineId } from '@railtime/schema/network.types';
+import type { LineId } from '@raillineage/schema/network.types';
 import type { DataDrivenPropertyValueSpecification, FilterSpecification, Map as MapLibreMap } from 'maplibre-gl';
 import type { StepDrawing } from '../steps/animation.types';
 import { BOLD_PLANNED_DASHES, GROWING_SOURCE_MAX_ZOOM, LAYERS, LINE_LAYOUT, PLANNED_DASHES, SOURCES, UNFOCUSED_OPACITY } from './ids.constants';

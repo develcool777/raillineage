@@ -1,8 +1,8 @@
-import { KM_PER_DEGREE_LATITUDE, KM_PER_DEGREE_LONGITUDE_AT_EQUATOR, RADIANS_PER_DEGREE } from '@railtime/core/geometry.constants';
-import type { LngLat } from '@railtime/core/geometry.types';
-import { cumulativeDistances, offsetKm, sliceAlong } from '@railtime/core/geometry.utils';
-import { clamp } from '@railtime/core/number.utils';
-import { required } from '@railtime/core/required.utils';
+import { KM_PER_DEGREE_LATITUDE, KM_PER_DEGREE_LONGITUDE_AT_EQUATOR, RADIANS_PER_DEGREE } from '@raillineage/core/geometry.constants';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { cumulativeDistances, offsetKm, sliceAlong } from '@raillineage/core/geometry.utils';
+import { clamp } from '@raillineage/core/number.utils';
+import { required } from '@raillineage/core/required.utils';
 import type { Segment } from '../format/network.types';
 import type { Heading } from './build.types';
 import { HANDLE_SHARE, CURVE_STEP_KM, HEADING_SPAN_KM } from './track.constants.ts';

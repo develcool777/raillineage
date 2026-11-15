@@ -1,5 +1,5 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { planId, stationId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { NetworkEngine } from '../../../src/engine/engine.service';
 import { tinyNetwork } from '../../support/factories/tinyNetwork.utils';

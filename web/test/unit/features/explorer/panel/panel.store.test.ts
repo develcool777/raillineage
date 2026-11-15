@@ -1,4 +1,4 @@
-import { planId, stationId } from '@railtime/schema/testing/ids';
+import { planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { openExplorer } from '@test/support/factories/explorer.utils';
 import { timeAt } from '@test/support/factories/timeState.utils';

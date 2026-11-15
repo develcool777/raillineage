@@ -1,5 +1,5 @@
-import type { LineInfo, NetworkChoice } from '@railtime/network/facts.types';
-import { lineId, networkId } from '@railtime/schema/testing/ids';
+import type { LineInfo, NetworkChoice } from '@raillineage/network/facts.types';
+import { lineId, networkId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { lineGroups, titleInLine } from '~/features/explorer/lines/line.utils';
 

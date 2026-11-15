@@ -33,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { ChangeInfo, LineColor, LineDetails } from '@railtime/network/facts.types';
-  import type { StationId } from '@railtime/schema/network.types';
+  import type { ChangeInfo, LineColor, LineDetails } from '@raillineage/network/facts.types';
+  import type { StationId } from '@raillineage/schema/network.types';
   import { ref } from 'vue';
   import { titleInLine } from '~/features/explorer/lines/line.utils';
   import { lineColor } from '~/utils/format.utils';

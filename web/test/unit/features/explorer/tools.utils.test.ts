@@ -1,8 +1,8 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import type { CoverageInfo } from '@railtime/network/facts.types';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import type { StationId } from '@railtime/schema/network.types';
-import { stationId } from '@railtime/schema/testing/ids';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import type { CoverageInfo } from '@raillineage/network/facts.types';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import type { StationId } from '@raillineage/schema/network.types';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import type { RouteEnds } from '~/features/explorer/tools.types';
 import {

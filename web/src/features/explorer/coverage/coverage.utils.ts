@@ -1,5 +1,5 @@
-import { COVERAGE_DISTANCES } from '@railtime/network/coverage.constants';
-import type { CoverageDistance } from '@railtime/network/facts.types';
+import { COVERAGE_DISTANCES } from '@raillineage/network/coverage.constants';
+import type { CoverageDistance } from '@raillineage/network/facts.types';
 import { formatNumber } from '~/utils/format.utils';
 
 /**

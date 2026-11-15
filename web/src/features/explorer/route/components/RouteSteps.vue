@@ -61,8 +61,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { RouteInfo } from '@railtime/network/facts.types';
-  import type { StationId } from '@railtime/schema/network.types';
+  import type { RouteInfo } from '@raillineage/network/facts.types';
+  import type { StationId } from '@raillineage/schema/network.types';
   import { ref, watch } from 'vue';
   import { rideSummary } from '~/features/explorer/route/route.utils';
   import { lineColor } from '~/utils/format.utils';

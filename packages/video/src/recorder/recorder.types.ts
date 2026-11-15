@@ -36,10 +36,10 @@ export type RecordingScope = {
   Date: { now: () => number };
   requestAnimationFrame: (callback: (time: number) => void) => number;
   cancelAnimationFrame: (handle: number) => void;
-} & Pick<RecordedWindow, 'railtimeRecorder'>;
+} & Pick<RecordedWindow, 'raillineageRecorder'>;
 
 /** What the recorder reads of a page's `window` to know a frame is drawn. A stand-in in tests. */
-export type DrawnScope = Pick<RecordedWindow, 'railtimeRecorder' | 'railtimeVideo'>;
+export type DrawnScope = Pick<RecordedWindow, 'raillineageRecorder' | 'raillineageVideo'>;
 
 /** What a `VideoRecorder` is made with. */
 export type RecorderOptions = {

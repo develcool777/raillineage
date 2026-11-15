@@ -1,7 +1,7 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { Network } from '@railtime/schema/network.types';
-import { asNetwork } from '@railtime/schema/testing/ids';
-import type { WrittenSegment } from '@railtime/schema/testing/ids';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { Network } from '@raillineage/schema/network.types';
+import { asNetwork } from '@raillineage/schema/testing/ids';
+import type { WrittenSegment } from '@raillineage/schema/testing/ids';
 
 /**
  * A point `east` km east and `north` km north of A.

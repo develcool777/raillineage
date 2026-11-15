@@ -1,8 +1,8 @@
-import { DAY_MS } from '@railtime/core/date.utils';
-import { clamp } from '@railtime/core/number.utils';
-import { required } from '@railtime/core/required.utils';
-import type { TrainService } from '@railtime/network/trains.service';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import { DAY_MS } from '@raillineage/core/date.utils';
+import { clamp } from '@raillineage/core/number.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { TrainService } from '@raillineage/network/trains.service';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import { UNTOUCHED_BASE } from '../steps/animation.constants';
 import type { BaseNetwork, ChaseTarget, StepDrawing } from '../steps/animation.types';
 import { emptyDrawing, sameBase } from '../steps/animation.utils';

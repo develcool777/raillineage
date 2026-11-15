@@ -1,4 +1,4 @@
-import CITY_INDEX from '@railtime/data/cities.json' with { type: 'json' };
+import CITY_INDEX from '@raillineage/data/cities.json' with { type: 'json' };
 import { expect, test } from '../support/browser.utils';
 
 /** Every city's name, as the index lists them. */

@@ -1,8 +1,8 @@
-import { required } from '@railtime/core/required.utils';
-import type { NetworkEngine } from '@railtime/network/engine.service';
-import type { CoverageCells, ReachInfo, RouteInfo, Theme } from '@railtime/network/facts.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { StationId } from '@railtime/schema/network.types';
+import { required } from '@raillineage/core/required.utils';
+import type { NetworkEngine } from '@raillineage/network/engine.service';
+import type { CoverageCells, ReachInfo, RouteInfo, Theme } from '@raillineage/network/facts.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { StationId } from '@raillineage/schema/network.types';
 import type { PointFeature, ReachStopProperties, ReachTrackFeature, RouteFeature, RouteStopProperties } from '../layers/snapshot.types';
 import { pointFeature } from '../layers/snapshot.utils';
 import { channelsOf } from '../support/drawing.utils';

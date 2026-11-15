@@ -1,6 +1,6 @@
-import { SOCIAL_SIZE } from '@railtime/data/preview.constants';
-import { STILL_PIXEL_RATIO } from '@railtime/renderer/basemapStill.constants';
-import type { CityIndexEntry } from '@railtime/schema/cityIndex.types';
+import { SOCIAL_SIZE } from '@raillineage/data/preview.constants';
+import { STILL_PIXEL_RATIO } from '@raillineage/renderer/basemapStill.constants';
+import type { CityIndexEntry } from '@raillineage/schema/cityIndex.types';
 import { cityNameOf, socialUrlOf } from '~/utils/city.utils';
 import { counted } from '~/utils/format.utils';
 import type { PageSeo } from './seo.types';

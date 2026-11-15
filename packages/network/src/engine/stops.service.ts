@@ -1,4 +1,4 @@
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { StopSteps } from './stops.types';
 
 /**

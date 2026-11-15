@@ -1,5 +1,5 @@
-import type { Network } from '@railtime/schema/network.types';
-import { lineId, networkId, planId, stationId } from '@railtime/schema/testing/ids';
+import type { Network } from '@raillineage/schema/network.types';
+import { lineId, networkId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { tinyNetwork } from './tinyNetwork.utils';
 
 /**

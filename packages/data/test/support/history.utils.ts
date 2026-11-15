@@ -1,6 +1,6 @@
-import { toIsoDate } from '@railtime/core/date.utils';
-import { drawnStep, playbackOf } from '@railtime/renderer/testing/playback';
-import type { Network, PlanId } from '@railtime/schema/network.types';
+import { toIsoDate } from '@raillineage/core/date.utils';
+import { drawnStep, playbackOf } from '@raillineage/renderer/testing/playback';
+import type { Network, PlanId } from '@raillineage/schema/network.types';
 import { globSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 

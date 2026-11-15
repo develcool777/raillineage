@@ -1,5 +1,5 @@
-import type { Theme } from '@railtime/network/facts.types';
-import type { StillRequest } from '@railtime/renderer/basemapStill.types';
+import type { Theme } from '@raillineage/network/facts.types';
+import type { StillRequest } from '@raillineage/renderer/basemapStill.types';
 import type { Browser } from 'playwright-core';
 
 /** A stand-in for Chrome as Playwright drives it: it keeps what the preview page was asked to draw. */

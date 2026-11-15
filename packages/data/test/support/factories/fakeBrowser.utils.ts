@@ -1,5 +1,5 @@
-import type { Theme } from '@railtime/network/facts.types';
-import type { StillRequest } from '@railtime/renderer/basemapStill.types';
+import type { Theme } from '@raillineage/network/facts.types';
+import type { StillRequest } from '@raillineage/renderer/basemapStill.types';
 import type { Browser } from 'playwright-core';
 import type { FakeBrowser } from '../fakeBrowser.types.ts';
 

@@ -1,5 +1,5 @@
-import { hiddenNetwork } from '@railtime/network/testing/hiddenNetwork';
-import { lineId } from '@railtime/schema/testing/ids';
+import { hiddenNetwork } from '@raillineage/network/testing/hiddenNetwork';
+import { lineId } from '@raillineage/schema/testing/ids';
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/vue';
 import { describe, expect, test, vi } from 'vitest';

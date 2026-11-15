@@ -1,4 +1,4 @@
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { YearStats } from '../facts/facts.types';
 
 /** The network year by year, and the year each station first opened. */

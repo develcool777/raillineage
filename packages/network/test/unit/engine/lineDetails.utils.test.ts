@@ -1,6 +1,6 @@
-import { byCodeUnits } from '@railtime/core/text.utils';
-import type { Network, StationId } from '@railtime/schema/network.types';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import type { Network, StationId } from '@raillineage/schema/network.types';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { NetworkIndex } from '../../../src/engine/index.service';
 import { lineHops, lineLengthKm, lineRuns, stepChangesLine, directionsAt } from '../../../src/engine/lineDetails.utils';

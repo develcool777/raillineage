@@ -107,12 +107,12 @@ describe('RecorderUtils', () => {
     test("runs the page's frames at the moment held before it asks, so what came is drawn by the answer", () => {
       const said: string[] = [];
       const answer = drawnOnceHeld({
-        railtimeRecorder: {
+        raillineageRecorder: {
           advance: time => {
             said.push(`advance ${time}`);
           },
         },
-        railtimeVideo: {
+        raillineageVideo: {
           state: () => 'playing',
           start: () => {},
           drawn: () => {
@@ -177,7 +177,7 @@ describe('RecorderUtils', () => {
       installRecordingClock(scope);
       expect(scope.performance.now()).toBe(0);
       expect(scope.Date.now()).toBe(5000);
-      scope.railtimeRecorder?.advance(16);
+      scope.raillineageRecorder?.advance(16);
       expect(scope.performance.now()).toBe(16);
       expect(scope.Date.now()).toBe(5016);
     });
@@ -192,10 +192,10 @@ describe('RecorderUtils', () => {
         scope.requestAnimationFrame(again);
       });
       expect(times).toEqual([]);
-      scope.railtimeRecorder?.advance(20);
+      scope.raillineageRecorder?.advance(20);
       expect(times).toEqual([20]);
       expect(again).not.toHaveBeenCalled();
-      scope.railtimeRecorder?.advance(0);
+      scope.raillineageRecorder?.advance(0);
       expect(again).toHaveBeenCalledWith(20);
     });
 
@@ -204,7 +204,7 @@ describe('RecorderUtils', () => {
       installRecordingClock(scope);
       const cancelled = vi.fn();
       scope.cancelAnimationFrame(scope.requestAnimationFrame(cancelled));
-      scope.railtimeRecorder?.advance(16);
+      scope.raillineageRecorder?.advance(16);
       expect(cancelled).not.toHaveBeenCalled();
     });
   });

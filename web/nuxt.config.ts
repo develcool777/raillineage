@@ -23,7 +23,7 @@ export default defineNuxtConfig({
       });
     },
   ],
-  css: ['~/css/main.css', '@railtime/renderer/transitMap.css'],
+  css: ['~/css/main.css', '@raillineage/renderer/transitMap.css'],
   // The map follows the system theme until the user picks one.
   colorMode: { preference: 'system', fallback: 'dark' },
   // Components are used by tag, without an import: the shared ones in components/, and each feature's

@@ -1,7 +1,7 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import type { Theme } from '@railtime/network/facts.types';
-import type { StillRequest, StillTrack } from '@railtime/renderer/basemapStill.types';
-import type { Network } from '@railtime/schema/network.types';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import type { Theme } from '@raillineage/network/facts.types';
+import type { StillRequest, StillTrack } from '@raillineage/renderer/basemapStill.types';
+import type { Network } from '@raillineage/schema/network.types';
 import { MAX_PREVIEW_ZOOM, PREVIEW_PADDING } from './preview.constants.ts';
 import type { PreviewSize } from './preview.types.ts';
 

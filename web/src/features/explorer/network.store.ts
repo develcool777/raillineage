@@ -1,5 +1,5 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import type { LineId, Network, PlanId } from '@railtime/schema/network.types';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import type { LineId, Network, PlanId } from '@raillineage/schema/network.types';
 import { defineStore } from 'pinia';
 import { computed, markRaw, shallowRef } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';

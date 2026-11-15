@@ -1,6 +1,6 @@
-import type { NetworkEngine } from '@railtime/network/engine.service';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { LineId } from '@railtime/schema/network.types';
+import type { NetworkEngine } from '@raillineage/network/engine.service';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { LineId } from '@raillineage/schema/network.types';
 import type { Minimap } from '../minimap/minimap.service';
 import type { MotionLayer } from '../motion/motion.service';
 import type { Player } from '../playback/player.service';

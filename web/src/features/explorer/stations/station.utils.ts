@@ -1,5 +1,5 @@
-import { firstDifference } from '@railtime/core/collection.utils';
-import type { LineDirection, StationSummary, Stop, StopToward } from '@railtime/network/facts.types';
+import { firstDifference } from '@raillineage/core/collection.utils';
+import type { LineDirection, StationSummary, Stop, StopToward } from '@raillineage/network/facts.types';
 import type { StationGroup, StationRow, StripStop } from '~/features/explorer/stations/station.types';
 
 /**

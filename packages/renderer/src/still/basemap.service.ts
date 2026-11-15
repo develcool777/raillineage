@@ -1,5 +1,5 @@
-import { boundsOf } from '@railtime/core/geometry.utils';
-import { required } from '@railtime/core/required.utils';
+import { boundsOf } from '@raillineage/core/geometry.utils';
+import { required } from '@raillineage/core/required.utils';
 import { type GeoJSONSource, type LineLayerSpecification, Map as MapLibreMap, setWorkerUrl } from 'maplibre-gl';
 import { recolorBasemap } from '../layers/basemap.utils';
 import { LINE_LAYOUT } from '../layers/ids.constants';

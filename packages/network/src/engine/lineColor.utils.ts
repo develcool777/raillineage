@@ -1,4 +1,4 @@
-import type { Line } from '@railtime/schema/network.types';
+import type { Line } from '@raillineage/schema/network.types';
 import type { LineColor } from '../facts/facts.types';
 
 /**

@@ -35,7 +35,7 @@ const browserWith = ({ readyAfter = 2, playsFor = Infinity, drawnAfter = 0, onFr
   let playedMs = 0;
   let timesAsked = 0;
   const scope: RecordedWindow = {
-    railtimeRecorder: {
+    raillineageRecorder: {
       advance: milliseconds => {
         if (milliseconds === 0) return;
         seen.frameTimes.push(milliseconds);
@@ -48,7 +48,7 @@ const browserWith = ({ readyAfter = 2, playsFor = Infinity, drawnAfter = 0, onFr
         if (playedMs >= playsFor) state = 'done';
       },
     },
-    railtimeVideo: {
+    raillineageVideo: {
       state: () => state,
       start: () => {
         seen.starts += 1;
@@ -104,7 +104,7 @@ const browserWith = ({ readyAfter = 2, playsFor = Infinity, drawnAfter = 0, onFr
  * @returns The recording, and where the stand-in is.
  */
 const recordingApart = (script: string, overrides: Partial<Recording> = {}) => {
-  const folder = mkdtempSync(join(tmpdir(), 'railtime-'));
+  const folder = mkdtempSync(join(tmpdir(), 'raillineage-'));
   onTestFinished(() => {
     rmSync(folder, { recursive: true });
   });

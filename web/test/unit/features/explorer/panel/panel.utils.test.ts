@@ -1,5 +1,5 @@
-import type { ChangeInfo, LineDetails, LineInfo, PlanInfo, StationInfo } from '@railtime/network/facts.types';
-import { lineId, networkId, planId, stationId } from '@railtime/schema/testing/ids';
+import type { ChangeInfo, LineDetails, LineInfo, PlanInfo, StationInfo } from '@raillineage/network/facts.types';
+import { lineId, networkId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { timeAt } from '@test/support/factories/timeState.utils';
 import type { SectionTopInput } from '~/features/explorer/panel/panel.types';

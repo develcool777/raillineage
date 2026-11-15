@@ -1,5 +1,5 @@
-import { pairsOf, entriesOf, keysOf } from '@railtime/core/collection.utils';
-import { byCodeUnits } from '@railtime/core/text.utils';
+import { pairsOf, entriesOf, keysOf } from '@raillineage/core/collection.utils';
+import { byCodeUnits } from '@raillineage/core/text.utils';
 import type { Network, Plan, PlanTrack } from '../format/network.types';
 import type { BuiltPlan } from '../plan/build.types';
 import { buildPlan } from '../plan/build.utils.ts';

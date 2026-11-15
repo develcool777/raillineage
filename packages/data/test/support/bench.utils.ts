@@ -1,6 +1,6 @@
-import { parseBoundary } from '@railtime/schema/boundary.schema';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { Network } from '@railtime/schema/network.types';
+import { parseBoundary } from '@raillineage/schema/boundary.schema';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { Network } from '@raillineage/schema/network.types';
 import { existsSync, readFileSync } from 'node:fs';
 import type { TestContext } from 'vitest';
 import { citiesNamed, readNetwork } from '../../src/city.utils';

@@ -1,5 +1,5 @@
-import { decadeOf, endOfYear, yearOf } from '@railtime/core/date.utils';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import { decadeOf, endOfYear, yearOf } from '@raillineage/core/date.utils';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { DecadeOpenings, YearStats, NetworkStats } from '../facts/facts.types';
 import type { NetworkHistory, OpenNetwork } from './history.types';
 import type { NetworkIndex } from './index.service';

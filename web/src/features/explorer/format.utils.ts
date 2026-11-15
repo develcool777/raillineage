@@ -1,5 +1,5 @@
-import { decadeOf, yearOf } from '@railtime/core/date.utils';
-import type { NetworkStats } from '@railtime/network/facts.types';
+import { decadeOf, yearOf } from '@raillineage/core/date.utils';
+import type { NetworkStats } from '@raillineage/network/facts.types';
 import { counted } from '~/utils/format.utils';
 
 /** The months' names, January first. */

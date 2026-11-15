@@ -1,7 +1,7 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { hiddenNetwork } from '@railtime/network/testing/hiddenNetwork';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { planId, stationId } from '@railtime/schema/testing/ids';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { hiddenNetwork } from '@raillineage/network/testing/hiddenNetwork';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { explorerAddressOf, formatExplorerQuery, linkedMomentOf, parseExplorerQuery, sameQuery } from '~/features/explorer/address/address.utils';
 

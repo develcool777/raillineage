@@ -38,7 +38,7 @@ parts, is [ARCHITECTURE.md](../ARCHITECTURE.md); how a test is written, [TESTING
   own either: `toSorted`, `toReversed` (`unicorn/no-array-sort`, `no-array-reverse`, `allowExpressionStatement`
   off), with a comparator always
   (`require-array-sort-compare`, strings' sorts too: `byCodeUnits` from
-  `@railtime/core/text.utils` for ids and ISO dates, `localeCompare` for a name a reader sees);
+  `@raillineage/core/text.utils` for ids and ISO dates, `localeCompare` for a name a reader sees);
   `list.at(-1)`, `replaceAll`, `Number.isSafeInteger`, `Set` methods (`difference`); a callback that does
   nothing is `() => {}`. Each thing said one way: `===` (`eqeqeq`), `Boolean(x)` or a comparison for
   `!!x` (`no-implicit-coercion`), a template literal for `'a' + b` (`prefer-template`), `{ bounds }`
@@ -63,20 +63,20 @@ parts, is [ARCHITECTURE.md](../ARCHITECTURE.md); how a test is written, [TESTING
   an object, a string, or one that may be missing (an id, a date, a name, a flag; never `''`). A
   number is compared, never taken for true: `0` is a count, an option, and the timestamp of
   1 January 1970 (`closes !== null`, `option > 0`). A sort's tie-breaks are `firstDifference(a - b,
-nameCompare)` (`@railtime/core/collection.utils`), not `a - b || nameCompare`.
+nameCompare)` (`@raillineage/core/collection.utils`), not `a - b || nameCompare`.
 - **An id is its kind's** (`StationId`, `LineId`, `NetworkId`, `PlanId`: `Brand<string, …>`, in
   `schema`'s format): a line's id where a station's goes does not compile, and a map or set of them
   says which (`Map<StationId, number>`). A string becomes an id only where it is checked: `parseNetwork`
   for a city's file, `isStationIn`/`isLineIn`/`isPlanIn` (`facts.findStation`, `findLine`, `planToOpen`)
   for an address; never by `as` elsewhere, a template's expressions included (`house/checked-ids`). A
   city's file becomes a `Network` or a `CityBoundary` at a door: `parseNetwork`/`parseBoundary`, which
-  check it, or in the browser `servedNetwork`/`servedBoundary` (`@railtime/schema/served.utils`), which
+  check it, or in the browser `servedNetwork`/`servedBoundary` (`@raillineage/schema/served.utils`), which
   trust what CI checked; never by `as` or a fetch's type argument elsewhere (`house/served-files`). A record keyed by ids is walked with
-  `keysOf`/`entriesOf` and made with `fromEntriesOf` (`@railtime/core/collection.utils`), which keep the
+  `keysOf`/`entriesOf` and made with `fromEntriesOf` (`@raillineage/core/collection.utils`), which keep the
   key's kind, where `Object.keys` makes it `string` (`house/branded-record-keys`). An id key beside a
   spread, `{ ...plans, [id]: plan }`, is one TypeScript checks nothing under: copy, then set it by key
   (`house/branded-spread-key`). A test names its ids with `stationId('a')`, `lineId('red')`, and writes a
-  network as its file is, `asNetwork({…})` (`@railtime/schema/testing/ids`), helpers that trust what
+  network as its file is, `asNetwork({…})` (`@raillineage/schema/testing/ids`), helpers that trust what
   they are given, which source never imports (`house/test-helpers`). The house's rules read types, and
   live, tested, in `packages/tooling/src/lint/`.
 - **A key left out is not a key given `undefined`** (`exactOptionalPropertyTypes`, in the packages):
@@ -117,12 +117,12 @@ nameCompare)` (`@railtime/core/collection.utils`), not `a - b || nameCompare`.
 - **Erasable TypeScript only** (`erasableSyntaxOnly`): scripts run directly under Node's type
   stripping, so no enums or constructor parameter properties; and in the code they run (`core`,
   `schema`, `network`, `data/src`) a runtime import names its file, `.ts` included (ESLint).
-- **A package through its door**: another package is imported by its `exports` (`@railtime/<package>/…`),
-  never by a path into its folders (ESLint); what its tests share, from `@railtime/<package>/testing/…`.
-  `@railtime/network/engine.*` is the renderer's alone, `web`'s and `data`'s code and tests kept out (ESLint):
+- **A package through its door**: another package is imported by its `exports` (`@raillineage/<package>/…`),
+  never by a path into its folders (ESLint); what its tests share, from `@raillineage/<package>/testing/…`.
+  `@raillineage/network/engine.*` is the renderer's alone, `web`'s and `data`'s code and tests kept out (ESLint):
   `engineOf(facts)` is the one way from a network's facts to the engine. One exception the fence does not
   see: `data`'s `london.test.ts` and `lineSplits` read the raw `index` and `timeline` that `playbackOf`
-  (`@railtime/renderer/testing/playback`) hands over, for what no fact says: which stretch a step opens, a
+  (`@raillineage/renderer/testing/playback`) hands over, for what no fact says: which stretch a step opens, a
   segment's direction, a line's track holding together past a junction its trains pass. Else they ask the facts.
   No package takes Vue (its stores, Nuxt), and `core`, `schema` and `network` take no map either: the
   renderer is the one that draws (ESLint).

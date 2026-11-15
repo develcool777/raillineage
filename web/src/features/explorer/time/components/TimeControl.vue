@@ -69,9 +69,9 @@
 </template>
 
 <script setup lang="ts">
-  import { yearOf } from '@railtime/core/date.utils';
-  import type { ChangeInfo, StepInfo } from '@railtime/network/facts.types';
-  import type { TimeState } from '@railtime/renderer/transitMap.types';
+  import { yearOf } from '@raillineage/core/date.utils';
+  import type { ChangeInfo, StepInfo } from '@raillineage/network/facts.types';
+  import type { TimeState } from '@raillineage/renderer/transitMap.types';
   import { computed } from 'vue';
   import type { PlayerSettings, TimeMode } from '~/features/explorer/explorer.types';
   import { formatDay } from '~/features/explorer/format.utils';

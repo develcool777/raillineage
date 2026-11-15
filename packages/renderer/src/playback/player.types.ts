@@ -1,4 +1,4 @@
-import type { Step } from '@railtime/network/engine.types';
+import type { Step } from '@raillineage/network/engine.types';
 import type { StepAnimation } from '../steps/animation.service';
 import type { MapProps } from '../transitMap.types';
 

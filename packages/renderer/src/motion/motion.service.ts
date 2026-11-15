@@ -1,4 +1,4 @@
-import { keysOf } from '@railtime/core/collection.utils';
+import { keysOf } from '@raillineage/core/collection.utils';
 import type { CustomRenderMethodInput, Map as MapLibreMap } from 'maplibre-gl';
 import { LAYERS } from '../layers/ids.constants';
 import { MapLayer } from '../layers/layer.service';

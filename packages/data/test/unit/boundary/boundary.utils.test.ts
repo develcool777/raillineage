@@ -1,8 +1,8 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import { required } from '@railtime/core/required.utils';
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { parseBoundary } from '@railtime/schema/boundary.schema';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { required } from '@raillineage/core/required.utils';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { parseBoundary } from '@raillineage/schema/boundary.schema';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { describe, expect, test, vi } from 'vitest';
 import { MIN_STATIONS_HELD, USER_AGENT } from '../../../src/boundary/boundary.constants.ts';

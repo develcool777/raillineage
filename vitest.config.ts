@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 
 /**
  * Every project's tests in one run. Each package keeps its tests beside its code, in `test/`, with a
- * `vitest.config.ts` of its own (`pnpm --filter @railtime/renderer test-unit` runs one), `packages/data`
+ * `vitest.config.ts` of its own (`pnpm --filter @raillineage/renderer test-unit` runs one), `packages/data`
  * among them: each city's history played through the renderer; and `web/` its own, which each take
  * their projects from `projectsOf`, so a file's name picks its environment in all of them.
  */

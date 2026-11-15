@@ -1,5 +1,5 @@
-import { playbackOf } from '@railtime/renderer/testing/playback';
-import { lineId, planId, stationId } from '@railtime/schema/testing/ids';
+import { playbackOf } from '@raillineage/renderer/testing/playback';
+import { lineId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { cityNetwork, lineSplits, playPlan, playWholeHistory } from '../../../support/history.utils';
 

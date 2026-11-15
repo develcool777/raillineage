@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { StepInfo } from '@railtime/network/facts.types';
+  import type { StepInfo } from '@raillineage/network/facts.types';
   import { lineColor } from '~/utils/format.utils';
 
   defineProps<{

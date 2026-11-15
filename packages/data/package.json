@@ -1,5 +1,5 @@
 {
-  "name": "@railtime/data",
+  "name": "@raillineage/data",
   "version": "0.0.0",
   "private": true,
   "license": "(MIT AND ODbL-1.0)",
@@ -18,12 +18,12 @@
     "./preview.constants": "./src/preview/preview.constants.ts"
   },
   "dependencies": {
-    "@railtime/core": "workspace:*",
-    "@railtime/network": "workspace:*",
-    "@railtime/schema": "workspace:*"
+    "@raillineage/core": "workspace:*",
+    "@raillineage/network": "workspace:*",
+    "@raillineage/schema": "workspace:*"
   },
   "devDependencies": {
-    "@railtime/renderer": "workspace:*",
+    "@raillineage/renderer": "workspace:*",
     "esbuild": "^0.28.2",
     "playwright-core": "^1.65.0",
     "vitest": "^5.1.0"

@@ -1,5 +1,5 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { Theme } from '@railtime/network/facts.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { Theme } from '@raillineage/network/facts.types';
 import type { CreateMap } from '../transitMap.types';
 
 /** What a `BasemapStill` is created with. */

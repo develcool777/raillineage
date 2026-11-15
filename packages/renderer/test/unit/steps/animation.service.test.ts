@@ -1,9 +1,9 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { byCodeUnits } from '@railtime/core/text.utils';
-import type { Step } from '@railtime/network/engine.types';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import type { Network } from '@railtime/schema/network.types';
-import { lineId, planId, stationId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import type { Step } from '@raillineage/network/engine.types';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import type { Network } from '@raillineage/schema/network.types';
+import { lineId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { buildNetworkSnapshot } from '../../../src/layers/snapshot.utils';
 import { CLOSE_HOLD_SECONDS, GROWTH_PACE, OPEN_HOLD_SECONDS, UNTOUCHED_BASE } from '../../../src/steps/animation.constants';

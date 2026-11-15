@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { CoverageDistance, CoverageInfo, CoverageYear } from '@railtime/network/facts.types';
+  import type { CoverageDistance, CoverageInfo, CoverageYear } from '@raillineage/network/facts.types';
   import { COVERAGE_DISTANCE_ITEMS } from '~/features/explorer/coverage/coverage.constants';
   import { coverageDistanceOf, formatArea } from '~/features/explorer/coverage/coverage.utils';
   import type { BoundaryState } from '~/features/explorer/tools.types';

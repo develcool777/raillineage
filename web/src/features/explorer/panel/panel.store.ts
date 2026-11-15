@@ -1,5 +1,5 @@
-import type { LineDirection, Stop } from '@railtime/network/facts.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LineDirection, Stop } from '@raillineage/network/facts.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';

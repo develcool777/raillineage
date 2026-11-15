@@ -61,8 +61,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { ReachInfo, Stop, StationSummary } from '@railtime/network/facts.types';
-  import type { StationId } from '@railtime/schema/network.types';
+  import type { ReachInfo, Stop, StationSummary } from '@raillineage/network/facts.types';
+  import type { StationId } from '@raillineage/schema/network.types';
   import { computed, ref, watch } from 'vue';
   import { formatMinutes, reachGroups } from '~/features/explorer/reach/reach.utils';
 

@@ -1,4 +1,4 @@
-import type { RouteInfo, RouteLegInfo, RouteStrength } from '@railtime/network/facts.types';
+import type { RouteInfo, RouteLegInfo, RouteStrength } from '@raillineage/network/facts.types';
 import { ROUTE_STRENGTHS } from '~/features/explorer/route/route.constants';
 import { counted } from '~/utils/format.utils';
 

@@ -1,6 +1,6 @@
-import type { Brand } from '@railtime/core/brand.types';
-import type { IsoDate } from '@railtime/core/date.types';
-import type { LngLat } from '@railtime/core/geometry.types';
+import type { Brand } from '@raillineage/core/brand.types';
+import type { IsoDate } from '@raillineage/core/date.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
 
 /**
  * The network format: what a city's file holds, curated by hand, and everything else reads.

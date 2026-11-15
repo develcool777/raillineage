@@ -1,4 +1,4 @@
-import type { LineId, Mode, StationId } from '@railtime/schema/network.types';
+import type { LineId, Mode, StationId } from '@raillineage/schema/network.types';
 import type { TrackSegment } from '../engine/engine.types';
 
 /** How a kind of railway runs, in real units: what a timetable is worked out from. */

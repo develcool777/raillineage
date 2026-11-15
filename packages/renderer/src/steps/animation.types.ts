@@ -1,7 +1,7 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { NetworkEngine } from '@railtime/network/engine.service';
-import type { Growth, LineSegment, SegmentPlan } from '@railtime/network/engine.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { NetworkEngine } from '@raillineage/network/engine.service';
+import type { Growth, LineSegment, SegmentPlan } from '@raillineage/network/engine.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { FeatureCollection, HeadProperties, LineFeature, NetworkSnapshot, PointFeature, StationLines } from '../layers/snapshot.types';
 import type { RenderState } from '../layers/style.types';
 import type { ViewMode } from '../transitMap.types';

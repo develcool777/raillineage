@@ -1,5 +1,5 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import type { Network } from '@railtime/schema/network.types';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import type { Network } from '@raillineage/schema/network.types';
 import { buildNetworkSnapshot } from '../../src/layers/snapshot.utils';
 import { emptyDrawing } from '../../src/steps/animation.utils';
 import { playbackOf, renderStateOf } from './playback.utils';

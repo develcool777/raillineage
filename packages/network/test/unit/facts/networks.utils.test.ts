@@ -1,7 +1,7 @@
-import { keysOf } from '@railtime/core/collection.utils';
-import { toTimestamp } from '@railtime/core/date.utils';
-import type { LineId } from '@railtime/schema/network.types';
-import { lineId, networkId, planId, stationId } from '@railtime/schema/testing/ids';
+import { keysOf } from '@raillineage/core/collection.utils';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import type { LineId } from '@raillineage/schema/network.types';
+import { lineId, networkId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { firstPlanOf, isPlanOnly, linesHiddenAtFirst, linesNamed, networkChoicesOf, withLinesHidden } from '../../../src/facts/networks.utils';
 import { hiddenNetwork } from '../../support/factories/hiddenNetwork.utils';

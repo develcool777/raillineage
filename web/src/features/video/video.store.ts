@@ -1,9 +1,9 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import type { StepInfo } from '@railtime/network/facts.types';
-import type { TransitMap } from '@railtime/renderer/transitMap.service';
-import type { Credit, TimeState, ViewMode } from '@railtime/renderer/transitMap.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { Network } from '@railtime/schema/network.types';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import type { StepInfo } from '@raillineage/network/facts.types';
+import type { TransitMap } from '@raillineage/renderer/transitMap.service';
+import type { Credit, TimeState, ViewMode } from '@raillineage/renderer/transitMap.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { Network } from '@raillineage/schema/network.types';
 import { defineStore } from 'pinia';
 import { computed, markRaw, ref, shallowRef } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';

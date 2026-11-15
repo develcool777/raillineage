@@ -1,4 +1,4 @@
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { LineHop } from '../engine/lineDetails.types';
 
 /** A stretch of a route on one line, as the map draws it, from where it is boarded to where it is left. */

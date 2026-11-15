@@ -1,4 +1,4 @@
-import type { IsoDate } from '@railtime/core/date.types';
+import type { IsoDate } from '@raillineage/core/date.types';
 
 /**
  * The day `cities/cities.json` counts every city as of: stated, never the clock's, so the list is what

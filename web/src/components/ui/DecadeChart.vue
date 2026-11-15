@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { DecadeOpenings } from '@railtime/network/facts.types';
+  import type { DecadeOpenings } from '@raillineage/network/facts.types';
   import { computed } from 'vue';
   import { formatNumber } from '~/utils/format.utils';
 

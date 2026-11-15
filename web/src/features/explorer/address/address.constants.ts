@@ -1,4 +1,4 @@
-import { COVERAGE_DEFAULT_METRES, COVERAGE_DISTANCES } from '@railtime/network/coverage.constants';
+import { COVERAGE_DEFAULT_METRES, COVERAGE_DISTANCES } from '@raillineage/network/coverage.constants';
 import type { AddressSetting, ExplorerSettings } from '~/features/explorer/address/address.types';
 import { CAMERA_OPTIONS, DEFAULT_PLAYER, SPEED_OPTIONS } from '~/features/explorer/time/time.constants';
 

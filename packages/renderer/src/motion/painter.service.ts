@@ -1,4 +1,4 @@
-import { required } from '@railtime/core/required.utils';
+import { required } from '@raillineage/core/required.utils';
 import { STROKE_ATTRIBUTES, STROKE_FRAGMENT_SHADER, STROKE_VERTEX_FLOATS, STROKE_VERTEX_SHADER } from './motion.constants';
 import type { StrokeDrawing } from './motion.types';
 

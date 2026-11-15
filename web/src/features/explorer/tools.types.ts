@@ -1,5 +1,5 @@
-import type { RouteInfo, Stop } from '@railtime/network/facts.types';
-import type { StationId } from '@railtime/schema/network.types';
+import type { RouteInfo, Stop } from '@raillineage/network/facts.types';
+import type { StationId } from '@raillineage/schema/network.types';
 
 /** What the map draws over the network for the panel's section: a route, a reach, or the city's coverage. */
 export type MapOverlay = 'route' | 'reach' | 'coverage';

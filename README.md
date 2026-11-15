@@ -26,7 +26,7 @@ pnpm format              # Prettier (pnpm format-check to check)
 pnpm code-quality:dead-code   # knip
 pnpm code-quality:duplication # jscpd: a copy within or between packages
 pnpm audit               # known advisories in the dependencies (exemptions in pnpm-workspace.yaml)
-pnpm --filter @railtime/web test-e2e   # the built site in Chromium (Playwright; test-e2e-ui to watch)
+pnpm --filter @raillineage/web test-e2e   # the built site in Chromium (Playwright; test-e2e-ui to watch)
 pnpm test-mutation packages/schema   # Stryker: which deliberate bugs the folder's tests miss (no folder: the list, with scores)
 pnpm test-bench          # how long opening London, a route, coverage and a frame take, beside the last run
 
@@ -47,7 +47,7 @@ pnpm video:record kyiv     # record its video page (/video/kyiv, from pnpm dev, 
 A pnpm workspace of TypeScript packages; every package keeps its tests beside its code.
 
 ```text
-railtime/
+raillineage/
 ├── packages/
 │   ├── schema/      the Network format every city's network is in: format/ (its types), validation/ (the Zod
 │   │                shape and the checks between parts), plan/ (building a plan on a network), core/

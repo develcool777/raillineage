@@ -1,4 +1,4 @@
-# @railtime/video
+# @raillineage/video
 
 `pnpm video:record <city>`: a city's video page (`web`'s `/video/<city>`, under `pnpm dev` only)
 recorded frame by frame into an MP4. What a video shows is `web`'s (`features/video/`); this package

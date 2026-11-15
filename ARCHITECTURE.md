@@ -25,7 +25,7 @@ rule here broken changes this file first.
 - **`renderer` draws and plays, and knows nothing it can ask `network`.**
 - **`video` records, and knows nothing of what it records.** It takes a page of the app by its address,
   on a clock it moves a frame at a time; what a video shows is the app's, in `web`. The two meet on
-  the page's `window`, in one contract `video` defines (`@railtime/video/videoPage.types`): the
+  the page's `window`, in one contract `video` defines (`@raillineage/video/videoPage.types`): the
   recorder's clock, and the page's handle saying where it is, starting it, and saying when a frame is
   drawn. The video page and the explorer each keep one, so `--page` only picks an address.
 - **A helper used in two packages lives once, in `core`, the bottom of the stack.** Never a copy: a
@@ -78,9 +78,9 @@ string no other string is, so a line's id given where a station's goes does not 
 becomes one only where it is checked: `parseNetwork` reading a city's file, `findStation`/`findLine`
 and `planToOpen` taking an address's (`isStationIn`, `isLineIn`, `isPlanIn` beneath them). Every answer
 gives ids already typed, and every question takes them; a test names its own (`stationId('a')`,
-`@railtime/schema/testing/ids`). A city's file is checked where it is kept: `data`'s tests read every
+`@raillineage/schema/testing/ids`). A city's file is checked where it is kept: `data`'s tests read every
 one through `parseNetwork` and `parseBoundary`, so CI refuses what the schema does. The browser takes
-what we serve at one named door, `servedNetwork` and `servedBoundary` (`@railtime/schema/served.utils`),
+what we serve at one named door, `servedNetwork` and `servedBoundary` (`@raillineage/schema/served.utils`),
 validated in CI, trusted here, as parsing the largest city again would take a visitor 110 to 160 ms and
 Zod's 97 KB (gzipped).
 
@@ -132,7 +132,7 @@ network's `NetworkFacts`. A feature picks its channel by what it is.
   line, by whichever id it is named, so what is in focus is what is drawn. `arrival` is a moment (`Playheads.moment`), which means the same on any network, or
   `null` for where the network rests (today, or a plan built). Read then and at no other time: moving
   through time after that is a command's. The app reads the new network from the same moment, with
-  `arrivalTimeOf` (`@railtime/renderer/transitMap.utils`): what the map's next `time` will say, so no
+  `arrivalTimeOf` (`@raillineage/renderer/transitMap.utils`): what the map's next `time` will say, so no
   cursor of the last network is read against the new one's facts.
 - **A command acts on the props the map has.** One that follows a prop its store just changed goes
   after `update`, which the store calls itself (a video's beat: `video.store.ts`); the effect gives the

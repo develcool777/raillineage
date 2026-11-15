@@ -1,5 +1,5 @@
-import type { ChangeInfo, LineInfo, Stop } from '@railtime/network/facts.types';
-import type { TimeState } from '@railtime/renderer/transitMap.types';
+import type { ChangeInfo, LineInfo, Stop } from '@raillineage/network/facts.types';
+import type { TimeState } from '@raillineage/renderer/transitMap.types';
 import type { Section } from '~/features/explorer/explorer.types';
 import type { RouteStops } from '~/features/explorer/tools.types';
 

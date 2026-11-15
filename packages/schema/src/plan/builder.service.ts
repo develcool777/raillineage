@@ -1,5 +1,5 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import { required } from '@railtime/core/required.utils';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { required } from '@raillineage/core/required.utils';
 import type { LineId, Network, PlanSection, PlanTrack, Segment, Station, StationId } from '../format/network.types';
 import type { Heading, SectionWorks } from './build.types';
 import { curveBetween, headingOf, samePair, splitTrack } from './track.utils.ts';

@@ -24,7 +24,7 @@ const tester = new RuleTester({
   },
 });
 
-/** Two brands, as `@railtime/core/brand.types` makes them, and things to try them on. */
+/** Two brands, as `@raillineage/core/brand.types` makes them, and things to try them on. */
 const BRANDS = `
 declare const brand: unique symbol;
 type Brand<Base, Name extends string> = Base & { readonly [brand]: Name };

@@ -3,7 +3,7 @@ import type { Type, TypeChecker } from 'typescript';
 import { describe, expect, test } from 'vitest';
 import { holdsBrand, isKeyedByBrand } from '../../../src/lint/brand.utils';
 
-/** A brand, as `@railtime/core/brand.types` makes one, and values to try it on, each its type. */
+/** A brand, as `@raillineage/core/brand.types` makes one, and values to try it on, each its type. */
 const SOURCE = `
 declare const brand: unique symbol;
 type Brand<Base, Name extends string> = Base & { readonly [brand]: Name };

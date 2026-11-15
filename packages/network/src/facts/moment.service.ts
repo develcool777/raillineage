@@ -1,5 +1,5 @@
-import { toIsoDate, toTimestamp } from '@railtime/core/date.utils';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import { toIsoDate, toTimestamp } from '@raillineage/core/date.utils';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import { statsDrawn } from '../engine/history.utils.ts';
 import type { NetworkIndex } from '../engine/index.service';
 import { directionsAt, lineLengthKm, lineRuns, stepChangesLine } from '../engine/lineDetails.utils.ts';

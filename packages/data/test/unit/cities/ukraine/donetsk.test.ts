@@ -1,4 +1,4 @@
-import { planId } from '@railtime/schema/testing/ids';
+import { planId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { cityNetwork, lineSplits, playWholeHistory } from '../../../support/history.utils';
 

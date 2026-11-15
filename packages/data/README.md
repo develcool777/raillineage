@@ -1,4 +1,4 @@
-# @railtime/data
+# @raillineage/data
 
 Every city's files, grouped by country, their summaries, the commands that keep them, and their
 tests. Each command is a folder, `src/<feature>/`: a `cli.ts` that hands its arguments to the

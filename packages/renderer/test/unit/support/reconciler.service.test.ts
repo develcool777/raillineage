@@ -1,6 +1,6 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { PropsReconciler, stateChanges } from '../../../src/support/reconciler.service';
 import { DEFAULT_MAP_PROPS } from '../../../src/transitMap.constants';

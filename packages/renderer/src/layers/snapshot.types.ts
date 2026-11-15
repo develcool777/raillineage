@@ -1,5 +1,5 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { RouteStopKind } from '../overlay/overlay.types';
 import type { SideBySide } from './style.types';
 

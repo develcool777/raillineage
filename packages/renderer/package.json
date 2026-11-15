@@ -1,5 +1,5 @@
 {
-  "name": "@railtime/renderer",
+  "name": "@raillineage/renderer",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -21,9 +21,9 @@
     "./testing/playback": "./test/support/playback.utils.ts"
   },
   "dependencies": {
-    "@railtime/core": "workspace:*",
-    "@railtime/network": "workspace:*",
-    "@railtime/schema": "workspace:*",
+    "@raillineage/core": "workspace:*",
+    "@raillineage/network": "workspace:*",
+    "@raillineage/schema": "workspace:*",
     "maplibre-gl": "^6.17.0"
   },
   "devDependencies": {

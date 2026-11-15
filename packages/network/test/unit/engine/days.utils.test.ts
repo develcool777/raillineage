@@ -1,5 +1,5 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { collectDays } from '../../../src/engine/days.utils';
 import { NetworkIndex } from '../../../src/engine/index.service';

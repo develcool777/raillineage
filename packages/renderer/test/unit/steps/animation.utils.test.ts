@@ -1,5 +1,5 @@
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { stationId } from '@railtime/schema/testing/ids';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { arrivalSeconds, chaseAlong, frontKmAt, growthSeconds, mainPathOf, pointAlong } from '../../../src/steps/animation.utils';
 import { stepAfter } from '../../support/stepFrames.utils';

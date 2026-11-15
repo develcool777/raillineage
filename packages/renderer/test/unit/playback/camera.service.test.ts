@@ -1,6 +1,6 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { stationId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import {
   CHASE_GLIDE_KM,

@@ -1,5 +1,5 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 
 // The raw network as the renderer sees it (`NetworkEngine`): its track, the lines over it, the steps
 // its history plays, and how an opening grows.

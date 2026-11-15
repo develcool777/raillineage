@@ -1,5 +1,5 @@
-import type { NetworkEngine } from '@railtime/network/engine.service';
-import type { LineId } from '@railtime/schema/network.types';
+import type { NetworkEngine } from '@raillineage/network/engine.service';
+import type { LineId } from '@raillineage/schema/network.types';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 import { MotionLayer } from '../motion/motion.service';
 import { CoverageLayer } from '../overlay/coverage.service';

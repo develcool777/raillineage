@@ -1,4 +1,4 @@
-import type { LngLat } from '@railtime/core/geometry.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
 
 /**
  * A city's outline: the area its network serves, as the city draws its limits. Kept beside its

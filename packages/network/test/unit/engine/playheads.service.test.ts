@@ -1,6 +1,6 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import type { PlanId } from '@railtime/schema/network.types';
-import { planId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import type { PlanId } from '@raillineage/schema/network.types';
+import { planId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { engineOf } from '../../../src/engine/engine.utils';
 import { NetworkFacts } from '../../../src/facts/facts.service';

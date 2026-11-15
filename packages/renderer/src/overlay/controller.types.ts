@@ -1,6 +1,6 @@
-import type { CoverageMeasure } from '@railtime/network/coverage.service';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { CoverageDistance, Playhead, ReachInfo, RouteInfo, Theme } from '@railtime/network/facts.types';
+import type { CoverageMeasure } from '@raillineage/network/coverage.service';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { CoverageDistance, Playhead, ReachInfo, RouteInfo, Theme } from '@raillineage/network/facts.types';
 import type { CameraDirector } from '../playback/camera.service';
 import type { OverlayResult } from '../transitMap.types';
 import type { CoverageLayer } from './coverage.service';

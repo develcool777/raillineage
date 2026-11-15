@@ -1,4 +1,4 @@
-import { lineId, planId, stationId } from '@railtime/schema/testing/ids';
+import { lineId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import type { PanelView } from '~/features/explorer/explorer.types';
 import {

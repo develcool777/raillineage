@@ -32,6 +32,6 @@ export type VideoPageHandle = {
 
 /** A page's window under recording: the recorder's clock, and the page's handle. */
 export type RecordedWindow = {
-  railtimeRecorder?: RecorderClock;
-  railtimeVideo?: VideoPageHandle;
+  raillineageRecorder?: RecorderClock;
+  raillineageVideo?: VideoPageHandle;
 };

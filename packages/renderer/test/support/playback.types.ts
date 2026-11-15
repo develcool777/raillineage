@@ -1,6 +1,6 @@
-import type { NetworkEngine } from '@railtime/network/engine.service';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { NetworkFactsOptions } from '@railtime/network/facts.types';
+import type { NetworkEngine } from '@raillineage/network/engine.service';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { NetworkFactsOptions } from '@raillineage/network/facts.types';
 import type { Player } from '../../src/playback/player.service';
 import type { ViewMode } from '../../src/transitMap.types';
 

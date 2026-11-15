@@ -1,6 +1,6 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { StationId } from '@railtime/schema/network.types';
-import { stationId } from '@railtime/schema/testing/ids';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { StationId } from '@raillineage/schema/network.types';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import type { TrackSegment, Travel } from '../../../src/engine/engine.types';
 import { NetworkIndex } from '../../../src/engine/index.service';

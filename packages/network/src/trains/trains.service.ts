@@ -1,4 +1,4 @@
-import { pushTo } from '@railtime/core/collection.utils';
+import { pushTo } from '@raillineage/core/collection.utils';
 import { TrackTimetable } from './tracks.service.ts';
 import { CYCLE_SECONDS } from './trains.constants.ts';
 import type { Arrival, Departures, Heading, Layover, RouteSchedule, TrainEnd, TrainPlace, TrainRun } from './trains.types';

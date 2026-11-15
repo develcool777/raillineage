@@ -1,5 +1,5 @@
 {
-  "name": "@railtime/network",
+  "name": "@raillineage/network",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -28,8 +28,8 @@
     "./testing/trains": "./test/support/trains.utils.ts"
   },
   "dependencies": {
-    "@railtime/core": "workspace:*",
-    "@railtime/schema": "workspace:*"
+    "@raillineage/core": "workspace:*",
+    "@raillineage/schema": "workspace:*"
   },
   "devDependencies": {
     "vitest": "^5.1.0"

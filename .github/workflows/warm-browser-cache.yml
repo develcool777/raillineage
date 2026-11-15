@@ -36,7 +36,7 @@ jobs:
       # The key test.yml restores with, from the installed package, so the two never disagree on it.
       - name: Resolve the Playwright version
         id: playwright
-        run: echo "version=$(pnpm --filter @railtime/web exec playwright --version | sed 's/^Version //')" >> "$GITHUB_OUTPUT"
+        run: echo "version=$(pnpm --filter @raillineage/web exec playwright --version | sed 's/^Version //')" >> "$GITHUB_OUTPUT"
 
       - name: Restore or reserve the browser cache
         id: playwright-cache
@@ -48,4 +48,4 @@ jobs:
       # The cache action's post step saves what this installs.
       - name: Install Chromium
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: pnpm --filter @railtime/web exec playwright install chromium
+        run: pnpm --filter @raillineage/web exec playwright install chromium

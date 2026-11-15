@@ -1,4 +1,4 @@
-import type { ReachInfo } from '@railtime/network/facts.types';
+import type { ReachInfo } from '@raillineage/network/facts.types';
 import type { ReachGroup } from '~/features/explorer/reach/reach.types';
 
 /**

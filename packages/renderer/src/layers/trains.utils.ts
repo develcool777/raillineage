@@ -1,8 +1,8 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import { sliceAlong } from '@railtime/core/geometry.utils';
-import { required } from '@railtime/core/required.utils';
-import type { TrackSegment } from '@railtime/network/engine.types';
-import type { TrainLeg, TrainPlace } from '@railtime/network/trains.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { sliceAlong } from '@raillineage/core/geometry.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { TrackSegment } from '@raillineage/network/engine.types';
+import type { TrainLeg, TrainPlace } from '@raillineage/network/trains.types';
 import type { Mover } from '../motion/motion.types';
 import type { RenderState, SideBySide } from './style.types';
 import { offsetFor, resolveLine } from './style.utils';

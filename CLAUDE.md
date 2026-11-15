@@ -31,7 +31,7 @@ explorer, and the video page, `/video/<city>`, in 3D or flat with `?view=2d`, un
 `pnpm type-check` (each package's own, by `pnpm -r`: a new package gives itself one), `pnpm test-unit-ci`,
 `pnpm eslint-check`, `pnpm format-check`, `pnpm code-quality:dead-code` (knip),
 `pnpm code-quality:duplication` (jscpd: a helper copied rather than moved to `core` fails it),
-`pnpm audit` and `pnpm --filter @railtime/web test-e2e` (the built site in Chromium, `web/test/e2e/`) must
+`pnpm audit` and `pnpm --filter @raillineage/web test-e2e` (the built site in Chromium, `web/test/e2e/`) must
 all pass; CI runs them on every pull request. An advisory with no fix to take is listed under
 `auditConfig` in `pnpm-workspace.yaml` with its reason, never left failing. Node 24.15 or later
 (`.nvmrc` the line CI installs, `engines` its floor) and pnpm 11.9 (`packageManager`), required, not

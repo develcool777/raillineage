@@ -1,4 +1,4 @@
-import { stationId } from '@railtime/schema/testing/ids';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { engineOf } from '../../../src/engine/engine.utils';
 import { NetworkFacts } from '../../../src/facts/facts.service';

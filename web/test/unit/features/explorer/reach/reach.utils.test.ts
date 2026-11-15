@@ -1,5 +1,5 @@
-import type { ReachInfo } from '@railtime/network/facts.types';
-import { stationId } from '@railtime/schema/testing/ids';
+import type { ReachInfo } from '@raillineage/network/facts.types';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { formatMinutes, reachGroups } from '~/features/explorer/reach/reach.utils';
 
