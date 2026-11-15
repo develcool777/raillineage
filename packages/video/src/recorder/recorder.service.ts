@@ -67,7 +67,7 @@ export class VideoRecorder {
       const frames = await this.play(page, recording, async frame => {
         // ffmpeg gone (not installed, or failed) is said by `finish`.
         if (encoder.stdin.destroyed) return false;
-        if (!encoder.stdin.write(frame)) await Promise.race([once(encoder.stdin, 'drain'), this.encoded]);
+        if (!encoder.stdin.write(frame)) await Promise.race([this.drained(encoder.stdin), this.encoded]);
         return true;
       });
       await this.finish();
@@ -176,6 +176,21 @@ export class VideoRecorder {
       encoder.on('close', resolve);
     });
     return encoder;
+  }
+
+  /**
+   * Waits for ffmpeg to read a frame its input could not hold yet. ffmpeg gone breaks the input under
+   * it (EPIPE), which ends the wait too: the next frame sees the input destroyed, and `finish` says what
+   * ffmpeg said, where the error would have said only "write EPIPE".
+   *
+   * @param input - ffmpeg's input.
+   */
+  private async drained(input: Writable): Promise<void> {
+    try {
+      await once(input, 'drain');
+    } catch {
+      // ffmpeg is gone: said by how it ended.
+    }
   }
 
   /**

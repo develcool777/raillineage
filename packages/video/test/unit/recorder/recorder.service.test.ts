@@ -25,9 +25,10 @@ const FPS = 4;
  * @param behaviour.drawnAfter - How many times it is asked after each frame before it is drawn.
  * @param behaviour.onFrame - What else a frame moves.
  * @param behaviour.shotMs - How long a picture takes, ms.
+ * @param behaviour.picture - What a picture is: a few bytes unless said.
  * @returns A browser with that page in it, and what was done to the page.
  */
-const browserWith = ({ readyAfter = 2, playsFor = Infinity, drawnAfter = 0, onFrame = () => {}, shotMs = 0 }) => {
+const browserWith = ({ readyAfter = 2, playsFor = Infinity, drawnAfter = 0, onFrame = () => {}, shotMs = 0, picture = FRAME }) => {
   const seen = { loads: [] as string[], starts: 0, frameTimes: [] as number[], shots: 0, shotsUndrawn: 0, framesWhenStarted: [] as number[], closes: 0 };
   let state: VideoPageState = 'loading';
   let framesLoading = 0;
@@ -82,7 +83,7 @@ const browserWith = ({ readyAfter = 2, playsFor = Infinity, drawnAfter = 0, onFr
       seen.shots += 1;
       if (timesAsked <= drawnAfter) seen.shotsUndrawn += 1;
       await sleep(shotMs);
-      return FRAME;
+      return picture;
     },
   };
   const context = {
@@ -198,5 +199,15 @@ describe('VideoRecorder', () => {
     );
     expect(seen.shots).toBeLessThan(600 * FPS);
     expect(seen.closes).toBe(1);
+  });
+
+  // A frame bigger than ffmpeg's input holds waits for it to be read; ffmpeg gone then breaks its input
+  // under it (EPIPE), and what ffmpeg said is still what is said.
+  test('says what ffmpeg said when it goes while a frame waits to be written', async () => {
+    const { context } = browserWith({ picture: Buffer.alloc(4 * 1024 * 1024) });
+    const { recording, ffmpeg } = recordingApart('sleep 0.2; echo no codec >&2; exit 3', { rehearse: false, seconds: 600 });
+    await expect(new VideoRecorder({ launch: () => Promise.resolve(context), ffmpeg, report: vi.fn() }).record(recording)).rejects.toThrow(
+      'ffmpeg failed (3): no codec',
+    );
   });
 });
