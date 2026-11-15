@@ -5,6 +5,15 @@ dist
 .data/
 .DS_Store
 *.log
+*.tsbuildinfo
+# Secrets and a machine's own settings: never committed.
+.env
+.env.*
+*.local
+# Editors' own settings, but the extensions the repo recommends.
+.idea/
+.vscode/*
+!.vscode/extensions.json
 # A coverage report left at the root; the tools write theirs under test-reports/. Not any folder called coverage: the app has one.
 /coverage/
 # Local, but the mutation score history, which is shared.

@@ -36,13 +36,13 @@
             :aria-label="entry.shown ? `Hide ${entry.name}` : `Show ${entry.name}`"
             @click="emit('show', [entry.id], !entry.shown)" />
           <ListRow v-if="entry.shown" class="min-w-0 flex-1" :class="{ 'pl-0': group.toggleable.length > 0 }" @click="emit('open', entry.id)">
-            <span class="h-1.5 w-[22px] flex-none rounded-full" :style="{ background: lineColor(entry.color) }" />
+            <span class="h-1.5 w-5.5 flex-none rounded-full" :style="{ background: lineColor(entry.color) }" />
             <span class="text-highlighted flex-1 truncate text-sm leading-5 font-medium">{{ entry.name }}</span>
             <span class="text-muted flex-none text-xs tabular-nums">{{ entry.shown.opened === null ? 'Planned' : yearOf(entry.shown.opened) }}</span>
             <UIcon name="i-lucide-chevron-right" class="text-dimmed size-4 flex-none" />
           </ListRow>
           <span v-else class="flex min-w-0 flex-1 items-center gap-2.5">
-            <span class="h-1.5 w-[22px] flex-none rounded-full" :style="{ background: lineColor(entry.color) }" />
+            <span class="h-1.5 w-5.5 flex-none rounded-full" :style="{ background: lineColor(entry.color) }" />
             <span class="text-highlighted flex-1 truncate text-sm leading-5 font-medium">{{ entry.name }}</span>
           </span>
         </li>

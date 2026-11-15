@@ -23,7 +23,7 @@
         }}</span>
         <span v-if="item.colors.length > 0 || item.facts" class="flex items-center gap-2">
           <span v-if="item.colors.length > 0" class="flex flex-wrap gap-1">
-            <span v-for="color in item.colors" :key="color" class="h-1.5 w-[22px] rounded-full" :style="{ background: color }" />
+            <span v-for="color in item.colors" :key="color" class="h-1.5 w-5.5 rounded-full" :style="{ background: color }" />
           </span>
           <span class="text-muted text-xs tabular-nums">{{ item.facts }}</span>
         </span>

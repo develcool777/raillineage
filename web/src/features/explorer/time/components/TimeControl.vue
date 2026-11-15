@@ -6,7 +6,7 @@
         <CountingNumber v-if="shownYear !== null" :value="shownYear" ungrouped />
         <template v-else>{{ yearWord }}</template>
       </p>
-      <span v-if="step && mode === 'playing'" class="w-[3px] flex-none self-stretch rounded-full" :style="{ background: lineColor(step.color) }" />
+      <span v-if="step && mode === 'playing'" class="w-0.75 flex-none self-stretch rounded-full" :style="{ background: lineColor(step.color) }" />
       <div class="min-w-0 flex-1">
         <p v-if="sizes && phone" class="text-muted truncate text-sm">
           <CountingNumber :value="sizes.stations" /> st. · <CountingNumber :value="sizes.km" /> km

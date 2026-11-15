@@ -2,12 +2,12 @@
   <!-- A video's frame: the map edge to edge, and over it the scene shown, each piece as much as `layers` says. -->
   <div class="relative h-dvh w-full overflow-hidden bg-[#0b0d10] text-white">
     <!-- MapLibre makes the map's own element relative: it fills a frame of its own. -->
-    <div class="absolute inset-0"><div ref="container" class="h-full w-full" /></div>
+    <div class="absolute inset-0"><div ref="container" class="size-full" /></div>
     <!-- MapLibre makes the minimap's element relative too. Always laid out, so it is framed before it shows. -->
     <div
       class="absolute left-[5vmin] w-[36vmin] overflow-hidden rounded-[1.4vmin] ring-1 ring-white/20"
       :style="{ top: `${MINIMAP_TOP_VMIN}vmin`, height: `${MINIMAP_HEIGHT_VMIN}vmin`, opacity: store.layers.minimap }">
-      <div ref="minimapContainer" class="h-full w-full" aria-label="Overview of the whole city" />
+      <div ref="minimapContainer" class="size-full" aria-label="Overview of the whole city" />
     </div>
     <VideoTitle :name="cityName" :networks="summary.networks" :span="store.span" :shown="store.layers.title" />
     <VideoPlanIntro v-if="store.plan" :plan="store.plan" :shown="store.layers.planIntro" />

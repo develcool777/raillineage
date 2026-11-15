@@ -6,7 +6,7 @@
         :light="previewUrlOf(city, 'light')"
         :dark="previewUrlOf(city, 'dark')"
         :alt="`Map of the ${name} network`"
-        class="h-[170px] w-full object-cover"
+        class="h-42.5 w-full object-cover"
         :width="PREVIEW_SIZE.width"
         :height="PREVIEW_SIZE.height"
         :loading="eager ? 'eager' : 'lazy'"

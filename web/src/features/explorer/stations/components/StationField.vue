@@ -27,7 +27,7 @@
         <span class="ml-0.5 size-2 rounded-full border-2 border-(--ui-text-highlighted)" :class="{ 'bg-(--ui-text-highlighted)': end === 'to' }" />
       </template>
       <template #item-leading="{ item }">
-        <span class="flex w-[22px] flex-none items-center gap-0.5 self-center">
+        <span class="flex w-5.5 flex-none items-center gap-0.5 self-center">
           <span
             v-for="color in item.colors"
             :key="`${color.light} ${color.dark}`"

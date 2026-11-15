@@ -4,13 +4,13 @@
     <ul role="list" class="-mx-2 flex flex-col gap-2">
       <li v-for="line in station.lines" :key="line.id" :class="{ 'opacity-45': !line.calls }">
         <ListRow @click="emit('line', line.id)">
-          <span class="h-1.5 w-[22px] flex-none rounded-full" :style="{ background: lineColor(line.color) }" />
+          <span class="h-1.5 w-5.5 flex-none rounded-full" :style="{ background: lineColor(line.color) }" />
           <span class="text-highlighted flex-1 truncate text-sm font-medium">{{ line.name }}</span>
           <UIcon name="i-lucide-chevron-right" class="text-dimmed size-4 flex-none" />
         </ListRow>
         <!-- A piece of the line, drawn as the line's view draws it: the stop before, this station, the stop after. The line sits over the rows' hover, under the dots. -->
-        <ol v-for="(direction, place) in directions.get(line.id) ?? []" :key="place" class="relative mt-0.5 mb-1 ml-[30px]" role="list">
-          <span class="absolute top-3.5 bottom-3.5 left-[9px] w-1 rounded-full" :style="{ background: lineColor(line.color) }" />
+        <ol v-for="(direction, place) in directions.get(line.id) ?? []" :key="place" class="relative mt-0.5 mb-1 ml-7.5" role="list">
+          <span class="absolute top-3.5 bottom-3.5 left-2.25 w-1 rounded-full" :style="{ background: lineColor(line.color) }" />
           <li v-for="row in stripAround(direction, station)" :key="row.id">
             <span v-if="row.here" class="flex h-7 items-center gap-2.5 px-0.5" aria-current="location">
               <span class="flex w-4 flex-none justify-center">

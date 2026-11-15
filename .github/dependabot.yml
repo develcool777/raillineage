@@ -1,20 +1,26 @@
-# Weekly update PRs: one for the workflows' actions, one for the packages.
+# One pull request a week for the whole repo, as in dataroom-ui: every package's npm dependencies and the
+# GitHub Actions the workflows use. One lockfile means one install resolves them all anyway, and one PR
+# means CI proves the lot together, instead of each bump against a tree the others then change.
+#
+# The npm entry at `/` covers every workspace: Dependabot reads pnpm-workspace.yaml and updates each
+# package's package.json along with the root's.
+#
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 version: 2
-updates:
-  # The workflows, and the composite actions they share.
-  - package-ecosystem: github-actions
-    directories: ['/', '/.github/actions/*']
+
+multi-ecosystem-groups:
+  weekly:
     schedule:
       interval: weekly
-    groups:
-      actions:
-        patterns: ['*']
+      day: monday
+    labels:
+      - dependencies
 
-  # The pnpm workspace, from its root lockfile.
+updates:
   - package-ecosystem: npm
     directory: /
-    schedule:
-      interval: weekly
+    patterns: ['*']
+    multi-ecosystem-group: weekly
     # Supply-chain guard, as pnpm's minimumReleaseAge: only versions public for a few days.
     cooldown:
       default-days: 3
@@ -22,6 +28,9 @@ updates:
       # Pinned to 6 by the override in pnpm-workspace.yaml, until vue-tsc supports TypeScript 7.
       - dependency-name: typescript
         update-types: ['version-update:semver-major']
-    groups:
-      packages:
-        patterns: ['*']
+
+  # `/` is the workflows; the setup action is a composite action of its own, which `/` does not reach.
+  - package-ecosystem: github-actions
+    directories: ['/', '/.github/actions/*']
+    patterns: ['*']
+    multi-ecosystem-group: weekly

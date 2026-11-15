@@ -5,7 +5,7 @@
       <span v-if="part.mark !== null" class="overflow-hidden" :style="{ width: `${part.width * MARK_WIDTH_EM}em` }">{{ part.mark }}</span>
       <span
         v-else
-        class="block overflow-hidden [mask-image:linear-gradient(transparent,black_10%,black_90%,transparent)]"
+        class="block overflow-hidden mask-[linear-gradient(transparent,black_10%,black_90%,transparent)]"
         :style="{ width: `${part.width}ch`, height: `${REEL_HEIGHT_EM}em`, lineHeight: `${REEL_HEIGHT_EM}em` }">
         <svg v-if="part.blur > 0" class="absolute size-0" aria-hidden="true">
           <filter :id="`${id}${part.key}`" x="0" y="-0.5" width="1" height="2" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">

@@ -3,7 +3,7 @@
     <!-- Where it starts and ends, joined as on a ticket; swapped beside them. -->
     <div class="flex items-center gap-2">
       <div class="relative flex min-w-0 flex-1 flex-col gap-2">
-        <span class="border-accented pointer-events-none absolute top-[22px] bottom-[22px] left-[16px] border-l-2 border-dotted" aria-hidden="true" />
+        <span class="border-accented pointer-events-none absolute top-5.5 bottom-5.5 left-4 border-l-2 border-dotted" aria-hidden="true" />
         <StationField
           v-for="end in ROUTE_ENDS"
           :key="end.key"
@@ -94,7 +94,7 @@
             </span>
           </button>
           <!-- The way drawn opens to its steps, in the same card. -->
-          <RouteSteps v-if="position === found.shown" :route class="border-default border-t px-3 pt-3 pb-3" @station="emit('station', $event)" />
+          <RouteSteps v-if="position === found.shown" :route class="border-default border-t p-3" @station="emit('station', $event)" />
         </li>
       </ul>
 

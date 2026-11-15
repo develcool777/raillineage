@@ -17,7 +17,7 @@
         <h3 v-if="row.heading" class="eyebrow text-muted px-2 pt-2 pb-1">{{ row.letter }}</h3>
         <div class="-mx-2">
           <ListRow @click="emit('open', row.station.id)">
-            <span class="flex w-[22px] flex-none flex-wrap gap-0.5">
+            <span class="flex w-5.5 flex-none flex-wrap gap-0.5">
               <span
                 v-for="color in row.station.colors"
                 :key="`${color.light} ${color.dark}`"
