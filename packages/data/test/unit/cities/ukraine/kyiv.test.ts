@@ -37,8 +37,8 @@ describe('Kyiv', () => {
       .routes.map(({ run }) => run)
       .filter(run => run.line === lineId('m3'));
     expect(runs.map(run => run.ends.toSorted(byCodeUnits).join('–')).toSorted(byCodeUnits)).toEqual([
-      'chervonyi-khutir–poliarna',
-      'chervonyi-khutir–selyshche-shevchenka',
+      'poliarna–staroboryspilska',
+      'selyshche-shevchenka–staroboryspilska',
     ]);
   });
 
