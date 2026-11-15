@@ -40,7 +40,8 @@ pnpm video:record kyiv     # record its video page (/video/kyiv, from pnpm dev, 
                            # the camera will look at (--no-rehearse skips it; the cache stays, in packages/video/.cache)
                            # (needs Chrome and ffmpeg: brew install ffmpeg; --page explorer records the explorer,
                            # played from where it opens until the camera rests on the whole network, as the
-                           # page itself says; --fps, --size 1080x1920, --seconds, --out)
+                           # page itself says; --fps, --size 1080x1920, --scale 1 for a pixel to a pixel rather than
+                           # 4K's twice, --seconds, --out)
 ```
 
 ## How it's built

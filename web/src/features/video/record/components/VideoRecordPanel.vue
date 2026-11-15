@@ -28,8 +28,11 @@
       <section class="flex flex-col gap-4">
         <h2 class="text-highlighted text-sm font-semibold">How it is recorded</h2>
         <div class="grid gap-4 sm:grid-cols-2">
-          <UFormField label="Size">
+          <UFormField label="Size" help="The page's, as it lays out">
             <USelect v-model="sizeIndex" :items="SIZE_ITEMS" class="w-full" />
+          </UFormField>
+          <UFormField label="Sharpness" :help="videoSize">
+            <USelect v-model="scale" :items="SCALE_ITEMS" class="w-full" />
           </UFormField>
           <UFormField label="Frame rate">
             <USelect v-model="fps" :items="FPS_ITEMS" class="w-full" />
@@ -63,7 +66,7 @@
   import { navigateTo } from '#imports';
   import { CITIES } from '~/constants/city.constants';
   import { useRecorderPolling } from '~/features/video/record/record.composable';
-  import { RECORD_FPS, RECORD_SIZES } from '~/features/video/record/record.constants';
+  import { RECORD_FPS, RECORD_SCALES, RECORD_SIZES } from '~/features/video/record/record.constants';
   import { useRecordStore } from '~/features/video/record/record.store';
   import { videoAddressOf, videoNameOf, videoQueryOf } from '~/features/video/record/record.utils';
 
@@ -93,6 +96,7 @@
     { label: 'Flat', value: '2d' },
   ];
   const SIZE_ITEMS = RECORD_SIZES.map((size, index) => ({ label: size.label, value: index }));
+  const SCALE_ITEMS = RECORD_SCALES.map(sharpness => ({ label: sharpness.label, value: sharpness.scale }));
   const FPS_ITEMS = RECORD_FPS.map(rate => ({ label: `${rate} frames a second`, value: rate }));
 
   const record = useRecordStore();
@@ -105,6 +109,7 @@
       RECORD_SIZES.findIndex(size => size.width === RECORDING_DEFAULTS.width && size.height === RECORDING_DEFAULTS.height),
     ),
   );
+  const scale = ref(RECORDING_DEFAULTS.scale);
   const fps = ref(RECORDING_DEFAULTS.fps);
   const minutes = ref(RECORDING_DEFAULTS.seconds / 60);
   const rehearse = ref(RECORDING_DEFAULTS.rehearse);
@@ -118,6 +123,11 @@
     { immediate: true },
   );
   const nameValid = computed(() => isVideoName(name.value));
+  // The video's own size: the page's, drawn at its sharpness.
+  const videoSize = computed(() => {
+    const size = RECORD_SIZES[sizeIndex.value];
+    return size ? `The video: ${size.width * scale.value} × ${size.height * scale.value}` : undefined;
+  });
 
   /**
    * Opens the video page as asked: afresh, as a video plays once.
@@ -164,6 +174,7 @@
       fps: fps.value,
       width: size.width,
       height: size.height,
+      scale: scale.value,
       seconds: Math.round(minutes.value * 60),
       rehearse: rehearse.value,
       name: name.value,

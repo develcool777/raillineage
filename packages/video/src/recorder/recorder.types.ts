@@ -14,9 +14,11 @@ export type Recording = {
   rehearse: boolean;
   /** Frames a second. */
   fps: number;
-  /** The video's size, in pixels. */
+  /** The page's size, in its own pixels (CSS's): what it lays out for. The video's is this times `scale`. */
   width: number;
   height: number;
+  /** Pixels drawn to each of the page's, each way: 2 draws it as a Retina screen does, the video twice the page's size (1920 × 1080 into 4K). */
+  scale: number;
   /** The longest it runs, seconds: it ends with the playback before then. */
   seconds: number;
   /** Where the app is served. */

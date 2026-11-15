@@ -77,6 +77,7 @@ export const recordingOf = (args: string[], cwd: string): Recording => {
       rehearse: { type: 'boolean' },
       fps: { type: 'string' },
       size: { type: 'string' },
+      scale: { type: 'string' },
       seconds: { type: 'string' },
       query: { type: 'string' },
       origin: { type: 'string' },
@@ -97,6 +98,7 @@ export const recordingOf = (args: string[], cwd: string): Recording => {
     fps: countOf('fps', values.fps, RECORDING_DEFAULTS.fps),
     width: countOf('size', size[1], RECORDING_DEFAULTS.width),
     height: countOf('size', size[2], RECORDING_DEFAULTS.height),
+    scale: countOf('scale', values.scale, RECORDING_DEFAULTS.scale),
     seconds: countOf('seconds', values.seconds, RECORDING_DEFAULTS.seconds),
     origin: originOf(values.origin ?? RECORDING_DEFAULTS.origin),
     query: (values.query ?? RECORDING_DEFAULTS.query).replace(/^\?/, ''),
@@ -162,7 +164,9 @@ export const ffmpegPathOf = (installed: (path: string) => boolean): string => {
 
 /**
  * How ffmpeg is called to make the video: JPEG frames on its input, one each frame, into an H.264
- * MP4 every player and YouTube take (4:2:0 colour, its index at the front), near lossless.
+ * MP4 every player and YouTube take (4:2:0 colour, its index at the front), near lossless. Its colour
+ * is HD's standard, said in the file (BT.709, video range): a JPEG's own, kept, is full range by an older
+ * standard, which players guess at, and many guess wrong, showing it washed out or its reds shifted.
  *
  * @param recording - The recording.
  * @returns ffmpeg's arguments.
@@ -179,14 +183,14 @@ export const ffmpegArgsOf = (recording: Recording): string[] => [
   'mjpeg',
   '-i',
   '-',
+  '-vf',
+  'scale=out_color_matrix=bt709:out_range=tv,format=yuv420p,setparams=range=tv:colorspace=bt709:color_primaries=bt709:color_trc=bt709',
   '-c:v',
   'libx264',
   '-preset',
   'medium',
   '-crf',
   '18',
-  '-pix_fmt',
-  'yuv420p',
   '-movflags',
   '+faststart',
   recording.out,
@@ -250,7 +254,7 @@ export const untilDrawn = async (drawn: () => Promise<boolean>, wait: () => Prom
 };
 
 /**
- * How Chrome is started for a recording: the one installed, at the video's size, a pixel to a pixel, and
+ * How Chrome is started for a recording: the one installed, the page at its size, drawn at its scale, and
  * asking for all the motion there is, whatever the machine's own setting: what rolls in the video
  * follows the preference (`CountingNumber`), and the recording says what it wants. Ctrl+C and a stop
  * signal are the recorder's own (`cli.ts`): Playwright's would end the process before it could cancel.
@@ -261,7 +265,7 @@ export const untilDrawn = async (drawn: () => Promise<boolean>, wait: () => Prom
 export const launchOptionsOf = (recording: Recording): Parameters<BrowserType['launchPersistentContext']>[1] => ({
   channel: 'chrome',
   viewport: { width: recording.width, height: recording.height },
-  deviceScaleFactor: 1,
+  deviceScaleFactor: recording.scale,
   reducedMotion: 'no-preference',
   handleSIGINT: false,
   handleSIGTERM: false,
