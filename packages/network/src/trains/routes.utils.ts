@@ -1,11 +1,11 @@
 import { firstDifference } from '@railtime/core/collection.utils';
 import { required } from '@railtime/core/required.utils';
 import type { LineId, StationId } from '@railtime/schema/network.types';
-import type { TrainLeg, TrainRun } from './trains.types';
 import type { NetworkIndex } from '../engine/index.service';
 import type { LineRun } from '../engine/lineDetails.types';
 import { lineRuns } from '../engine/lineDetails.utils.ts';
 import type { Timeline } from '../engine/timeline.service';
+import type { TrainLeg, TrainRun } from './trains.types';
 
 /** A way along a line from one end to another: its stations, the track between each and the next, and whether its trains go only that way. */
 type TrainRoute = Pick<LineRun, 'stations' | 'track' | 'oneWay'>;

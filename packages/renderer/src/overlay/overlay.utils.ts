@@ -3,11 +3,11 @@ import type { NetworkEngine } from '@railtime/network/engine.service';
 import type { CoverageCells, ReachInfo, RouteInfo, Theme } from '@railtime/network/facts.types';
 import type { CityBoundary } from '@railtime/schema/boundary.types';
 import type { StationId } from '@railtime/schema/network.types';
-import { COVERAGE_ALPHA, UNCOVERED_ALPHA, UNCOVERED_COLOR } from './overlay.constants';
-import type { CoverageDrawing, RouteStopKind, RouteStopMark } from './overlay.types';
 import type { PointFeature, ReachStopProperties, ReachTrackFeature, RouteFeature, RouteStopProperties } from '../layers/snapshot.types';
 import { pointFeature } from '../layers/snapshot.utils';
 import { channelsOf } from '../support/drawing.utils';
+import { COVERAGE_ALPHA, UNCOVERED_ALPHA, UNCOVERED_COLOR } from './overlay.constants';
+import type { CoverageDrawing, RouteStopKind, RouteStopMark } from './overlay.types';
 
 /**
  * A route's track: each ride along its segments in its line's colour, each walk straight from one

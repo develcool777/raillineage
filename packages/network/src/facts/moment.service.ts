@@ -1,5 +1,11 @@
 import { toIsoDate, toTimestamp } from '@railtime/core/date.utils';
 import type { LineId, StationId } from '@railtime/schema/network.types';
+import { statsDrawn } from '../engine/history.utils.ts';
+import type { NetworkIndex } from '../engine/index.service';
+import { directionsAt, lineLengthKm, lineRuns, stepChangesLine } from '../engine/lineDetails.utils.ts';
+import type { Timeline } from '../engine/timeline.service';
+import type { RouteFinder } from '../route/finder.service';
+import type { TrainService } from '../trains/trains.service';
 import { REACH_BANDS } from './facts.constants.ts';
 import type {
   LineDetails,
@@ -18,12 +24,6 @@ import type {
 } from './facts.types';
 import { bandOf, byOpening, lineInfoOf, linesAsDrawn, reachedSegments, recordsOf, trackDatesAt } from './facts.utils.ts';
 import type { MomentSource } from './moment.types';
-import { statsDrawn } from '../engine/history.utils.ts';
-import type { NetworkIndex } from '../engine/index.service';
-import { directionsAt, lineLengthKm, lineRuns, stepChangesLine } from '../engine/lineDetails.utils.ts';
-import type { Timeline } from '../engine/timeline.service';
-import type { RouteFinder } from '../route/finder.service';
-import type { TrainService } from '../trains/trains.service';
 
 /**
  * The network at one moment, and every question about it then. Every answer says what the map draws

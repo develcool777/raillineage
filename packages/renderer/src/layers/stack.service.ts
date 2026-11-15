@@ -1,6 +1,10 @@
 import type { NetworkEngine } from '@railtime/network/engine.service';
 import type { LineId } from '@railtime/schema/network.types';
 import type { Map as MapLibreMap } from 'maplibre-gl';
+import { MotionLayer } from '../motion/motion.service';
+import { CoverageLayer } from '../overlay/coverage.service';
+import { ReachLayer } from '../overlay/reach.service';
+import { RouteLayer } from '../overlay/route.service';
 import { basemapFont, recolorBasemap, showBasemapLabels } from './basemap.utils';
 import { BuildingsLayer } from './buildings.service';
 import type { MapLayer } from './layer.service';
@@ -9,10 +13,6 @@ import type { MoverKind } from './stack.types';
 import { StationLayer } from './stations.service';
 import type { Palette } from './theme.types';
 import { TRAIN_STYLE } from './trains.constants';
-import { MotionLayer } from '../motion/motion.service';
-import { CoverageLayer } from '../overlay/coverage.service';
-import { ReachLayer } from '../overlay/reach.service';
-import { RouteLayer } from '../overlay/route.service';
 
 /**
  * The map's layer groups, one of each for the map's whole life, whichever network they draw: made

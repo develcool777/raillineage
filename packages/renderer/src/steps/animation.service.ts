@@ -3,12 +3,12 @@ import { sliceAlong } from '@railtime/core/geometry.utils';
 import { clamp } from '@railtime/core/number.utils';
 import type { LineSegment, SegmentPlan, StationCloseStep, Step } from '@railtime/network/engine.types';
 import type { LineId, StationId } from '@railtime/schema/network.types';
-import { CLOSE_HOLD_SECONDS, GROWTH_PACE, MIN_DRAW_SECONDS, OPEN_HOLD_SECONDS, STEP_TIMES, UNTOUCHED_BASE } from './animation.constants';
-import type { BaseNetwork, Phase, StepContext, StepDrawing, StepFrame, Stretch } from './animation.types';
-import { arrivalSeconds, chaseAlong, frontKmAt, growthSeconds, stretchOf } from './animation.utils';
 import { lineFeature, pointFeature } from '../layers/snapshot.utils';
 import { offsetFor, resolveLine } from '../layers/style.utils';
 import { easeInOut } from '../support/drawing.utils';
+import { CLOSE_HOLD_SECONDS, GROWTH_PACE, MIN_DRAW_SECONDS, OPEN_HOLD_SECONDS, STEP_TIMES, UNTOUCHED_BASE } from './animation.constants';
+import type { BaseNetwork, Phase, StepContext, StepDrawing, StepFrame, Stretch } from './animation.types';
+import { arrivalSeconds, chaseAlong, frontKmAt, growthSeconds, stretchOf } from './animation.utils';
 
 /**
  * How a step plays, whatever its kind: how long it takes, what the camera frames, what it asks of the

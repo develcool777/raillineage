@@ -3,16 +3,16 @@ import { engineOf } from '@railtime/network/engine.utils';
 import type { NetworkFacts } from '@railtime/network/facts.service';
 import type { Playhead } from '@railtime/network/facts.types';
 import type { StationId } from '@railtime/schema/network.types';
-import { END_OVERVIEW_MS, MAX_TILE_WAIT_SECONDS } from './playback.constants';
-import type { NetworkParts, PlaybackOptions } from './playback.types';
-import { FREE_CAMERA_PRE_SECONDS } from './player.constants';
-import { Player } from './player.service';
-import type { PlayerEvent } from './player.types';
 import { FrameRenderer } from '../layers/frame.service';
 import { OverlayController } from '../overlay/controller.service';
 import { StepAnimation } from '../steps/animation.service';
 import { SELECTED_STATION_ZOOM, SELECT_FLY_MS } from '../transitMap.constants';
 import { arrivalPlayhead } from '../transitMap.utils';
+import { END_OVERVIEW_MS, MAX_TILE_WAIT_SECONDS } from './playback.constants';
+import type { NetworkParts, PlaybackOptions } from './playback.types';
+import { FREE_CAMERA_PRE_SECONDS } from './player.constants';
+import { Player } from './player.service';
+import type { PlayerEvent } from './player.types';
 
 /**
  * The history played on the map: each frame, the player's clock moved on (held while the map's tiles

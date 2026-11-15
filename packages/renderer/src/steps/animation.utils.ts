@@ -5,9 +5,9 @@ import { clamp } from '@railtime/core/number.utils';
 import { required } from '@railtime/core/required.utils';
 import type { Growth, LineSegment, SegmentPlan } from '@railtime/network/engine.types';
 import type { LineId, StationId } from '@railtime/schema/network.types';
+import { emptyCollection } from '../layers/snapshot.utils';
 import { CHASE_AHEAD_KM, CHASE_BEHIND_KM, CHASE_SMOOTHING_KM } from './animation.constants';
 import type { BaseNetwork, ChaseTarget, GrowthMove, GrowthPace, StepDrawing, Stretch } from './animation.types';
-import { emptyCollection } from '../layers/snapshot.utils';
 
 /**
  * A drawing with nothing in it, for a frame to fill.

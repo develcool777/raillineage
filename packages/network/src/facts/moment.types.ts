@@ -1,11 +1,11 @@
 import type { IsoDate } from '@railtime/core/date.types';
 import type { LineId, StationId } from '@railtime/schema/network.types';
-import type { NetworkStats } from './facts.types';
 import type { NetworkIndex } from '../engine/index.service';
 import type { Playheads } from '../engine/playheads.service';
 import type { Timeline } from '../engine/timeline.service';
 import type { RouteFinder } from '../route/finder.service';
 import type { TrainService } from '../trains/trains.service';
+import type { NetworkStats } from './facts.types';
 
 /** What the answers at a moment draw on: the network, its history, and the search over it. */
 export type MomentSource = {

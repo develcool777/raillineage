@@ -1,8 +1,8 @@
 import { cumulativeDistances } from '@railtime/core/geometry.utils';
 import { required } from '@railtime/core/required.utils';
+import type { Network, PlanId } from '../format/network.types';
 import type { BuiltPlan } from './build.types';
 import { PlanBuilder } from './builder.service.ts';
-import type { Network, PlanId } from '../format/network.types';
 
 /**
  * Builds one of a network's plans on it, section by section.

@@ -1,11 +1,11 @@
 import type { LngLat } from '@railtime/core/geometry.types';
 import { mercatorY } from '@railtime/core/geometry.utils';
 import { required } from '@railtime/core/required.utils';
-import { MAP_TILE_PX, MAX_SIDE_STEPS, SEGMENT_CORNERS, SIDE_OVERLAP, STROKE_VERTEX_FLOATS } from './motion.constants';
-import type { MotionView, Mover, MoverStyle, Rgb, StrokePass, StrokeVertices, VertexRun } from './motion.types';
 import { atZoom } from '../layers/style.utils';
 import type { Palette } from '../layers/theme.types';
 import { channelsOf } from '../support/drawing.utils';
+import { MAP_TILE_PX, MAX_SIDE_STEPS, SEGMENT_CORNERS, SIDE_OVERLAP, STROKE_VERTEX_FLOATS } from './motion.constants';
+import type { MotionView, Mover, MoverStyle, Rgb, StrokePass, StrokeVertices, VertexRun } from './motion.types';
 
 /**
  * Where a point is in MapLibre's world: Web Mercator, the whole world 0..1 across and down.

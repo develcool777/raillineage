@@ -1,10 +1,10 @@
 import { pushTo } from '@railtime/core/collection.utils';
 import { required } from '@railtime/core/required.utils';
 import type { LineId } from '@railtime/schema/network.types';
+import type { TrackSegment } from '../engine/engine.types';
 import { rideKmAt, rideSeconds, rideSecondsTo } from './motion.utils.ts';
 import { CYCLE_SECONDS, TRACK_USE, TRAIN_PROFILES } from './trains.constants.ts';
 import type { Conflict, Heading, Layover, Meeting, Ride, RouteSchedule, TrackRoom, TrainEnd, TrainPlace, TrainRun } from './trains.types';
-import type { TrackSegment } from '../engine/engine.types';
 
 /**
  * Whether a route closes on itself: a loop has no terminus, so its trains never turn.

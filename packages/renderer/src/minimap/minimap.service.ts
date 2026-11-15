@@ -1,5 +1,9 @@
 import type { Bounds } from '@railtime/core/geometry.types';
 import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl';
+import { recolorBasemap } from '../layers/basemap.utils';
+import type { FeatureCollection, LineFeature, NetworkSnapshot } from '../layers/snapshot.types';
+import { emptyCollection } from '../layers/snapshot.utils';
+import type { Palette } from '../layers/theme.types';
 import {
   MINIMAP_LAYERS,
   MINIMAP_LINE_WIDTH,
@@ -11,10 +15,6 @@ import {
 } from './minimap.constants';
 import type { MinimapOptions } from './minimap.types';
 import { viewportBox } from './minimap.utils';
-import { recolorBasemap } from '../layers/basemap.utils';
-import type { FeatureCollection, LineFeature, NetworkSnapshot } from '../layers/snapshot.types';
-import { emptyCollection } from '../layers/snapshot.utils';
-import type { Palette } from '../layers/theme.types';
 
 /**
  * A small, fixed overview of the whole city: the network so far, the change happening now, and a
