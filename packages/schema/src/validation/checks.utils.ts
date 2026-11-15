@@ -3,9 +3,9 @@ import type { IsoDate } from '@railtime/core/date.types';
 import type { LngLat } from '@railtime/core/geometry.types';
 import { cumulativeDistances, distanceKm, sliceAlong, turnDegrees } from '@railtime/core/geometry.utils';
 import { required } from '@railtime/core/required.utils';
+import type { Line, LineId, Mode, Network, Segment, SegmentLine, Station, StationId, Suspension } from '../format/network.types';
 import { CURVE_SPAN_METRES, MAX_TURN_DEGREES, MIN_CURVE_RADIUS_METRES, STATION_GAP_METRES } from './checks.constants.ts';
 import type { TrackOut } from './checks.types';
-import type { Line, LineId, Mode, Network, Segment, SegmentLine, Station, StationId, Suspension } from '../format/network.types';
 
 /**
  * The sharpest a line of a mode may turn over `CURVE_SPAN_METRES` either side of a point: as much as

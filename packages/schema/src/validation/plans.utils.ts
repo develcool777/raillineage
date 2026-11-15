@@ -1,11 +1,11 @@
 import { pairsOf, entriesOf, keysOf } from '@railtime/core/collection.utils';
 import { byCodeUnits } from '@railtime/core/text.utils';
-import type { TrackOut } from './checks.types';
-import { checkNetwork, datedTracksOut, pushTrack, segmentTurnProblem, throughStationProblems, tracksOut } from './checks.utils.ts';
 import type { Network, Plan, PlanTrack } from '../format/network.types';
 import type { BuiltPlan } from '../plan/build.types';
 import { buildPlan } from '../plan/build.utils.ts';
 import { samePair } from '../plan/track.utils.ts';
+import type { TrackOut } from './checks.types';
+import { checkNetwork, datedTracksOut, pushTrack, segmentTurnProblem, throughStationProblems, tracksOut } from './checks.utils.ts';
 
 /**
  * A plan's ids that are already the network's, and its sections' lines and stations that are no one's.

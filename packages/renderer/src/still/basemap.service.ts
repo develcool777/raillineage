@@ -1,11 +1,11 @@
 import { boundsOf } from '@railtime/core/geometry.utils';
 import { required } from '@railtime/core/required.utils';
 import { type GeoJSONSource, type LineLayerSpecification, Map as MapLibreMap, setWorkerUrl } from 'maplibre-gl';
-import { STILL_FORMAT, STILL_LINE_WIDTH, STILL_PIXEL_RATIO, STILL_QUALITY, STILL_TIMEOUT_MS, STILL_TRACK } from './basemap.constants';
-import type { BasemapStillOptions, StillRequest, StillTrack } from './basemap.types';
 import { recolorBasemap } from '../layers/basemap.utils';
 import { LINE_LAYOUT } from '../layers/ids.constants';
 import { DEFAULT_BASEMAP, PALETTES } from '../layers/theme.constants';
+import { STILL_FORMAT, STILL_LINE_WIDTH, STILL_PIXEL_RATIO, STILL_QUALITY, STILL_TIMEOUT_MS, STILL_TRACK } from './basemap.constants';
+import type { BasemapStillOptions, StillRequest, StillTrack } from './basemap.types';
 
 /**
  * Still pictures of the basemap, for previews: one hidden map, moved to each view in turn and

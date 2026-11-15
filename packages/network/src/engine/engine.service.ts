@@ -1,13 +1,13 @@
 import type { LineId, Network, PlanId } from '@railtime/schema/network.types';
 import { buildPlan } from '@railtime/schema/plan.utils';
+import type { NetworkStats } from '../facts/facts.types';
+import { trainRunsAt } from '../trains/routes.utils.ts';
+import { TrainService } from '../trains/trains.service.ts';
 import type { LineGap } from './engine.types';
 import { statsAt } from './history.utils.ts';
 import { NetworkIndex } from './index.service.ts';
 import { Playheads } from './playheads.service.ts';
 import { Timeline } from './timeline.service.ts';
-import type { NetworkStats } from '../facts/facts.types';
-import { trainRunsAt } from '../trains/routes.utils.ts';
-import { TrainService } from '../trains/trains.service.ts';
 
 /**
  * The raw network through time, as the renderer plays and draws it: its track and stations indexed

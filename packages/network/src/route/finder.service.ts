@@ -1,6 +1,11 @@
 import { pushTo } from '@railtime/core/collection.utils';
 import { required } from '@railtime/core/required.utils';
 import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { NetworkIndex } from '../engine/index.service';
+import { lineHops } from '../engine/lineDetails.utils.ts';
+import type { Timeline } from '../engine/timeline.service';
+import { rideSeconds } from '../trains/motion.utils.ts';
+import { TRAIN_PROFILES } from '../trains/trains.constants.ts';
 import {
   ALTERNATIVE_EXTRA_MINUTES,
   ALTERNATIVE_SEARCHES,
@@ -12,11 +17,6 @@ import {
   WALK_MINUTES,
 } from './finder.constants.ts';
 import type { Arrival, Edge, Move, Place, RideLeg, Rides, Route, RouteLeg, SearchTerms, TimedHop } from './finder.types';
-import type { NetworkIndex } from '../engine/index.service';
-import { lineHops } from '../engine/lineDetails.utils.ts';
-import type { Timeline } from '../engine/timeline.service';
-import { rideSeconds } from '../trains/motion.utils.ts';
-import { TRAIN_PROFILES } from '../trains/trains.constants.ts';
 
 /**
  * A binary min-heap: items come out cheapest first. What Dijkstra's search takes its next place

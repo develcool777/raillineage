@@ -2,10 +2,10 @@ import { endOfYear } from '@railtime/core/date.utils';
 import type { LngLat } from '@railtime/core/geometry.types';
 import { required } from '@railtime/core/required.utils';
 import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { CoverageGrid } from './coverage.service';
 import type { NetworkIndex } from '../engine/index.service';
 import type { Timeline } from '../engine/timeline.service';
 import type { CoverageBand, CoverageDistance, CoverageInfo, CoverageYear } from '../facts/facts.types';
+import type { CoverageGrid } from './coverage.service';
 
 /**
  * Where the stations a line calls at stand, at a cursor: a station the track passes but no train

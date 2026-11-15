@@ -3,10 +3,10 @@ import { sliceAlong } from '@railtime/core/geometry.utils';
 import { required } from '@railtime/core/required.utils';
 import type { TrackSegment } from '@railtime/network/engine.types';
 import type { TrainLeg, TrainPlace } from '@railtime/network/trains.types';
+import type { Mover } from '../motion/motion.types';
 import type { RenderState, SideBySide } from './style.types';
 import { offsetFor, resolveLine } from './style.utils';
 import { TRAIN_LENGTH_KM } from './trains.constants';
-import type { Mover } from '../motion/motion.types';
 
 /**
  * A stretch of a segment's track, in its own direction.

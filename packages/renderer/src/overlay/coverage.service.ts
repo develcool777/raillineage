@@ -1,8 +1,8 @@
 import type { ImageSource, Map as MapLibreMap } from 'maplibre-gl';
-import type { CoverageDrawing, CoverageImage } from './overlay.types';
 import { LAYERS, LINE_LAYOUT, SOURCES } from '../layers/ids.constants';
 import { MapLayer } from '../layers/layer.service';
 import type { Palette } from '../layers/theme.types';
+import type { CoverageDrawing, CoverageImage } from './overlay.types';
 
 /** A clear pixel: what the heatmap's source holds until there is coverage to draw. */
 const CLEAR_PIXEL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';

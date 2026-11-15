@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { lngLat } from './shape.schema.ts';
 import type { CityBoundary } from '../format/boundary.types';
+import { lngLat } from './shape.schema.ts';
 
 /** A closed ring: three corners at least, its last point its first. */
 const ring = z

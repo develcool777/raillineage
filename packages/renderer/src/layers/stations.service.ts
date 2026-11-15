@@ -2,6 +2,7 @@ import type { LngLat } from '@railtime/core/geometry.types';
 import { clamp } from '@railtime/core/number.utils';
 import type { LineId, StationId } from '@railtime/schema/network.types';
 import type { ExpressionSpecification, Map as MapLibreMap, PointLike, SymbolLayerSpecification } from 'maplibre-gl';
+import { easeOutBack } from '../support/drawing.utils';
 import { BACKDROP_STATION_OPACITY, LABEL_MIN_ZOOM, LAYERS, POP_IN_MS, PULSE_GROWTH, PULSE_MS, SOURCES } from './ids.constants';
 import { MapLayer } from './layer.service';
 import type { PointFeature, PulseLook, PulseProperties, StationLines, StationLook, StationProperties } from './snapshot.types';
@@ -9,7 +10,6 @@ import { emptyCollection, pointFeature } from './snapshot.utils';
 import type { StationFrame } from './stations.types';
 import { byZoom } from './style.utils';
 import type { Palette } from './theme.types';
-import { easeOutBack } from '../support/drawing.utils';
 
 /** A birth time far in the past: the station is shown fully, with no pop-in. */
 const ALREADY_SHOWN = -1e9;

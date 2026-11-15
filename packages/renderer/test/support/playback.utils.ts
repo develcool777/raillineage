@@ -3,7 +3,6 @@ import { NetworkFacts } from '@railtime/network/facts.service';
 import type { FactsAt } from '@railtime/network/moment.service';
 import type { TrainService } from '@railtime/network/trains.service';
 import type { Network } from '@railtime/schema/network.types';
-import type { Playback, PlaybackOptions } from './playback.types';
 import type { NetworkSnapshot } from '../../src/layers/snapshot.types';
 import { buildNetworkSnapshot } from '../../src/layers/snapshot.utils';
 import type { RenderState } from '../../src/layers/style.types';
@@ -12,6 +11,7 @@ import { Player } from '../../src/playback/player.service';
 import { StepAnimation } from '../../src/steps/animation.service';
 import type { StepDrawing } from '../../src/steps/animation.types';
 import { emptyDrawing } from '../../src/steps/animation.utils';
+import type { Playback, PlaybackOptions } from './playback.types';
 
 /**
  * A network's facts, its index and timeline, and a player at today, 1 January 2026, wired as `TransitMap` wires them.

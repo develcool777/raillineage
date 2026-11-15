@@ -1,13 +1,13 @@
 import type { NetworkEngine } from '@railtime/network/engine.service';
 import type { NetworkFacts } from '@railtime/network/facts.service';
 import type { LineId } from '@railtime/schema/network.types';
-import type { ActiveStepLayer, NetworkLayer } from './network.service';
-import type { MoverKind } from './stack.types';
-import type { StationLayer } from './stations.service';
 import type { Minimap } from '../minimap/minimap.service';
 import type { MotionLayer } from '../motion/motion.service';
 import type { Player } from '../playback/player.service';
 import type { ChaseTarget } from '../steps/animation.types';
+import type { ActiveStepLayer, NetworkLayer } from './network.service';
+import type { MoverKind } from './stack.types';
+import type { StationLayer } from './stations.service';
 
 /** What draws each frame: the network, its history and the player, and the layers drawn on. */
 export type FrameParts = {

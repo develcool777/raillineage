@@ -1,9 +1,9 @@
 import { DAY_MS } from '@railtime/core/date.utils';
 import { required } from '@railtime/core/required.utils';
 import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LineColor, StepInfo } from '../facts/facts.types';
 import type { CaptionContext } from './caption.types';
 import type { CloseStep, IdentityStep, InfillStep, OpenStep, RenameStep, Step, StationCloseStep } from './engine.types';
-import type { LineColor, StepInfo } from '../facts/facts.types';
 
 /**
  * A station's name on a step's date.

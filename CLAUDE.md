@@ -311,8 +311,8 @@ dates each city's test lists, and its outline. Read it before editing anything i
 
 - `typescript` resolves to 6 through the override in `pnpm-workspace.yaml`: vue-tsc and `nuxt typecheck`
   do not load on 7 yet. `overrides`, `patchedDependencies` and `auditConfig` are read from that file only.
-- `minimatch` is 11 throughout (a security override), and `eslint-plugin-import-x` is patched to run on it
-  (`patches/`): a new version of either needs the patch checked again, or ESLint fails to load.
+- `minimatch` is 11 throughout (a security override): a plugin that asks for an older one must still load
+  on 11 (`pnpm eslint-check` fails to start if not), or it needs a patch in `patches/`.
 - The required check on `main` is named `CI`: the gate job in `.github/workflows/test.yml` keeps that
   name. Requiring a job by its own name pins it: renamed, its check never reports again.
 - Run Prettier from the root: inside a package it misses the root's `.prettierignore` and rewrites the

@@ -1,13 +1,13 @@
 import { keysOf } from '@railtime/core/collection.utils';
 import type { CustomRenderMethodInput, Map as MapLibreMap } from 'maplibre-gl';
-import type { Mover, MoverStyle } from './motion.types';
-import { anchoredMatrix, drawOrderOf, mercatorOf, passesOf, strokeVerticesOf, worldPixelsAt } from './motion.utils';
-import { StrokePainter } from './painter.service';
 import { LAYERS } from '../layers/ids.constants';
 import { MapLayer } from '../layers/layer.service';
 import { SIDE_BY_SIDE_PX } from '../layers/style.constants';
 import { atZoom } from '../layers/style.utils';
 import type { Palette } from '../layers/theme.types';
+import type { Mover, MoverStyle } from './motion.types';
+import { anchoredMatrix, drawOrderOf, mercatorOf, passesOf, strokeVerticesOf, worldPixelsAt } from './motion.utils';
+import { StrokePainter } from './painter.service';
 
 /**
  * What moves on the map, every frame: each kind (trains, and whatever else comes to move) as its

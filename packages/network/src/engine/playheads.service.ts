@@ -1,9 +1,9 @@
 import { DAY_MS } from '@railtime/core/date.utils';
 import { clamp } from '@railtime/core/number.utils';
 import { required } from '@railtime/core/required.utils';
+import type { Moment, Playhead } from '../facts/facts.types';
 import { PROGRESS_STEPS } from './engine.constants.ts';
 import type { Timeline } from './timeline.service';
-import type { Moment, Playhead } from '../facts/facts.types';
 
 /**
  * Where in its history the map can be, as a `Playhead`, and the one place its rules are: the date each

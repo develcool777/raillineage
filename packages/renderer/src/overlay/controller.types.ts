@@ -1,11 +1,11 @@
 import type { CoverageMeasure } from '@railtime/network/coverage.service';
 import type { NetworkFacts } from '@railtime/network/facts.service';
 import type { CoverageDistance, Playhead, ReachInfo, RouteInfo, Theme } from '@railtime/network/facts.types';
+import type { CameraDirector } from '../playback/camera.service';
+import type { OverlayResult } from '../transitMap.types';
 import type { CoverageLayer } from './coverage.service';
 import type { ReachLayer } from './reach.service';
 import type { RouteLayer } from './route.service';
-import type { CameraDirector } from '../playback/camera.service';
-import type { OverlayResult } from '../transitMap.types';
 
 /** What the overlay controller draws with, and where it reads the network, the moment and the theme. */
 export type OverlayParts = {

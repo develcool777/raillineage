@@ -4,14 +4,14 @@ import { required } from '@railtime/core/required.utils';
 import { byCodeUnits } from '@railtime/core/text.utils';
 import type { LineId, Plan, StationId } from '@railtime/schema/network.types';
 import type { BuiltPlan } from '@railtime/schema/plan.types';
-import { REACH_BANDS } from './facts.constants.ts';
-import type { LineInfo, LineSketch, NetworkRecords, Playhead, PlanFacts, ReachedSegment, StationLineInfo } from './facts.types';
-import type { DatedLine, RecordsSource } from './moment.types';
 import { networkAt } from '../engine/history.utils.ts';
 import type { NetworkIndex } from '../engine/index.service';
 import { lineColorOf } from '../engine/lineColor.utils.ts';
 import { lineLengthKm } from '../engine/lineDetails.utils.ts';
 import type { Timeline } from '../engine/timeline.service';
+import { REACH_BANDS } from './facts.constants.ts';
+import type { LineInfo, LineSketch, NetworkRecords, Playhead, PlanFacts, ReachedSegment, StationLineInfo } from './facts.types';
+import type { DatedLine, RecordsSource } from './moment.types';
 
 /**
  * What a plan would add to its network, for its card.

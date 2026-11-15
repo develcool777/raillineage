@@ -4,11 +4,11 @@ import type { Bounds, LngLat } from '@railtime/core/geometry.types';
 import { boundsOf, latitudeOf, mercatorY, offsetKm } from '@railtime/core/geometry.utils';
 import { required } from '@railtime/core/required.utils';
 import type { CityBoundary } from '@railtime/schema/boundary.types';
-import { COVERAGE_BANDS, MAX_CELLS, MIN_CELL_KM } from './coverage.constants.ts';
-import { bandsWithin, cellBands, coverageHistory, coverageOf, crossingsOf, holds, servedStations } from './coverage.utils.ts';
 import type { NetworkIndex } from '../engine/index.service';
 import type { Timeline } from '../engine/timeline.service';
 import type { CoverageCells, CoverageDistance, CoverageInfo, CoverageYear, GridCorners } from '../facts/facts.types';
+import { COVERAGE_BANDS, MAX_CELLS, MIN_CELL_KM } from './coverage.constants.ts';
+import { bandsWithin, cellBands, coverageHistory, coverageOf, crossingsOf, holds, servedStations } from './coverage.utils.ts';
 
 /**
  * A city cut into cells, as the map draws it: columns even in longitude, rows even on the map, the
