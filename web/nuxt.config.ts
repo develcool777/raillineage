@@ -4,6 +4,8 @@ import { CITIES } from './src/constants/city.constants';
 
 /** Where the site is published, on Cloudflare (`wrangler.jsonc`): what a page run anywhere else (under `pnpm dev`, a video recorded) names it by. */
 const SITE_URL = 'https://raillineage.com';
+/** The path the app is served under, with its slash: what public/'s files are fetched from. */
+const BASE_URL = process.env.NUXT_APP_BASE_URL ?? '/';
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-01',
@@ -54,8 +56,13 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: { lang: 'en' },
       title: 'RailLineage',
-      // The logo mark, served from public/ under the base URL.
-      link: [{ rel: 'icon', type: 'image/svg+xml', href: `${process.env.NUXT_APP_BASE_URL ?? '/'}favicon.svg` }],
+      // The logo mark, served from public/ under the base URL: the SVG where a browser takes one (in its
+      // dark colours, on any tab bar), the .ico where it does not, and the picture a phone puts on its home screen.
+      link: [
+        { rel: 'icon', href: `${BASE_URL}favicon.ico`, sizes: 'any' },
+        { rel: 'icon', type: 'image/svg+xml', href: `${BASE_URL}favicon.svg` },
+        { rel: 'apple-touch-icon', href: `${BASE_URL}apple-touch-icon.png` },
+      ],
       meta: [
         {
           name: 'description',
