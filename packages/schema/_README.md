@@ -2,7 +2,7 @@
 
 The format of a city's files, and the door every file comes in by. What a network, an outline and the
 list of cities are (`format/`), the checks that hold a file to them (`validation/`), and a plan built on
-a network (`plan/`). Pure: no map, no city named (`../../CLAUDE.md`).
+a network (`plan/`). Pure: no map, no city named (`../../docs/CONVENTIONS.md`).
 
 ```text
 src/

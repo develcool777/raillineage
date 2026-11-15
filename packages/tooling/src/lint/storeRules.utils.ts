@@ -127,7 +127,7 @@ const partsOf = (body: TSESTree.BlockStatement): { declarator: TSESTree.Variable
   );
 
 /**
- * What can be read of a setup store's layout (CLAUDE.md, `A store is a setup store`): its headings in
+ * What can be read of a setup store's layout (docs/CONVENTIONS.md, `A store is a setup store`): its headings in
  * order, what it makes under the heading for it, what it returns in the same order, and each function
  * it returns named in capitals, an action. That its state changes only by its actions is not here:
  * a store's refs are written from outside through Pinia's own proxy, which no syntax tells apart.

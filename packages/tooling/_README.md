@@ -5,7 +5,7 @@ ships; nothing in `src/` of another package imports it.
 
 ## The house's lint rules (`src/lint/`)
 
-The conventions in `../../CLAUDE.md` that no plugin's rule can check, each a typed rule
+The conventions in `../../docs/CONVENTIONS.md` that no plugin's rule can check, each a typed rule
 (`@typescript-eslint/utils`), tested with its own cases in `test/unit/lint/`. `eslint/shared.js` gathers
 them under the `house` plugin, and each `eslint/*.config.js` turns on its own:
 
@@ -21,7 +21,7 @@ them under the `house` plugin, and each `eslint/*.config.js` turns on its own:
 | `house/mirrored-tests`      | `fileRules.utils.ts`      | a test and its source file named for each other, both ways       |
 
 Two more, `house/pure-utils` and `house/test-helpers`, are `no-restricted-imports` under a name of their
-own (`eslint/shared.js`). A rule's link in a report points at its convention in CLAUDE.md (`rule.utils.ts`).
+own (`eslint/shared.js`). A rule's link in a report points at its convention in docs/CONVENTIONS.md (`rule.utils.ts`).
 
 ## Mutation testing (`src/cli.mutation.ts`, `src/mutation/`)
 

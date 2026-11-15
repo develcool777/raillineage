@@ -1,7 +1,7 @@
 # Data
 
 The rules a city's files keep, which the schema and each city's test hold them to. Read it before
-editing a city's network, plans or outline. `CLAUDE.md` holds the code's conventions.
+editing a city's network, plans or outline. [CONVENTIONS.md](CONVENTIONS.md) holds the code's conventions.
 
 `packages/data/cities/<country>/<city>/<city>.json` is the city's network and its source of truth: edit
 it directly (a date, a station name), keeping its layout (one station or segment per line), never

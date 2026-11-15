@@ -28,7 +28,7 @@ work with: its composables, utilities, types and constants, named `<thing>.<role
 
 At the top, what every part shares or what ties them together. **The stores are the one source of
 truth**: every value in one, with all worked out from it, changed only by its actions, and read one
-way only (CLAUDE.md, Architecture):
+way only (ARCHITECTURE.md, `web`):
 
 - `network.store.ts` (`useNetworkStore`): the network shown. The city's network as stored, the plan
   picked, and the facts made from them with the lines hidden left out (`OPEN`, `SHOW_PLAN`,

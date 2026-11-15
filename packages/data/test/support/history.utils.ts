@@ -107,7 +107,7 @@ const piecesOf = (lineSegments: TrackStretch[]): number => {
  * Where a network's history leaves a line in more pieces than before: each date a line, as it is
  * drawn then, comes apart. A line opening as a stretch of its own, or a works closure in its middle,
  * is history; a segment dated wrong is a bug that looks just the same, so a city lists each one.
- * Worked out on the raw track, the exception to the engine's fence (`CLAUDE.md`): a line's stops, all
+ * Worked out on the raw track, the exception to the engine's fence (`docs/CONVENTIONS.md`): a line's stops, all
  * the facts say of it, part where its track holds together through a junction its trains pass.
  *
  * @param network - The network.

@@ -210,24 +210,86 @@ to draw later.
 `TransitMap` takes its MapLibre map and frame scheduler from factories, so its contract is tested
 whole on the stand-in map (`test/unit/transitMap.service.spec.ts`).
 
+## Where a change goes
+
+- **A fact is `network`'s.** A count, a length, a station's neighbours, a route, a caption: a method
+  on `NetworkFacts` (or the `FactsAt` its `asOf` gives, `facts/moment.service.ts`), tested in `packages/network`; `web` and `data`
+  ask it, never work it out, and never import its `engine.*` (`NetworkEngine`, `engineOf`, ESLint), which is the
+  renderer's: a city's test reads the raw network only as the renderer's playback hands it over.
+  Every answer at a moment says what the map draws then: a line drawn as another (`LineAlias`) is that line, in a
+  station, a route (with no change between them), a line and the records (`Timeline.drawnAs`). No
+  answer takes a theme: a line's colour is a `LineColor` in both, and what shows it picks one. `web` keeps presentation: formatting, grouping, the search.
+- **The renderer has no UI and no facts.** Controls, captions and panels are Nuxt UI components in
+  `web`; the renderer takes props, commands and listeners (`transitMap.types.ts`, `ARCHITECTURE.md`)
+  and never imports Vue. A setting it shows is a prop, never a `setX` method.
+- **Pure first.** All of `packages/network`, the renderer's player, `steps/` and every `*.utils.ts`
+  take no map: keep new logic there and test it (docs/TESTING.md). A layer
+  group is tested on the stand-in map (`test/support/factories/fakeMap.utils.ts`), which refuses what
+  MapLibre would: a layer the style spec does not allow, data that is not GeoJSON features, and a
+  layer reading (`['get', name]`) a property no feature of its source has.
+- **A new kind of step** is its times in `STEP_TIMES` and a case in `StepAnimation`'s `cameraPoints`,
+  `baseAt` and `draw` (`steps/animation.service.ts`): one class for every kind, its pure parts in
+  `animation.utils.ts`.
+- **A new group of map layers** is a `MapLayer` subclass installed by `MapLayers` (`layers/stack.service.ts`).
+- **Something that moves every frame** (the trains, and whatever comes to move) is a kind of mover: a
+  `MoverKind` with its `MoverStyle`, its movers given each frame to `MotionLayer.show`
+  (`motion/motion.service.ts`), which the map draws itself, in its own WebGL, as it draws a frame. Never
+  a GeoJSON source sent each frame: MapLibre cuts a source's tiles again in a worker for every send, so
+  what moves would lag and stutter.
+- **Trains on the map are an illustration, run by what real lines do.** The network keeps no timetable, so
+  `network`'s `trains/` works one out as an operator does, the same way for any city, and never a number
+  tuned for one. `TRAIN_PROFILES` says how each `Mode` runs, in real units: a figure from a published source where one
+  exists, cited, and the rest fitted, each saying so (`trains.constants.ts`); a city's test holds them to its
+  real times (Kyiv's average speed, Glasgow's lap, the Victoria line end to end). A route's ride is timed from them too,
+  by the same motion rules (`RouteFinder`), so a route and the trains agree.
+  Every way along a line from end to end (`routes.utils.ts`): a branch goes on past its fork towards the core,
+  the side more lines meet, never doubling back. A train pulls away, runs and brakes (`motion.utils.ts`).
+  The timetable repeats each hour (`CYCLE_SECONDS`), and is the tracks' (`TrackTimetable`, `tracks.service.ts`): a
+  track is a segment's, any line's on it unless its `tracks` part them, and has room for as many trains an hour as its
+  most cautious kind's signals let come (`closestSeconds`), but for a margin (`TRACK_USE`). A route runs at its kind's
+  headway where its tracks have room; where one has not, its routes share it evenly, the leftover a train at a time to
+  the line running fewest. The busiest routes are placed first, each train out as near its even time as is clear of
+  every train already on each track it takes, whichever line's, and back as soon as it has turned; a train with no
+  clear time is squeezed in least close. A line's platforms at an end are its own. `TrainService` turns the trains: at
+  each end of a line every train coming in takes the next one out, whichever route, first in first out, standing at
+  its platform until then, never out of sight; so how many trains run comes out of the timetable, never aimed at. A
+  loop has no terminus: trains go on round, each way its own, or the one way a line's `way` says, where a circle's two
+  directions are two lines. `TrainService` (`engine.trainService`) says where each train is, from the clock
+  alone, so a recorder can step them. The clock is real time: how
+  much faster to show it is the map's (`TRAIN_TIME_LAPSE`). The renderer only draws them: each a stretch of its
+  line's track, not a point, so it sits where its line is drawn on shared track, a mover of `MotionLayer`'s. The map's `trains` prop turns
+  them on, the app takes them off while history plays, and where lines are brought forward only theirs run.
+
 ## `web`: stores, and effects
 
-- **The stores are the one source of truth** (`features/explorer/`): every value in exactly one, with
-  all worked out from it, changed only by its actions, and read one way only. `network` (the network
-  shown: `NetworkFacts.create`, the plan, the lines hidden), `map` (the map, its camera) and `layout`
-  (how the page fits the screen) read none; `time` (playback, every command through time) reads the
-  network and the map; `tools` (route, reach, coverage) the network; `explorer` (what is open, how the
-  map is seen, `mapProps`, `address`, and what spans them, a network swapped among it: the facts, where
-  to stand on them and `time`, in one action) reads all five; `panel` (what the panel
-  shows, getters only) reads the rest. Buttons and keys call their actions; time's and the map store's
-  send the map its commands.
+- **Stores are the one source of truth.** Every value lives in exactly one store, with all that is
+  worked out from it (its getters), and changes only by that store's actions; their rules are pure
+  functions in `*.utils.ts`, tested, and each store is tested (`test/unit/…/<name>.store.test.ts`, on a
+  stand-in map, `@test/support/factories/transitMap.utils`). Stores read one another one way only,
+  never in a circle. The explorer's: `network.store.ts` (the network shown, its facts, the plan and
+  the lines hidden), `map/map.store.ts` (the map, its credits, where it looks, its camera's commands)
+  and `layout.store.ts` (how the page fits the screen: a phone's or not, the panel's width, the sheet)
+  read none; `time/time.store.ts` (the time control, playback, every command through time) reads the
+  network and the map; `tools.store.ts` (a route, a reach, coverage and the city's outline) the network;
+  `explorer.store.ts` (what is open, how the map is seen, `mapProps`, `address`, and the actions that
+  span the others: a page opening, a plan or lines shown, a station clicked, a network swapped: the
+  facts, where to stand on them and `time`, in one action) reads them all; `panel/panel.store.ts` (getters only: what the panel shows) reads the rest, and nothing
+  reads it. Buttons and keys call their
+  actions; time's and the map store's send the map its commands.
 - **The address names a moment, never a cursor**: `at` is a day, and how far through its changes
   (`Playheads.moment`, `atMoment`), so it holds whatever lines are hidden, which it does not say, and
   however a city's file is edited.
-- **Effects are composables, and hold nothing**: one makes the map with `mapProps` and listeners that
-  call the stores' actions, gives it each change of `mapProps`, and destroys it
-  (`map/transitMap.composable.ts`); others give the stores the screen and the theme, the keys, write
-  `address` to the address bar, and, under `pnpm dev`, give a recorder its handle.
+  What is looked at and how it is set goes in the address; dark or light, the one preference, in the
+  browser (`features/explorer/_README.md`).
+- **A composable is an effect, and nothing else**: it ties something outside Vue to the stores (the
+  map, the browser, the keys, the address bar), reading stores and calling their actions; it holds no
+  state and works nothing out (ESLint refuses a `ref`, `computed` or `reactive` in one).
+  `map/transitMap.composable.ts` makes the map with `mapProps` and listeners that call the stores'
+  actions, gives it each change of `mapProps`, and destroys it;
+  `layout.composable.ts` gives the stores the screen and the theme, and drags the panel;
+  `shortcuts.composable.ts` the keys; `address/address.composable.ts` writes the explorer's `address`
+  to the address bar, its only writer; `recorded.composable.ts` gives a recorder its handle, under
+  `pnpm dev`. A component lays out what stores hold and calls their actions.
 
 ## Ownership
 

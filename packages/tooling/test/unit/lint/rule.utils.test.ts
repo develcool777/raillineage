@@ -45,8 +45,8 @@ tester.run('names-returned', namesReturned, {
 
 describe('RuleUtils', () => {
   describe('createRule', () => {
-    test('points a rule at the convention it checks, in CLAUDE.md', () => {
-      expect(namesReturned.meta.docs?.url).toBe('https://github.com/develcool777/railtime/blob/main/CLAUDE.md#names-returned');
+    test('points a rule at the convention it checks, in docs/CONVENTIONS.md', () => {
+      expect(namesReturned.meta.docs?.url).toBe('https://github.com/develcool777/railtime/blob/main/docs/CONVENTIONS.md#names-returned');
     });
   });
 

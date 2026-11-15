@@ -7,7 +7,7 @@ const TEST_HELPERS = {
     "Source never takes a test's helpers, which trust what they are given: a string becomes an id by `isStationIn`/`isLineIn`/`isPlanIn` (`@railtime/schema/ids.utils`), a file a network by `parseNetwork`.",
 };
 
-/** Ids: a string becomes one only where it is checked (CLAUDE.md), and keeps its kind once it is one. */
+/** Ids: a string becomes one only where it is checked (docs/CONVENTIONS.md), and keeps its kind once it is one. */
 export const idsConfig = [
   {
     files: ['**/*.{ts,vue}'],

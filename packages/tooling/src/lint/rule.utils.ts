@@ -1,8 +1,8 @@
 import { AST_NODE_TYPES, ESLintUtils } from '@typescript-eslint/utils';
 import type { TSESLint, TSESTree } from '@typescript-eslint/utils';
 
-/** Makes a house rule, whose docs are the convention it checks, in CLAUDE.md. */
-export const createRule = ESLintUtils.RuleCreator(name => `https://github.com/develcool777/railtime/blob/main/CLAUDE.md#${name}`);
+/** Makes a house rule, whose docs are the convention it checks, in docs/CONVENTIONS.md. */
+export const createRule = ESLintUtils.RuleCreator(name => `https://github.com/develcool777/railtime/blob/main/docs/CONVENTIONS.md#${name}`);
 
 /** What `vue-eslint-parser` adds to its parser's services, to visit a template's expressions. */
 type VueServices = { defineTemplateBodyVisitor?: (template: TSESLint.RuleListener, script: TSESLint.RuleListener) => TSESLint.RuleListener };

@@ -1,7 +1,7 @@
 # Tests
 
 How every package tests, and the rules ESLint and Vitest hold tests to. Read it before writing or moving
-a test. `CLAUDE.md` holds the conventions every file follows.
+a test. [CONVENTIONS.md](CONVENTIONS.md) holds the conventions every file follows.
 
 Each package keeps its tests beside its code, as dataroom-ui does inside its one app:
 
