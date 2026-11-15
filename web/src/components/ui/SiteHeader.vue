@@ -13,7 +13,7 @@
         <template #home>
           <NuxtLink to="/" class="flex flex-none items-center gap-2" aria-label="RailLineage, all cities">
             <LogoMark class="size-6 flex-none" />
-            <span class="text-highlighted text-lg leading-6 font-bold tracking-[-0.01em] max-lg:hidden">RailLineage</span>
+            <LogoWordmark class="h-5 flex-none max-lg:hidden" />
           </NuxtLink>
         </template>
         <template #context>
@@ -22,7 +22,7 @@
       </UBreadcrumb>
       <NuxtLink v-else to="/" class="flex flex-none items-center gap-2" aria-label="RailLineage, all cities">
         <LogoMark class="size-6 flex-none" />
-        <span class="text-highlighted text-lg leading-6 font-bold tracking-[-0.01em]">RailLineage</span>
+        <LogoWordmark class="h-5 flex-none" />
       </NuxtLink>
     </template>
 
