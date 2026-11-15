@@ -1,8 +1,9 @@
-import { join } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import type { BrowserType } from 'playwright-core';
-import { FFMPEG_LOCATIONS, RECORDING_DEFAULTS, VIDEOS_FOLDER } from './recorder.constants.ts';
-import type { DrawnScope, RecordedPageKind, Recording, RecordingScope } from './recorder.types.ts';
+import { FFMPEG_LOCATIONS, VIDEOS_FOLDER } from './recorder.constants.ts';
+import type { DrawnScope, RecordedPageKind, Recording, RecordingPhase, RecordingScope, RecordingStatus } from './recorder.types.ts';
+import { RECORDING_DEFAULTS } from './recording.constants.ts';
 
 /**
  * A whole number at least 1, from an argument.
@@ -44,13 +45,29 @@ const originOf = (text: string): string => {
 };
 
 /**
+ * Where the video goes: `videos/<city>.mp4` for none named, `videos/<name>` for a name alone, and a path
+ * from the folder the command was run in.
+ *
+ * @param out - What `--out` says, if anything.
+ * @param city - The city.
+ * @param cwd - The folder the command was run in.
+ * @returns The file's path.
+ */
+const outOf = (out: string | undefined, city: string, cwd: string): string => {
+  if (out === undefined) return join(VIDEOS_FOLDER, `${city}.mp4`);
+  if (basename(out) === out) return join(VIDEOS_FOLDER, out);
+  return resolve(cwd, out);
+};
+
+/**
  * What the command's arguments ask to record.
  *
  * @param args - The arguments after the command: the city, then its options.
+ * @param cwd - The folder the command was run in, which a path given is read from (pnpm runs it in the package's).
  * @returns The recording, its defaults filled in.
  * @throws {Error} For no city, an option it does not know, or a value it cannot read.
  */
-export const recordingOf = (args: string[]): Recording => {
+export const recordingOf = (args: string[], cwd: string): Recording => {
   const { values, positionals } = parseArgs({
     args,
     allowPositionals: true,
@@ -64,6 +81,7 @@ export const recordingOf = (args: string[]): Recording => {
       query: { type: 'string' },
       origin: { type: 'string' },
       out: { type: 'string' },
+      status: { type: 'string' },
     },
   });
   const [city] = positionals;
@@ -82,9 +100,39 @@ export const recordingOf = (args: string[]): Recording => {
     seconds: countOf('seconds', values.seconds, RECORDING_DEFAULTS.seconds),
     origin: originOf(values.origin ?? RECORDING_DEFAULTS.origin),
     query: (values.query ?? RECORDING_DEFAULTS.query).replace(/^\?/, ''),
-    out: values.out ?? join(VIDEOS_FOLDER, `${city}.mp4`),
+    out: outOf(values.out, city, cwd),
+    status: values.status === undefined ? null : resolve(cwd, values.status),
   };
 };
+
+/**
+ * Where a video is written until it is whole: beside its file, hidden, so nothing lists it and a video
+ * already at the file stays until the new one takes its place.
+ *
+ * @param out - The video's file.
+ * @returns Where it is written meanwhile (`videos/.kyiv.mp4`).
+ */
+export const writingOf = (out: string): string => join(dirname(out), `.${basename(out)}`);
+
+/**
+ * A recording as its status file says it.
+ *
+ * @param recording - The recording.
+ * @param pid - The recorder's process.
+ * @param phase - How far it has got.
+ * @param seconds - How far it has played, seconds of video.
+ * @param error - What went wrong, once it failed.
+ * @returns Its status.
+ */
+export const statusOf = (recording: Recording, pid: number, phase: RecordingPhase, seconds: number, error: string | null = null): RecordingStatus => ({
+  pid,
+  city: recording.city,
+  out: recording.out,
+  phase,
+  seconds,
+  limit: recording.seconds,
+  error,
+});
 
 /**
  * The address of the page recorded.
@@ -204,7 +252,8 @@ export const untilDrawn = async (drawn: () => Promise<boolean>, wait: () => Prom
 /**
  * How Chrome is started for a recording: the one installed, at the video's size, a pixel to a pixel, and
  * asking for all the motion there is, whatever the machine's own setting: what rolls in the video
- * follows the preference (`CountingNumber`), and the recording says what it wants.
+ * follows the preference (`CountingNumber`), and the recording says what it wants. Ctrl+C and a stop
+ * signal are the recorder's own (`cli.ts`): Playwright's would end the process before it could cancel.
  *
  * @param recording - The recording.
  * @returns The options.
@@ -214,4 +263,6 @@ export const launchOptionsOf = (recording: Recording): Parameters<BrowserType['l
   viewport: { width: recording.width, height: recording.height },
   deviceScaleFactor: 1,
   reducedMotion: 'no-preference',
+  handleSIGINT: false,
+  handleSIGTERM: false,
 });

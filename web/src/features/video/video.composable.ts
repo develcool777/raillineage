@@ -15,7 +15,7 @@ import type { TransitMapMount } from '~/utils/transitMap.types';
  * between commands (its outline coming), and repeats a beat's as Vue flushes, which does nothing. Each
  * frame gives the store the page's clock (`performance.now`, which a recorder moves itself), and the
  * page's handle tells a recorder where the video is and whether its frame is drawn (`VideoPageHandle`).
- * Recorded, the video waits for the recorder to start it; watched, it starts once the map is ready.
+ * The video waits to be started: recorded, by the recorder; watched, by its panel's Preview.
  * Everything on the page that moves is worked out from that clock, never left to a CSS transition,
  * which runs on a clock no recorder moves. Client only.
  *
@@ -48,11 +48,7 @@ export const useVideoMap = (mount: TransitMapMount, opening: MaybeRefOrGetter<Om
       attributionControl: false,
       workerUrl,
       on: {
-        status: () => {
-          store.MAP_READY();
-          // Recorded, it starts when the recorder says.
-          if (!page.raillineageRecorder) store.START();
-        },
+        status: () => store.MAP_READY(),
         time: time => store.SET_TIME(time),
         step: step => store.SET_STEP(step),
         end: () => store.END_PLAYBACK(),

@@ -1,17 +1,4 @@
 import { fileURLToPath } from 'node:url';
-import type { Recording } from './recorder.types.ts';
-
-/** A recording's settings where none are given: the video page, 1080p at 60 frames a second, from the app as it is served in development. */
-export const RECORDING_DEFAULTS: Omit<Recording, 'city' | 'out'> = {
-  page: 'video',
-  rehearse: true,
-  fps: 60,
-  width: 1920,
-  height: 1080,
-  seconds: 600,
-  origin: 'http://localhost:5180',
-  query: '',
-};
 
 /** The package's own folder, whatever folder the command is run from. */
 const PACKAGE_FOLDER = fileURLToPath(new URL('../../', import.meta.url));
@@ -22,8 +9,17 @@ const PACKAGE_FOLDER = fileURLToPath(new URL('../../', import.meta.url));
  */
 export const BROWSER_PROFILE = `${PACKAGE_FOLDER}.cache/chrome`;
 
-/** Where a video goes where the command names no file: `videos/<city>.mp4`, in the package. */
+/** Where a video goes: `videos/<city>.mp4` where the command names no file, `videos/<name>` where it names one bare. */
 export const VIDEOS_FOLDER = `${PACKAGE_FOLDER}videos`;
+
+/** The command itself, for what starts it as its own process (the video page's Record button): run by Node. */
+export const RECORDER_COMMAND = `${PACKAGE_FOLDER}src/recorder/cli.ts`;
+
+/** Where the video page's recording writes how far it has got (`--status`), in the package's `.cache/`. */
+export const STATUS_FILE = `${PACKAGE_FOLDER}.cache/recording.json`;
+
+/** Where the video page's recording says what it says as it goes, for when one fails: in the package's `.cache/`. */
+export const LOG_FILE = `${PACKAGE_FOLDER}.cache/recording.log`;
 
 /** Virtual seconds the page runs before playback starts: its map drawn, the camera settled. */
 export const WARM_UP_SECONDS = 2;

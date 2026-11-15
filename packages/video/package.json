@@ -11,7 +11,12 @@
     "test-unit-ci": "vitest run"
   },
   "exports": {
-    "./videoPage.types": "./src/recorder/videoPage.types.ts"
+    "./videoPage.types": "./src/recorder/videoPage.types.ts",
+    "./recorder.types": "./src/recorder/recorder.types.ts",
+    "./recording.constants": "./src/recorder/recording.constants.ts",
+    "./jobs.service": "./src/jobs/jobs.service.ts",
+    "./jobs.types": "./src/jobs/jobs.types.ts",
+    "./jobs.utils": "./src/jobs/jobs.utils.ts"
   },
   "devDependencies": {
     "playwright-core": "^1.65.0",

@@ -27,7 +27,11 @@ rule here broken changes this file first.
   on a clock it moves a frame at a time; what a video shows is the app's, in `web`. The two meet on
   the page's `window`, in one contract `video` defines (`@raillineage/video/videoPage.types`): the
   recorder's clock, and the page's handle saying where it is, starting it, and saying when a frame is
-  drawn. The video page and the explorer each keep one, so `--page` only picks an address.
+  drawn. The video page and the explorer each keep one, so `--page` only picks an address. The video
+  page's Record button records through `video` too: `web/modules/videoRecorder.ts`, under `pnpm dev`
+  only, carries its requests to `RecordingJobs`, which runs each recording as the command, a process of
+  its own. `video` owns recording whole, its arguments, defaults, checks and status; `web` sends a city
+  and its page's query.
 - **A helper used in two packages lives once, in `core`, the bottom of the stack.** Never a copy: a
   date, a distance, a bounding box, `clamp`, `pushTo`, `required`, and the coordinate and date types.
   Within one package, one helper too: the app's counts and numbers are `web/src/utils/format.utils.ts`.

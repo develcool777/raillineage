@@ -25,6 +25,28 @@ export type Recording = {
   query: string;
   /** The MP4 written. */
   out: string;
+  /** Where how far it has got is written as it goes (`RecordingStatus`, as JSON), for whatever started it to read; `null` for nowhere. */
+  status: string | null;
+};
+
+/** How far a recording has got: Chrome starting, the page played through first, its frames taken, the video written; or over, and how. */
+export type RecordingPhase = 'starting' | 'rehearsing' | 'recording' | 'encoding' | 'done' | 'failed' | 'cancelled';
+
+/** A recording as its status file says it, rewritten as it goes (`Recording.status`). */
+export type RecordingStatus = {
+  /** The recorder's process. */
+  pid: number;
+  /** The city, by its id in the address. */
+  city: string;
+  /** The MP4 it writes. */
+  out: string;
+  phase: RecordingPhase;
+  /** How far it has played, seconds of video. */
+  seconds: number;
+  /** The longest it runs, seconds. */
+  limit: number;
+  /** What went wrong, once it failed; else `null`. */
+  error: string | null;
 };
 
 /**
