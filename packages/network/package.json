@@ -24,6 +24,7 @@
     "./testing/hiddenNetwork": "./test/support/factories/hiddenNetwork.utils.ts",
     "./testing/boundaries": "./test/support/factories/boundaries.utils.ts",
     "./testing/planOnlyNetwork": "./test/support/factories/planOnlyNetwork.utils.ts",
+    "./testing/routeNetwork": "./test/support/factories/routeNetwork.utils.ts",
     "./testing/trains": "./test/support/trains.utils.ts"
   },
   "dependencies": {

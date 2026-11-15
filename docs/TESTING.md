@@ -11,7 +11,8 @@ packages/network/
   test/unit/                mirrors src/, a test a file, named for it: test/unit/engine/timeline.service.test.ts
                             tests src/engine/timeline.service.ts, timeline.utils.test.ts its utils
   test/support/             what tests share: factories/ (tinyNetwork, planOnlyNetwork, boundaries,
-                            hiddenNetwork: exported as `@railtime/network/testing/*` for the other packages' tests), facts.utils.ts
+                            hiddenNetwork, routeNetwork: exported as `@railtime/network/testing/*` for the other
+                            packages' tests), facts.utils.ts
 packages/renderer/
   test/unit/                mirrors src/, as network's; transitMap.service.spec.ts tests the contract whole
   test/support/             fakeMap, playback.utils.ts (a player wired as the map wires it, and what
@@ -22,8 +23,9 @@ packages/data/
   test/unit/cities/         one test per city: unitedKingdom/london.test.ts checks
                             cities/united-kingdom/london/london.json, played through the renderer
   test/bench/               the work a visitor waits on, timed on the largest city (`pnpm test-bench`)
-web/test/unit/              mirrors web/src/ for its helpers (*.utils.ts) and stores; they import as the app does,
-                            from ~/, and test/support/ from @test/
+web/test/unit/              mirrors web/src/ for its helpers (*.utils.ts), stores and components; they import as
+                            the app does, from ~/, and test/support/ from @test/: a component's spec is named
+                            for it, features/lines/components/LinesSection.spec.ts
 web/test/e2e/               the built site in Chromium (Playwright, `*.e2e.ts`, a file per surface: landing, explorer)
 ```
 
@@ -39,6 +41,16 @@ web/test/e2e/               the built site in Chromium (Playwright, `*.e2e.ts`, 
   in happy-dom, for code that makes elements of its own (the minimap's box, `BasemapStill`'s hidden
   container); each is a project of its own (`projectsOf` in `vitest.shared.ts`), in every package and
   `web` (ESLint refuses `defineProject` there). Never a `@vitest-environment` comment.
+- **A component's spec** (`web/test/unit/**/components/<Component>.spec.ts`) renders it in the app itself:
+  `web`'s specs run in Nuxt, booted in happy-dom (`@nuxt/test-utils`, `web/vitest.config.ts`), so it finds
+  what it uses by tag, Nuxt UI's and the app's own, as on the page. `renderInApp`
+  (`web/test/support/component.utils.ts`) puts it in `<UApp>`, whose providers Nuxt UI's tooltips and
+  overlays need, and gives it its props and its listeners (`onShow` for `show`), each a `vi.fn()` to check.
+  Its props are what the explorer gives it, read from the stores opened on a test network
+  (`openExplorer`) or from the network's facts, never written by hand. It is found and driven as a
+  visitor would, by role and name (`@testing-library/vue`, `user-event`): what it shows, and what it
+  asks for when clicked or typed in. What a store does is the store's test; what only a browser shows
+  (the map, a reload, the layout) the site's.
 - **Tests run the real code.** No `vi.mock` (ESLint): build the input with a factory in `test/support/`.
 - **A test and its file are named for each other**, suffix and all, as in dataroom-ui: `trains.service.ts` is
   tested in `trains.service.test.ts`, `trains.utils.ts` in `trains.utils.test.ts`. A test names a source file that
