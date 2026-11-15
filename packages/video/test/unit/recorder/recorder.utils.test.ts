@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest';
-import { FFMPEG_LOCATIONS } from '../../../src/recorder/recorder.constants.ts';
+import { FFMPEG_LOCATIONS, VIDEOS_FOLDER } from '../../../src/recorder/recorder.constants.ts';
 import type { RecordingScope } from '../../../src/recorder/recorder.types.ts';
 import {
   drawnOnceHeld,
@@ -9,8 +9,13 @@ import {
   launchOptionsOf,
   pageUrlOf,
   recordingOf,
+  statusOf,
   untilDrawn,
+  writingOf,
 } from '../../../src/recorder/recorder.utils.ts';
+
+/** The folder the command was typed in, which a path given is read from. */
+const TYPED_IN = '/home/someone/raillineage';
 
 /**
  * A page's globals as the clock finds them: a clock at 1000 ms, a date at 5000, and no frames.
@@ -26,18 +31,19 @@ const scopeOf = (): RecordingScope => ({
 
 describe('RecorderUtils', () => {
   describe('recordingOf', () => {
-    test("records the city's video page at 1080p, 60 frames a second, from the app run by pnpm dev, into videos/", () => {
-      expect(recordingOf(['kyiv'])).toEqual({
+    test("records the city's video page at 1080p, 60 frames a second, for up to 15 minutes, from the app run by pnpm dev, into videos/", () => {
+      expect(recordingOf(['kyiv'], TYPED_IN)).toEqual({
         city: 'kyiv',
         page: 'video',
         rehearse: true,
         fps: 60,
         width: 1920,
         height: 1080,
-        seconds: 600,
+        seconds: 900,
         origin: 'http://localhost:5180',
         query: '',
         out: expect.stringMatching(/\/packages\/video\/videos\/kyiv\.mp4$/),
+        status: null,
       });
     });
 
@@ -58,7 +64,7 @@ describe('RecorderUtils', () => {
         '--origin',
         'http://localhost:3000/',
       ];
-      expect(recordingOf([...args, '--out', 'short.mp4'])).toEqual({
+      expect(recordingOf([...args, '--out', 'short.mp4'], TYPED_IN)).toEqual({
         city: 'london',
         page: 'explorer',
         rehearse: false,
@@ -68,37 +74,71 @@ describe('RecorderUtils', () => {
         seconds: 45,
         origin: 'http://localhost:3000',
         query: 'mapOnly=1',
-        out: 'short.mp4',
+        out: `${VIDEOS_FOLDER}/short.mp4`,
+        status: null,
       });
     });
 
+    test('writes a video named alone into videos/, and reads a path, and the status file, from where the command was typed', () => {
+      expect(recordingOf(['kyiv', '--out', 'kyiv-2070.mp4'], TYPED_IN).out).toBe(`${VIDEOS_FOLDER}/kyiv-2070.mp4`);
+      expect(recordingOf(['kyiv', '--out', 'clips/kyiv.mp4'], TYPED_IN).out).toBe(`${TYPED_IN}/clips/kyiv.mp4`);
+      expect(recordingOf(['kyiv', '--out', '/Volumes/clips/kyiv.mp4'], TYPED_IN).out).toBe('/Volumes/clips/kyiv.mp4');
+      expect(recordingOf(['kyiv', '--status', '.cache/status.json'], TYPED_IN).status).toBe(`${TYPED_IN}/.cache/status.json`);
+    });
+
     test('says what is wrong for no city, two, an option it does not know, or a value it cannot read', () => {
-      expect(() => recordingOf([])).toThrow('name one city');
-      expect(() => recordingOf(['kyiv', 'london'])).toThrow('name one city');
-      expect(() => recordingOf(['kyiv', '--speed', '2'])).toThrow("Unknown option '--speed'");
-      expect(() => recordingOf(['kyiv', '--fps', '0'])).toThrow('--fps takes a whole number, not 0');
-      expect(() => recordingOf(['kyiv', '--seconds', '1.5'])).toThrow('--seconds takes a whole number');
-      expect(() => recordingOf(['kyiv', '--size', '1920'])).toThrow('--size takes width x height');
-      expect(() => recordingOf(['kyiv', '--origin', 'localhost'])).toThrow('--origin takes an address');
-      expect(() => recordingOf(['kyiv', '--page', 'landing'])).toThrow('--page takes video or explorer, not landing');
+      expect(() => recordingOf([], TYPED_IN)).toThrow('name one city');
+      expect(() => recordingOf(['kyiv', 'london'], TYPED_IN)).toThrow('name one city');
+      expect(() => recordingOf(['kyiv', '--speed', '2'], TYPED_IN)).toThrow("Unknown option '--speed'");
+      expect(() => recordingOf(['kyiv', '--fps', '0'], TYPED_IN)).toThrow('--fps takes a whole number, not 0');
+      expect(() => recordingOf(['kyiv', '--seconds', '1.5'], TYPED_IN)).toThrow('--seconds takes a whole number');
+      expect(() => recordingOf(['kyiv', '--size', '1920'], TYPED_IN)).toThrow('--size takes width x height');
+      expect(() => recordingOf(['kyiv', '--origin', 'localhost'], TYPED_IN)).toThrow('--origin takes an address');
+      expect(() => recordingOf(['kyiv', '--page', 'landing'], TYPED_IN)).toThrow('--page takes video or explorer, not landing');
+    });
+  });
+
+  describe('statusOf', () => {
+    test('says which recording, how far it has got, out of how long at most, and by which process', () => {
+      const recording = recordingOf(['kyiv', '--seconds', '900', '--out', 'kyiv-2070.mp4'], TYPED_IN);
+      expect(statusOf(recording, 42, 'recording', 12)).toEqual({
+        pid: 42,
+        city: 'kyiv',
+        out: `${VIDEOS_FOLDER}/kyiv-2070.mp4`,
+        phase: 'recording',
+        seconds: 12,
+        limit: 900,
+        error: null,
+      });
+      expect(statusOf(recording, 42, 'failed', 0, 'ffmpeg failed').error).toBe('ffmpeg failed');
+    });
+  });
+
+  describe('writingOf', () => {
+    test('writes a video beside its file, hidden, until it is whole', () => {
+      expect(writingOf('/videos/kyiv-2070.mp4')).toBe('/videos/.kyiv-2070.mp4');
     });
   });
 
   describe('pageUrlOf', () => {
     test("opens the city's video page or explorer, with the query given", () => {
-      expect(pageUrlOf(recordingOf(['kyiv']))).toBe('http://localhost:5180/video/kyiv');
-      expect(pageUrlOf(recordingOf(['kyiv', '--page', 'explorer']))).toBe('http://localhost:5180/kyiv');
-      expect(pageUrlOf(recordingOf(['kyiv', '--page', 'explorer', '--query', 'mapOnly=1&speed=2']))).toBe('http://localhost:5180/kyiv?mapOnly=1&speed=2');
+      expect(pageUrlOf(recordingOf(['kyiv'], TYPED_IN))).toBe('http://localhost:5180/video/kyiv');
+      expect(pageUrlOf(recordingOf(['kyiv', '--page', 'explorer'], TYPED_IN))).toBe('http://localhost:5180/kyiv');
+      expect(pageUrlOf(recordingOf(['kyiv', '--page', 'explorer', '--query', 'mapOnly=1&speed=2'], TYPED_IN))).toBe(
+        'http://localhost:5180/kyiv?mapOnly=1&speed=2',
+      );
     });
   });
 
   describe('launchOptionsOf', () => {
-    test('starts the Chrome installed, at the size asked, stating the motion a recording wants', () => {
-      expect(launchOptionsOf(recordingOf(['kyiv', '--size', '1280x720']))).toEqual({
+    test('starts the Chrome installed, at the size asked, stating the motion a recording wants, leaving Ctrl+C to the recorder', () => {
+      expect(launchOptionsOf(recordingOf(['kyiv', '--size', '1280x720'], TYPED_IN))).toEqual({
         channel: 'chrome',
         viewport: { width: 1280, height: 720 },
         deviceScaleFactor: 1,
         reducedMotion: 'no-preference',
+        handleSIGINT: false,
+        handleSIGTERM: false,
       });
     });
   });
@@ -152,7 +192,7 @@ describe('RecorderUtils', () => {
 
   describe('ffmpegArgsOf', () => {
     test('encodes the frames piped in, at their rate, into an H.264 MP4 any player takes', () => {
-      const args = ffmpegArgsOf(recordingOf(['kyiv', '--fps', '30']));
+      const args = ffmpegArgsOf(recordingOf(['kyiv', '--fps', '30'], TYPED_IN));
       expect(args.join(' ')).toContain('-f image2pipe -framerate 30 -c:v mjpeg -i -');
       expect(args.join(' ')).toContain('-c:v libx264');
       expect(args.join(' ')).toContain('-pix_fmt yuv420p');

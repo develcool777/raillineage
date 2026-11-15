@@ -152,7 +152,8 @@ nameCompare)` (`@raillineage/core/collection.utils`), not `a - b || nameCompare`
                           changes rolling on from today's figures;
                           `pnpm dev` only, the built site leaves it out; its state a store,
                           `video.store.ts`, its rules in `video.utils.ts`, its map an effect,
-                          `video.composable.ts`, as the explorer's; what it moves itself is worked out
+                          `video.composable.ts`, as the explorer's; watched, a panel over it,
+                          `record/`, sets it up, previews it and records it; what it moves itself is worked out
                           from the page's clock each frame, never a CSS transition, which no recorder
                           can step);
                           its components in components/, the rest flat beside them

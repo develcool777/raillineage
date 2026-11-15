@@ -27,13 +27,24 @@
       :shown="store.layers.end" />
     <VideoEnd v-else :name="cityName" :stats="store.time?.stats ?? null" :counted="store.endCounted" :address :shown="store.layers.end" />
     <MapCredits :credits="store.credits" plain class="absolute right-[2vmin] bottom-[1.2vmin] opacity-70" />
+    <VideoRecordPanel
+      v-if="panelShown"
+      :city="props.city"
+      :plans="store.facts?.plans() ?? []"
+      :planOnly="store.facts?.planOnly ?? false"
+      :plan="planAsked"
+      :view="viewAsked"
+      :ended="store.pageState === 'done'"
+      @preview="preview" />
   </div>
 </template>
 
 <script setup lang="ts">
   import type { Network } from '@raillineage/schema/network.types';
+  import type { RecordedWindow } from '@raillineage/video/videoPage.types';
+  import { useEventListener } from '@vueuse/core';
   import { computed, useTemplateRef } from 'vue';
-  import { useRoute, useRuntimeConfig } from '#imports';
+  import { navigateTo, useRoute, useRuntimeConfig } from '#imports';
   import { useVideoMap } from '~/features/video/video.composable';
   import { MINIMAP_HEIGHT_VMIN, MINIMAP_TOP_VMIN } from '~/features/video/video.constants';
   import { useVideoStore } from '~/features/video/video.store';
@@ -54,12 +65,28 @@
   // today to a plan, if it names one (`?plan=<id>`).
   const route = useRoute();
   const baseURL = useRuntimeConfig().app.baseURL;
+  const viewAsked = computed(() => videoViewOf(route.query.view));
+  const planAsked = computed(() => videoPlanAskedOf(route.query.plan));
   useVideoMap({ container, minimapContainer }, () => ({
     network: props.network,
-    viewMode: videoViewOf(route.query.view),
+    viewMode: viewAsked.value,
     outline: `${baseURL}${boundaryUrlOf(props.city)}`,
-    plan: videoPlanAskedOf(route.query.plan),
+    plan: planAsked.value,
   }));
+
+  // Recorded, the recorder starts it; watched, it waits on its panel, which sets it up, previews it and
+  // records it, and comes back when the preview ends. A recording never shows the panel.
+  const recorded = Boolean((window as Window & RecordedWindow).raillineageRecorder);
+  const panelShown = computed(() => !recorded && (store.pageState === 'ready' || store.pageState === 'done'));
+  /** Plays the video here: from the start, or again, the page opened afresh, as a video plays once. */
+  const preview = async () => {
+    if (store.pageState === 'done') await navigateTo(route.fullPath, { external: true });
+    else store.START();
+  };
+  // Esc stops a preview: the page opens afresh, at its panel.
+  useEventListener(window, 'keydown', event => {
+    if (event.key === 'Escape' && !recorded && store.pageState === 'playing') void navigateTo(route.fullPath, { external: true });
+  });
 
   const cityName = computed(() => cityNameOf(props.city));
   const summary = computed(() => citySummaryOf(props.city));

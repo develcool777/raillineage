@@ -41,6 +41,7 @@
     "@testing-library/user-event": "^14.6.10",
     "@testing-library/vue": "^8.1.0",
     "@vue/test-utils": "^2.6.0",
+    "h3": "^1.15.11",
     "happy-dom": "^21.0.4",
     "serve": "^14.2.7",
     "typescript": "6.0.3",

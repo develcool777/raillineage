@@ -30,6 +30,8 @@
 
     <template #right>
       <slot />
+      <!-- The video pages exist under pnpm dev only: so does their way in. -->
+      <UButton v-if="DEV" to="/video" label="Video" icon="i-lucide-clapperboard" color="neutral" variant="outline" class="max-sm:hidden" />
       <UColorModeButton color="neutral" variant="outline" />
     </template>
   </UHeader>
@@ -40,6 +42,7 @@
     /** Across the whole window, as over a map; otherwise the page's column. */
     wide?: boolean;
   }>();
+
   defineSlots<{
     /** After the logo, where the page is: the city and its picker. */
     context?: () => unknown;
@@ -48,4 +51,7 @@
     /** At the right, before the colour mode's button. */
     default?: () => unknown;
   }>();
+
+  /** Whether the app runs under pnpm dev, which serves the video pages. */
+  const DEV = import.meta.dev;
 </script>

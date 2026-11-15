@@ -22,7 +22,9 @@ camera will look at into Chrome's own cache; it knows a page by its handle alone
 when it is over, and says a frame is drawn, the map answering: the tiles in view, never motion, which
 stands still with the clock; what a video shows stays in `web`) and `web` (the app: the Nuxt 4 + Nuxt UI
 explorer, and the video page, `/video/<city>`, in 3D or flat with `?view=2d`, under `pnpm dev` only;
-`pnpm video:record <city> --query "plan=<id>"` records a plan of the city's as its ending).
+`pnpm video:record <city> --query "plan=<id>"` records a plan of the city's as its ending; or open
+`/video`, the header's Video under `pnpm dev`, whose panel picks the city, plan and view, previews and
+records, through `video`'s `RecordingJobs`, `web/modules/videoRecorder.ts` carrying its requests).
 `README.md` has the commands; `ARCHITECTURE.md` the contract between the parts;
 `packages/network/_README.md` steps and cursors; `packages/renderer/_README.md` the frame model.
 

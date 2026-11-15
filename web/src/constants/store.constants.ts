@@ -13,4 +13,5 @@ export const STORE_IDS = {
   EXPLORER_TOOLS: 'explorerTools',
   EXPLORER_PANEL: 'explorerPanel',
   VIDEO: 'video',
+  VIDEO_RECORD: 'videoRecord',
 } as const;

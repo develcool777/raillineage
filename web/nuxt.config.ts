@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
     // The video pages (features/video) are for recording, under pnpm dev: the site built leaves them out.
+    // Their Record button's server side is modules/videoRecorder.ts, which Nuxt installs, as each file in modules/.
     (_options, nuxt) => {
       if (nuxt.options.dev) return;
       nuxt.hook('pages:extend', pages => {
