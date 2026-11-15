@@ -7,8 +7,7 @@
     "packages/data/src",
     "packages/tooling/src",
     "packages/video/src",
-    "web/src",
-    "web/server"
+    "web/src"
   ],
   "gitignore": true,
   "absolute": false,
