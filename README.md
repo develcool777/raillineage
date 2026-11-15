@@ -71,7 +71,9 @@ controls around it. The landing page reads only the small index; a city's page l
 | Data         | JSON networks, validated with Zod                                            |
 | Code quality | TypeScript (strict), Vitest, Playwright, ESLint, Prettier, knip, jscpd       |
 
-More: each package's README: [schema](packages/schema/_README.md) (the format and its doors),
+More: [ARCHITECTURE.md](ARCHITECTURE.md) (the parts and the contract between them),
+[docs/CONVENTIONS.md](docs/CONVENTIONS.md) (how the code is written), [docs/TESTING.md](docs/TESTING.md)
+and [docs/DATA.md](docs/DATA.md); and each package's README: [schema](packages/schema/_README.md) (the format and its doors),
 [network](packages/network/_README.md) (the facts, steps and cursors),
 [renderer](packages/renderer/_README.md) (frames), [data](packages/data/README.md) (each city and its
 commands), [tooling](packages/tooling/_README.md) (the house's lint rules, mutation testing) and

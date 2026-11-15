@@ -18,7 +18,7 @@ import { typescriptConfig } from './eslint/typescript.config.js';
 import { vueConfig } from './eslint/vue.config.js';
 
 /**
- * The code conventions (CLAUDE.md), as rules, so they hold without anyone remembering them; each
+ * The code conventions (docs/CONVENTIONS.md), as rules, so they hold without anyone remembering them; each
  * convention there names the rule that checks it. Nothing is on `warn`: a rule is `error`, or `off`
  * with a line saying why, so a slip fails `pnpm eslint-check` instead of scrolling past.
  *

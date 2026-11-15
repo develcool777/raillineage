@@ -38,7 +38,7 @@ export const typescriptConfig = [
       '@typescript-eslint/no-unsafe-type-assertion': 'off',
       // A number in a message or a URL is how one is written.
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
-      // `() => map.play()` is how a handler is written. (An action is a block, CLAUDE.md: it returns nothing.)
+      // `() => map.play()` is how a handler is written. (An action is a block, docs/CONVENTIONS.md: it returns nothing.)
       '@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
       // A test may read a private member, as `animation['context']`, which TypeScript allows only so.
       '@typescript-eslint/dot-notation': ['error', { allowPrivateClassPropertyAccess: true }],

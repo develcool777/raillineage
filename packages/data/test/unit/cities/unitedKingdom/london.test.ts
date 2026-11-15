@@ -8,7 +8,7 @@ import { lineId, planId, stationId } from '@railtime/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { cityNetwork, lineSplits, playPlan, playWholeHistory } from '../../../support/history.utils';
 
-/** A stretch of track and which way along it the line is drawn: the raw network, which no fact says (`CLAUDE.md`, the engine's fence). */
+/** A stretch of track and which way along it the line is drawn: the raw network, which no fact says (`docs/CONVENTIONS.md`, the engine's fence). */
 type TrackSegment = { stationA: StationId; stationB: StationId; travel: number };
 
 const london = cityNetwork('london');
