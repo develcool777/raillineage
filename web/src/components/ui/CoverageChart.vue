@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { CoverageYear } from '@railtime/network/facts.types';
+  import type { CoverageYear } from '@raillineage/network/facts.types';
   import { computed } from 'vue';
   import { formatShare } from '~/utils/format.utils';
 

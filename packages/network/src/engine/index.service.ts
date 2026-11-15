@@ -1,10 +1,10 @@
-import { entriesOf, keysOf, pushTo } from '@railtime/core/collection.utils';
-import { toTimestamp } from '@railtime/core/date.utils';
-import type { Bounds, LngLat } from '@railtime/core/geometry.types';
-import { boundsOf, cumulativeDistances } from '@railtime/core/geometry.utils';
-import { required } from '@railtime/core/required.utils';
-import type { Line, LineId, Network, Segment, SegmentLine, Station, StationId } from '@railtime/schema/network.types';
-import type { BuiltSection } from '@railtime/schema/plan.types';
+import { entriesOf, keysOf, pushTo } from '@raillineage/core/collection.utils';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import type { Bounds, LngLat } from '@raillineage/core/geometry.types';
+import { boundsOf, cumulativeDistances } from '@raillineage/core/geometry.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { Line, LineId, Network, Segment, SegmentLine, Station, StationId } from '@raillineage/schema/network.types';
+import type { BuiltSection } from '@raillineage/schema/plan.types';
 import type { LineColor } from '../facts/facts.types';
 import type { LineGap, LineSegment, TrackSegment } from './engine.types';
 import { outsideGaps } from './gaps.utils.ts';

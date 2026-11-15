@@ -1,6 +1,6 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { playbackOf, snapshotOf, trainsOf } from '@railtime/renderer/testing/playback';
-import { stationId } from '@railtime/schema/testing/ids';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { playbackOf, snapshotOf, trainsOf } from '@raillineage/renderer/testing/playback';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { benchAgainstLastRun, benchCity } from '../support/bench.utils';
 

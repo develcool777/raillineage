@@ -1,6 +1,6 @@
-import type { Moment, Theme } from '@railtime/network/facts.types';
-import type { ViewMode } from '@railtime/renderer/transitMap.types';
-import type { LineId, Network, PlanId, StationId } from '@railtime/schema/network.types';
+import type { Moment, Theme } from '@raillineage/network/facts.types';
+import type { ViewMode } from '@raillineage/renderer/transitMap.types';
+import type { LineId, Network, PlanId, StationId } from '@raillineage/schema/network.types';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';

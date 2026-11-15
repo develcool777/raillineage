@@ -1,6 +1,6 @@
-import { pushTo } from '@railtime/core/collection.utils';
-import { required } from '@railtime/core/required.utils';
-import type { LineId, LoopWay, StationId } from '@railtime/schema/network.types';
+import { pushTo } from '@raillineage/core/collection.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { LineId, LoopWay, StationId } from '@raillineage/schema/network.types';
 import type { LineDirection, Stop, StopToward } from '../facts/facts.types';
 import type { LineSegment, Step } from './engine.types';
 import type { NetworkIndex } from './index.service';

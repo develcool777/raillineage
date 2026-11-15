@@ -1,7 +1,7 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { engineOf } from '@railtime/network/engine.utils';
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { engineOf } from '@raillineage/network/engine.utils';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
 import type { LayerSpecification } from 'maplibre-gl';
 import { describe, expect, test } from 'vitest';
 import { BASEMAP_BUILDINGS } from '../../../src/layers/buildings.constants';

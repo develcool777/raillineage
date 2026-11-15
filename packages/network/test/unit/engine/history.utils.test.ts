@@ -1,4 +1,4 @@
-import { stationId } from '@railtime/schema/testing/ids';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { engineOf } from '../../../src/engine/engine.utils';
 import { busiestDecade, networkHistory, openingsByDecade, statsAt, statsDrawn } from '../../../src/engine/history.utils';

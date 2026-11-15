@@ -1,14 +1,14 @@
-# @railtime/renderer
+# @raillineage/renderer
 
 Draws a network on a MapLibre basemap at any moment of its history, and plays that history step by
 step. It owns the map and nothing else: no buttons, no captions, no facts. Every fact about the
-network (a station's lines, a route, a caption) is `@railtime/network`'s. Its contract (props,
+network (a station's lines, a route, a caption) is `@raillineage/network`'s. Its contract (props,
 commands, events, lifecycle) is in `../../ARCHITECTURE.md`.
 
 ```ts
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { TransitMap } from '@railtime/renderer/transitMap.service';
-import '@railtime/renderer/transitMap.css';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { TransitMap } from '@raillineage/renderer/transitMap.service';
+import '@raillineage/renderer/transitMap.css';
 
 const facts = NetworkFacts.create(network, { plan });
 const map = new TransitMap({

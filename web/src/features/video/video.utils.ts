@@ -1,8 +1,8 @@
-import { yearOf } from '@railtime/core/date.utils';
-import { COVERAGE_DEFAULT_METRES } from '@railtime/network/coverage.constants';
-import type { ChangeInfo, PlanInfo } from '@railtime/network/facts.types';
-import type { MapProps, ViewMode } from '@railtime/renderer/transitMap.types';
-import type { VideoPageState } from '@railtime/video/videoPage.types';
+import { yearOf } from '@raillineage/core/date.utils';
+import { COVERAGE_DEFAULT_METRES } from '@raillineage/network/coverage.constants';
+import type { ChangeInfo, PlanInfo } from '@raillineage/network/facts.types';
+import type { MapProps, ViewMode } from '@raillineage/renderer/transitMap.types';
+import type { VideoPageState } from '@raillineage/video/videoPage.types';
 import { FADE_MS, PLAN_INTRO_MS, SCENE_MS, VIDEO_PADDING_SHARES, VIDEO_SPEED } from '~/features/video/video.constants';
 import type { VideoBeat, VideoFraming, VideoLayers, VideoMapInput, VideoMoment, VideoPadding, VideoScene, VideoSize } from '~/features/video/video.types';
 import { fadedIn } from '~/utils/motion.utils';

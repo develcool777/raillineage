@@ -37,7 +37,7 @@ jobs:
 
       # The build itself: what the next step publishes.
       - name: Build the static site
-        run: pnpm --filter @railtime/web generate
+        run: pnpm --filter @raillineage/web generate
 
       # Fetched for this step alone, at the version named: as a dependency, its runtime would be
       # installed for every check that never deploys.

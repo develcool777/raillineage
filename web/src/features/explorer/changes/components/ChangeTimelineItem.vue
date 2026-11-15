@@ -24,8 +24,8 @@
 
 <script setup lang="ts">
   import { tv } from '@nuxt/ui/utils/tv';
-  import { yearOf } from '@railtime/core/date.utils';
-  import type { ChangeInfo } from '@railtime/network/facts.types';
+  import { yearOf } from '@raillineage/core/date.utils';
+  import type { ChangeInfo } from '@raillineage/network/facts.types';
   import { computed } from 'vue';
   import theme from '#build/ui/timeline';
   import { useAppConfig } from '#imports';

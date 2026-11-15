@@ -1,6 +1,6 @@
-import { required } from '@railtime/core/required.utils';
-import { TransitMap } from '@railtime/renderer/transitMap.service';
-import type { RecordedWindow } from '@railtime/video/videoPage.types';
+import { required } from '@raillineage/core/required.utils';
+import { TransitMap } from '@raillineage/renderer/transitMap.service';
+import type { RecordedWindow } from '@raillineage/video/videoPage.types';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import { onBeforeUnmount, onMounted, toValue, watch, type MaybeRefOrGetter } from 'vue';
 import { useVideoStore } from '~/features/video/video.store';
@@ -51,7 +51,7 @@ export const useVideoMap = (mount: TransitMapMount, opening: MaybeRefOrGetter<Om
         status: () => {
           store.MAP_READY();
           // Recorded, it starts when the recorder says.
-          if (!page.railtimeRecorder) store.START();
+          if (!page.raillineageRecorder) store.START();
         },
         time: time => store.SET_TIME(time),
         step: step => store.SET_STEP(step),
@@ -59,7 +59,7 @@ export const useVideoMap = (mount: TransitMapMount, opening: MaybeRefOrGetter<Om
       },
     });
     store.ATTACH(map);
-    page.railtimeVideo = { state: () => store.pageState, start: () => store.START(), drawn: () => map?.drawn ?? false };
+    page.raillineageVideo = { state: () => store.pageState, start: () => store.START(), drawn: () => map?.drawn ?? false };
     frame = requestAnimationFrame(tick);
   });
 
@@ -70,7 +70,7 @@ export const useVideoMap = (mount: TransitMapMount, opening: MaybeRefOrGetter<Om
 
   onBeforeUnmount(() => {
     cancelAnimationFrame(frame);
-    delete page.railtimeVideo;
+    delete page.raillineageVideo;
     store.DETACH();
     map?.destroy();
     map = null;

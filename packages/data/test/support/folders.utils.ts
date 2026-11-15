@@ -1,4 +1,4 @@
-import { required } from '@railtime/core/required.utils';
+import { required } from '@raillineage/core/required.utils';
 import { copyFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -13,7 +13,7 @@ import { citiesNamed } from '../../src/city.utils.ts';
  * @returns Its path.
  */
 export const folderApart = (): string => {
-  const folder = mkdtempSync(join(tmpdir(), 'railtime-'));
+  const folder = mkdtempSync(join(tmpdir(), 'raillineage-'));
   onTestFinished(() => rmSync(folder, { recursive: true }));
   return folder;
 };

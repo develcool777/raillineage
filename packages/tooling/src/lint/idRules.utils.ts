@@ -35,7 +35,7 @@ export const checkedIds = createRule({
     schema: [],
     messages: {
       asserted:
-        "An id is given by a check, never asserted: `parseNetwork` for a city's file; `isStationIn`, `isLineIn`, `isPlanIn` (`facts.findStation`, `findLine`, `planToOpen`) for a string from outside; in a test, `stationId('a')` (`@railtime/schema/testing/ids`).",
+        "An id is given by a check, never asserted: `parseNetwork` for a city's file; `isStationIn`, `isLineIn`, `isPlanIn` (`facts.findStation`, `findLine`, `planToOpen`) for a string from outside; in a test, `stationId('a')` (`@raillineage/schema/testing/ids`).",
     },
     defaultOptions: [],
   },
@@ -114,7 +114,7 @@ export const brandedRecordKeys = createRule({
     docs: { description: "A record keyed by ids is walked with `keysOf`/`entriesOf` and made with `fromEntriesOf`, which keep the keys' kind." },
     schema: [],
     messages: {
-      untyped: '`Object.{{ name }}` types every key `string`, losing what kind of id it is: `{{ helper }}` (`@railtime/core/collection.utils`) keeps it.',
+      untyped: '`Object.{{ name }}` types every key `string`, losing what kind of id it is: `{{ helper }}` (`@raillineage/core/collection.utils`) keeps it.',
     },
     defaultOptions: [],
   },
@@ -158,7 +158,7 @@ export const servedFiles = createRule({
     schema: [],
     messages: {
       asserted:
-        "A city's file is typed at its door: `parseNetwork`/`parseBoundary` (`@railtime/schema/*.schema`) where it is read to be checked, `servedNetwork`/`servedBoundary` (`@railtime/schema/served.utils`) where the browser reads what CI checked; in a test, `asNetwork` (`@railtime/schema/testing/ids`).",
+        "A city's file is typed at its door: `parseNetwork`/`parseBoundary` (`@raillineage/schema/*.schema`) where it is read to be checked, `servedNetwork`/`servedBoundary` (`@raillineage/schema/served.utils`) where the browser reads what CI checked; in a test, `asNetwork` (`@raillineage/schema/testing/ids`).",
     },
     defaultOptions: [],
   },

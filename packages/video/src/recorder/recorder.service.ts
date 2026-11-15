@@ -141,7 +141,7 @@ export class VideoRecorder {
    */
   private async play(page: Page, recording: Recording, take: ((frame: Buffer) => Promise<boolean>) | null): Promise<number> {
     const frameMs = 1000 / recording.fps;
-    await page.evaluate(() => (window as RecordedWindow).railtimeVideo?.start());
+    await page.evaluate(() => (window as RecordedWindow).raillineageVideo?.start());
     let played = 0;
     while (played < recording.seconds * recording.fps) {
       await this.step(page, frameMs);
@@ -214,7 +214,7 @@ export class VideoRecorder {
    * @returns Where it is, or `null` before it has a handle.
    */
   private stateOf(page: Page): Promise<VideoPageState | null> {
-    return page.evaluate(() => (window as RecordedWindow).railtimeVideo?.state() ?? null);
+    return page.evaluate(() => (window as RecordedWindow).raillineageVideo?.state() ?? null);
   }
 
   /**
@@ -226,7 +226,7 @@ export class VideoRecorder {
    * @param milliseconds - The frame's time.
    */
   private async step(page: Page, milliseconds: number): Promise<void> {
-    await page.evaluate(time => (window as RecordedWindow).railtimeRecorder?.advance(time), milliseconds);
+    await page.evaluate(time => (window as RecordedWindow).raillineageRecorder?.advance(time), milliseconds);
     const deadline = Date.now() + DRAWN_TIMEOUT_MS;
     await untilDrawn(
       () => page.evaluate(`(${drawnOnceHeld.toString()})(window)`),

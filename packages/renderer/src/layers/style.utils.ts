@@ -1,5 +1,5 @@
-import type { TrackSegment } from '@railtime/network/engine.types';
-import type { LineId } from '@railtime/schema/network.types';
+import type { TrackSegment } from '@raillineage/network/engine.types';
+import type { LineId } from '@raillineage/schema/network.types';
 import type { ExpressionSpecification } from 'maplibre-gl';
 import { channelsOf } from '../support/drawing.utils';
 import { CITY_ZOOM, SIDE_BY_SIDE_PX, STREET_ZOOM } from './style.constants';

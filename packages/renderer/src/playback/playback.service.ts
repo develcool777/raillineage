@@ -1,8 +1,8 @@
-import type { Step } from '@railtime/network/engine.types';
-import { engineOf } from '@railtime/network/engine.utils';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { Playhead } from '@railtime/network/facts.types';
-import type { StationId } from '@railtime/schema/network.types';
+import type { Step } from '@raillineage/network/engine.types';
+import { engineOf } from '@raillineage/network/engine.utils';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { Playhead } from '@raillineage/network/facts.types';
+import type { StationId } from '@raillineage/schema/network.types';
 import { FrameRenderer } from '../layers/frame.service';
 import { OverlayController } from '../overlay/controller.service';
 import { StepAnimation } from '../steps/animation.service';

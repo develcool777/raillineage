@@ -1,4 +1,4 @@
-import type { LngLat } from '@railtime/core/geometry.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
 import type { Palette } from '../layers/theme.types';
 
 /**

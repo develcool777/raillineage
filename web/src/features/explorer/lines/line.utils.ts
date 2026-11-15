@@ -1,4 +1,4 @@
-import type { LineInfo, NetworkChoice } from '@railtime/network/facts.types';
+import type { LineInfo, NetworkChoice } from '@raillineage/network/facts.types';
 import type { LineGroup } from '~/features/explorer/lines/line.types';
 import { foldName } from '~/features/explorer/stations/station.utils';
 

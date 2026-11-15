@@ -1,7 +1,7 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { planId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { planId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { arrivalPlayhead, arrivalTimeOf, timeStateOf } from '../../src/transitMap.utils';
 

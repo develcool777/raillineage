@@ -1,6 +1,6 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import type { Line, Station } from '@railtime/schema/network.types';
-import { lineId, networkId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import type { Line, Station } from '@raillineage/schema/network.types';
+import { lineId, networkId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { gapsOf, lineWithout, runsOutside, stationOutside } from '../../../src/facts/aliases.utils';
 

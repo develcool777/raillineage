@@ -60,8 +60,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { NetworkGrowth, NetworkRecords } from '@railtime/network/facts.types';
-  import type { LineId, StationId } from '@railtime/schema/network.types';
+  import type { NetworkGrowth, NetworkRecords } from '@raillineage/network/facts.types';
+  import type { LineId, StationId } from '@raillineage/schema/network.types';
   import { computed, ref } from 'vue';
   import { lineColor } from '~/utils/format.utils';
   import type { GrowthMetric } from '~/utils/growth.types';

@@ -1,8 +1,8 @@
-import { required } from '@railtime/core/required.utils';
-import { slugOf } from '@railtime/core/text.utils';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { CityIndexEntry } from '@railtime/schema/cityIndex.types';
-import { servedBoundary } from '@railtime/schema/served.utils';
+import { required } from '@raillineage/core/required.utils';
+import { slugOf } from '@raillineage/core/text.utils';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { CityIndexEntry } from '@raillineage/schema/cityIndex.types';
+import { servedBoundary } from '@raillineage/schema/served.utils';
 import { CITIES, CITY_SUMMARIES } from '~/constants/city.constants';
 
 /**

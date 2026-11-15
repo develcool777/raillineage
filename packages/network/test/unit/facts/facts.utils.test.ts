@@ -1,4 +1,4 @@
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { REACH_BANDS } from '../../../src/facts/facts.constants';
 import { bandOf, byOpening, linesAsDrawn, reachedSegments } from '../../../src/facts/facts.utils';

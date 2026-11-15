@@ -1,4 +1,4 @@
-import type { CityBoundary } from '@railtime/schema/boundary.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
 
 /** Degrees of longitude in a km, at 51.5° north. */
 export const KM_EAST = 0.0144;

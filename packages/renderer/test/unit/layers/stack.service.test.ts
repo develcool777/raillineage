@@ -1,6 +1,6 @@
-import { engineOf } from '@railtime/network/engine.utils';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { lineId } from '@railtime/schema/testing/ids';
+import { engineOf } from '@raillineage/network/engine.utils';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { lineId } from '@raillineage/schema/testing/ids';
 import type { LayerSpecification } from 'maplibre-gl';
 import { describe, expect, test } from 'vitest';
 import { BASEMAP_BUILDINGS } from '../../../src/layers/buildings.constants';

@@ -1,7 +1,7 @@
-import { firstDifference, pushTo } from '@railtime/core/collection.utils';
-import { required } from '@railtime/core/required.utils';
-import { byCodeUnits } from '@railtime/core/text.utils';
-import type { LineId } from '@railtime/schema/network.types';
+import { firstDifference, pushTo } from '@raillineage/core/collection.utils';
+import { required } from '@raillineage/core/required.utils';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import type { LineId } from '@raillineage/schema/network.types';
 import { CYCLE_SECONDS, SAME_MOMENT_SECONDS, TRAIN_PROFILES } from './trains.constants.ts';
 import type { Bottleneck, Conflict, Departures, Meeting, Passing, Ride, TrackRoom } from './trains.types';
 import { clearanceAt, isLoop, meetingsOf, nearestClearTo, roomsOf, turnSecondsOf, withinCycle } from './trains.utils.ts';

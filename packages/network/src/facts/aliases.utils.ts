@@ -1,7 +1,7 @@
-import { entriesOf, fromEntriesOf } from '@railtime/core/collection.utils';
-import type { IsoDate } from '@railtime/core/date.types';
-import { toIsoDate, toTimestamp } from '@railtime/core/date.utils';
-import type { Line, LineId, SegmentLine, Station, Suspension } from '@railtime/schema/network.types';
+import { entriesOf, fromEntriesOf } from '@raillineage/core/collection.utils';
+import type { IsoDate } from '@raillineage/core/date.types';
+import { toIsoDate, toTimestamp } from '@raillineage/core/date.utils';
+import type { Line, LineId, SegmentLine, Station, Suspension } from '@raillineage/schema/network.types';
 import type { LineGap } from '../engine/engine.types';
 import { outsideGaps } from '../engine/gaps.utils.ts';
 

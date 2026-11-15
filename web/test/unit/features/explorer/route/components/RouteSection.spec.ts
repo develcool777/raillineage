@@ -1,6 +1,6 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { routeNetwork } from '@railtime/network/testing/routeNetwork';
-import { stationId } from '@railtime/schema/testing/ids';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { routeNetwork } from '@raillineage/network/testing/routeNetwork';
+import { stationId } from '@raillineage/schema/testing/ids';
 import userEvent from '@testing-library/user-event';
 import { screen, within } from '@testing-library/vue';
 import { describe, expect, test, vi } from 'vitest';

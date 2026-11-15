@@ -1,9 +1,9 @@
-import type { TrackSegment } from '@railtime/network/engine.types';
-import { engineOf } from '@railtime/network/engine.utils';
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import type { TrainRun } from '@railtime/network/trains.types';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import type { TrackSegment } from '@raillineage/network/engine.types';
+import { engineOf } from '@raillineage/network/engine.utils';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import type { TrainRun } from '@raillineage/network/trains.types';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { buildNetworkSnapshot } from '../../../src/layers/snapshot.utils';
 import type { RenderState } from '../../../src/layers/style.types';

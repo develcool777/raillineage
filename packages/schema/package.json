@@ -1,5 +1,5 @@
 {
-  "name": "@railtime/schema",
+  "name": "@raillineage/schema",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -23,7 +23,7 @@
     "./testing/ids": "./test/support/ids.utils.ts"
   },
   "dependencies": {
-    "@railtime/core": "workspace:*",
+    "@raillineage/core": "workspace:*",
     "zod": "^4.1.0"
   },
   "devDependencies": {

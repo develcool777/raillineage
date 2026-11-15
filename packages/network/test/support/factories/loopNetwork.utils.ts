@@ -1,6 +1,6 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { Network } from '@railtime/schema/network.types';
-import { asNetwork } from '@railtime/schema/testing/ids';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { Network } from '@raillineage/schema/network.types';
+import { asNetwork } from '@raillineage/schema/testing/ids';
 
 /** Where the loop's stations stand: A to the north, B south of it, C east of them. */
 const PLACES: Record<string, LngLat> = { a: [0, 51.52], b: [0, 51.5], c: [0.03, 51.51] };

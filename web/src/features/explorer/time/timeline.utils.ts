@@ -1,6 +1,6 @@
-import { yearOf } from '@railtime/core/date.utils';
-import { clamp } from '@railtime/core/number.utils';
-import type { ChangeInfo } from '@railtime/network/facts.types';
+import { yearOf } from '@raillineage/core/date.utils';
+import { clamp } from '@raillineage/core/number.utils';
+import type { ChangeInfo } from '@raillineage/network/facts.types';
 import { PLAN_SHARE, MAX_TICK_LEVEL, TIMELINE_LABEL_YEARS } from '~/features/explorer/time/time.constants';
 import type { TickMark, TimelineLabel, TimelineScale, TimelineTarget, TimelineTick } from '~/features/explorer/time/timeline.types';
 import { lineColor } from '~/utils/format.utils';

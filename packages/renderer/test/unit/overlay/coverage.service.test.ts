@@ -1,5 +1,5 @@
-import type { CoverageCells } from '@railtime/network/facts.types';
-import { SQUARE } from '@railtime/network/testing/boundaries';
+import type { CoverageCells } from '@raillineage/network/facts.types';
+import { SQUARE } from '@raillineage/network/testing/boundaries';
 import { describe, expect, test } from 'vitest';
 import { LAYERS, SOURCES } from '../../../src/layers/ids.constants';
 import { PALETTES } from '../../../src/layers/theme.constants';

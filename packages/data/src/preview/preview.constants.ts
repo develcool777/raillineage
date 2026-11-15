@@ -1,4 +1,4 @@
-import type { Theme } from '@railtime/network/facts.types';
+import type { Theme } from '@raillineage/network/facts.types';
 import type { PreviewSize } from './preview.types.ts';
 
 /** A preview's size in CSS pixels: a city card's picture, a little wider than most cards, which crop it. */

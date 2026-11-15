@@ -104,8 +104,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { RouteInfo, StationSummary } from '@railtime/network/facts.types';
-  import type { StationId } from '@railtime/schema/network.types';
+  import type { RouteInfo, StationSummary } from '@raillineage/network/facts.types';
+  import type { StationId } from '@raillineage/schema/network.types';
   import { computed } from 'vue';
   import { ROUTE_ENDS } from '~/features/explorer/route/route.constants';
   import { routeDifference, routeStrengths, routeSummary, routeVia } from '~/features/explorer/route/route.utils';

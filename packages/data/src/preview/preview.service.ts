@@ -1,5 +1,5 @@
-import type { Theme } from '@railtime/network/facts.types';
-import type { StillRequest } from '@railtime/renderer/basemapStill.types';
+import type { Theme } from '@raillineage/network/facts.types';
+import type { StillRequest } from '@raillineage/renderer/basemapStill.types';
 import { build } from 'esbuild';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createServer, type Server } from 'node:http';
@@ -138,7 +138,7 @@ export class PreviewRenderer {
       logLevel: 'error',
     });
     // MapLibre is the renderer's: its worker is found from there.
-    const fromRenderer = createRequire(fileURLToPath(import.meta.resolve('@railtime/renderer/basemapStill.service')));
+    const fromRenderer = createRequire(fileURLToPath(import.meta.resolve('@raillineage/renderer/basemapStill.service')));
     return {
       '/': { type: 'text/html', body: '<!doctype html><html><body><script src="/preview.js"></script></body></html>' },
       '/preview.js': { type: 'text/javascript', body: bundled.outputFiles[0]?.text ?? '' },

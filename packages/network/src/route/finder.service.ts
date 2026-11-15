@@ -1,6 +1,6 @@
-import { pushTo } from '@railtime/core/collection.utils';
-import { required } from '@railtime/core/required.utils';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import { pushTo } from '@raillineage/core/collection.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { NetworkIndex } from '../engine/index.service';
 import { lineHops } from '../engine/lineDetails.utils.ts';
 import type { Timeline } from '../engine/timeline.service';

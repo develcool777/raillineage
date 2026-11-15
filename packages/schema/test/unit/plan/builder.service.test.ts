@@ -1,4 +1,4 @@
-import type { LngLat } from '@railtime/core/geometry.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
 import { describe, expect, test } from 'vitest';
 import type { Network, PlanTrack } from '../../../src/format/network.types';
 import { PlanBuilder } from '../../../src/plan/builder.service';

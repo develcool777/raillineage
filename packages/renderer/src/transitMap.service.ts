@@ -1,5 +1,5 @@
-import { engineOf } from '@railtime/network/engine.utils';
-import type { Playhead } from '@railtime/network/facts.types';
+import { engineOf } from '@raillineage/network/engine.utils';
+import type { Playhead } from '@raillineage/network/facts.types';
 import { Map as MapLibreMap, type MapMouseEvent, setWorkerUrl } from 'maplibre-gl';
 import { LAYERS } from './layers/ids.constants';
 import { MapLayers } from './layers/stack.service';

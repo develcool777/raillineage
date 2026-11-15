@@ -146,7 +146,7 @@ export const ffmpegArgsOf = (recording: Recording): string[] => [
 
 /**
  * Puts a page on a clock only the recorder moves: its time stands still, and the frames it asks for
- * wait, until `railtimeRecorder.advance` moves it on one frame and runs them. A frame can then take as
+ * wait, until `raillineageRecorder.advance` moves it on one frame and runs them. A frame can then take as
  * long as it needs to draw and be taken, and the video still plays at an even pace. It is run in the
  * page before any of its own scripts, so it uses nothing from outside itself.
  *
@@ -165,7 +165,7 @@ export const installRecordingClock = (scope: RecordingScope): void => {
     return handle;
   };
   scope.cancelAnimationFrame = handle => waiting.delete(handle);
-  scope.railtimeRecorder = {
+  scope.raillineageRecorder = {
     advance: milliseconds => {
       elapsed += milliseconds;
       // Those asked for while these run wait for the next frame, as in a browser.
@@ -186,8 +186,8 @@ export const installRecordingClock = (scope: RecordingScope): void => {
  * @returns Whether a frame can be taken.
  */
 export const drawnOnceHeld = (scope: DrawnScope): boolean => {
-  scope.railtimeRecorder?.advance(0);
-  return scope.railtimeVideo?.drawn() ?? true;
+  scope.raillineageRecorder?.advance(0);
+  return scope.raillineageVideo?.drawn() ?? true;
 };
 
 /**

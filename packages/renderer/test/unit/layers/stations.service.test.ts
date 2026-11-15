@@ -1,5 +1,5 @@
 import { expression, latest } from '@maplibre/maplibre-gl-style-spec';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { LAYERS, POP_IN_MS, PULSE_MS, SOURCES } from '../../../src/layers/ids.constants';
 import type { PointFeature, PulseLook, PulseProperties, StationLook, StationProperties } from '../../../src/layers/snapshot.types';

@@ -34,8 +34,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { StationSummary } from '@railtime/network/facts.types';
-  import type { StationId } from '@railtime/schema/network.types';
+  import type { StationSummary } from '@raillineage/network/facts.types';
+  import type { StationId } from '@raillineage/schema/network.types';
   import { computed, ref } from 'vue';
   import { PANEL_SEARCH_HEIGHT } from '~/features/explorer/panel/panel.constants';
   import { LETTER_HEADING_ESTIMATE, STATION_ROW_ESTIMATE } from '~/features/explorer/stations/station.constants';

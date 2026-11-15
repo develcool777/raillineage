@@ -1,4 +1,4 @@
-import type { StationId } from '@railtime/schema/network.types';
+import type { StationId } from '@raillineage/schema/network.types';
 import type { LineSegment } from './engine.types';
 
 /** A run of a line's track: its stations, the track between each and the next, and the stops a list of them shows. */

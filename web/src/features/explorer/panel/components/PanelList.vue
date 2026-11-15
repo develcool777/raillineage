@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts" generic="Row extends { key: string }">
-  import { required } from '@railtime/core/required.utils';
+  import { required } from '@raillineage/core/required.utils';
   import { useVirtualizer } from '@tanstack/vue-virtual';
   import { computed, onMounted, ref, shallowRef, useTemplateRef } from 'vue';
   import { PANEL_LIST_OVERSCAN } from '~/features/explorer/panel/panel.constants';

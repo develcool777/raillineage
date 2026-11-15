@@ -1,10 +1,10 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { byCodeUnits } from '@railtime/core/text.utils';
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { tightestHeadway } from '@railtime/network/testing/trains';
-import { playbackOf } from '@railtime/renderer/testing/playback';
-import type { StationId } from '@railtime/schema/network.types';
-import { lineId, planId, stationId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { tightestHeadway } from '@raillineage/network/testing/trains';
+import { playbackOf } from '@raillineage/renderer/testing/playback';
+import type { StationId } from '@raillineage/schema/network.types';
+import { lineId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { cityNetwork, lineSplits, playPlan, playWholeHistory } from '../../../support/history.utils';
 

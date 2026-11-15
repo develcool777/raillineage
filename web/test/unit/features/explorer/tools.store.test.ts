@@ -1,5 +1,5 @@
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { lineId, planId, stationId } from '@railtime/schema/testing/ids';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { lineId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { openExplorer } from '@test/support/factories/explorer.utils';
 import { parseExplorerQuery } from '~/features/explorer/address/address.utils';

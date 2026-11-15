@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { Network } from '@railtime/schema/network.types';
+  import type { Network } from '@raillineage/schema/network.types';
   import { computed, useTemplateRef } from 'vue';
   import { useRoute, useRuntimeConfig } from '#imports';
   import { useVideoMap } from '~/features/video/video.composable';

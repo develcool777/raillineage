@@ -1,4 +1,4 @@
-import type { LineColor } from '@railtime/network/facts.types';
+import type { LineColor } from '@raillineage/network/facts.types';
 import { shareNumberOf } from '~/utils/count.utils';
 
 /**

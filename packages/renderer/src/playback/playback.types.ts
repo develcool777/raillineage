@@ -1,4 +1,4 @@
-import type { NetworkFacts } from '@railtime/network/facts.service';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
 import type { FrameRenderer } from '../layers/frame.service';
 import type { MapLayers } from '../layers/stack.service';
 import type { Minimap } from '../minimap/minimap.service';

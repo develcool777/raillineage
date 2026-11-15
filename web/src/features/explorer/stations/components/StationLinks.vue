@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { LineColor } from '@railtime/network/facts.types';
-  import type { LineId, StationId } from '@railtime/schema/network.types';
+  import type { LineColor } from '@raillineage/network/facts.types';
+  import type { LineId, StationId } from '@raillineage/schema/network.types';
   import { lineColor } from '~/utils/format.utils';
 
   defineProps<{

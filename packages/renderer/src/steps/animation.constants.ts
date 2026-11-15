@@ -1,4 +1,4 @@
-import type { Step } from '@railtime/network/engine.types';
+import type { Step } from '@raillineage/network/engine.types';
 import type { ViewMode } from '../transitMap.types';
 import type { BaseNetwork, GrowthPace, StepTimes } from './animation.types';
 

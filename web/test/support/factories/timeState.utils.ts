@@ -1,4 +1,4 @@
-import type { TimeState } from '@railtime/renderer/transitMap.types';
+import type { TimeState } from '@raillineage/renderer/transitMap.types';
 
 /**
  * Where the map is: by default today, where it rests, paused, after the fourth change.

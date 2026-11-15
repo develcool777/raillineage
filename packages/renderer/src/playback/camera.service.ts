@@ -1,7 +1,7 @@
-import type { Bounds, LngLat } from '@railtime/core/geometry.types';
-import { boundsOf, distanceKm } from '@railtime/core/geometry.utils';
-import { clamp } from '@railtime/core/number.utils';
-import type { StationId } from '@railtime/schema/network.types';
+import type { Bounds, LngLat } from '@raillineage/core/geometry.types';
+import { boundsOf, distanceKm } from '@raillineage/core/geometry.utils';
+import { clamp } from '@raillineage/core/number.utils';
+import type { StationId } from '@raillineage/schema/network.types';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 import type { StepAnimation } from '../steps/animation.service';
 import type { ChaseTarget } from '../steps/animation.types';

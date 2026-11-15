@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { PlanInfo } from '@railtime/network/facts.types';
+  import type { PlanInfo } from '@raillineage/network/facts.types';
   import { PLAN_STATUSES } from '~/constants/plan.constants';
   import { INSIGHTS_DRAW_MS } from '~/features/video/insights/insights.constants';
   import type { PlanGain } from '~/features/video/insights/insights.types';

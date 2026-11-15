@@ -1,6 +1,6 @@
-import { yearOf } from '@railtime/core/date.utils';
-import type { ChangeInfo } from '@railtime/network/facts.types';
-import type { TimeState } from '@railtime/renderer/transitMap.types';
+import { yearOf } from '@raillineage/core/date.utils';
+import type { ChangeInfo } from '@raillineage/network/facts.types';
+import type { TimeState } from '@raillineage/renderer/transitMap.types';
 import type { ChangeGroup, ChangeRow, ChangeState } from '~/features/explorer/changes/changes.types';
 import { decadeHeading } from '~/features/explorer/format.utils';
 import { foldName } from '~/features/explorer/stations/station.utils';

@@ -1,5 +1,5 @@
-import CITY_INDEX from '@railtime/data/cities.json';
-import type { CityIndex } from '@railtime/schema/cityIndex.types';
+import CITY_INDEX from '@raillineage/data/cities.json';
+import type { CityIndex } from '@raillineage/schema/cityIndex.types';
 
 /**
  * Every city summed up, as `pnpm data:summaries` writes them: the one list of cities, in menu order

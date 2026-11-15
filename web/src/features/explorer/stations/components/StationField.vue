@@ -53,8 +53,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { Stop, StationSummary } from '@railtime/network/facts.types';
-  import type { StationId } from '@railtime/schema/network.types';
+  import type { Stop, StationSummary } from '@raillineage/network/facts.types';
+  import type { StationId } from '@raillineage/schema/network.types';
   import { computed, ref } from 'vue';
   import type { StationChoice } from '~/features/explorer/stations/station.types';
   import { stationChoices } from '~/features/explorer/stations/station.utils';

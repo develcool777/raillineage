@@ -1,4 +1,4 @@
-import type { StationId } from '@railtime/schema/network.types';
+import type { StationId } from '@raillineage/schema/network.types';
 import type { TrackSegment, Travel } from './engine.types';
 
 /** A segment of a chain, with its direction of travel along it. */

@@ -1,5 +1,5 @@
-import type { LineColor, StationSummary } from '@railtime/network/facts.types';
-import type { StationId } from '@railtime/schema/network.types';
+import type { LineColor, StationSummary } from '@raillineage/network/facts.types';
+import type { StationId } from '@raillineage/schema/network.types';
 
 /** The stations whose names begin with one letter. */
 export type StationGroup = { letter: string; stations: StationSummary[] };

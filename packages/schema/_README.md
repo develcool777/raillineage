@@ -1,4 +1,4 @@
-# @railtime/schema
+# @raillineage/schema
 
 The format of a city's files, and the door every file comes in by. What a network, an outline and the
 list of cities are (`format/`), the checks that hold a file to them (`validation/`), and a plan built on
@@ -20,17 +20,17 @@ src/
 A file becomes a typed value in one place, never by `as` elsewhere (`house/served-files`, `house/checked-ids`):
 
 ```ts
-import { parseNetwork } from '@railtime/schema/network.schema';
-import { parseBoundary } from '@railtime/schema/boundary.schema';
-import { servedNetwork, servedBoundary } from '@railtime/schema/served.utils';
-import { isStationIn, isLineIn, isPlanIn } from '@railtime/schema/ids.utils';
+import { parseNetwork } from '@raillineage/schema/network.schema';
+import { parseBoundary } from '@raillineage/schema/boundary.schema';
+import { servedNetwork, servedBoundary } from '@raillineage/schema/served.utils';
+import { isStationIn, isLineIn, isPlanIn } from '@raillineage/schema/ids.utils';
 
 parseNetwork(json); // checked whole: throws Zod's error with every problem listed (tests, commands)
 servedNetwork(json); // trusted: the browser's door, for a file CI has already checked
 isStationIn(network, 'bank'); // a string from an address becomes a StationId only here
 ```
 
-Tests name their ids and write networks with `@railtime/schema/testing/ids` (`stationId('a')`,
+Tests name their ids and write networks with `@raillineage/schema/testing/ids` (`stationId('a')`,
 `asNetwork({…})`), which trust what they are given: source never imports them (`house/test-helpers`).
 
 ## Where a rule goes

@@ -11,7 +11,7 @@ export const SIMPLIFY_DEGREES = 0.0005;
 export const BOUNDARY_DECIMALS = 5;
 
 /** Who is asking, as Nominatim's usage policy wants every client to say. */
-export const USER_AGENT = 'railtime-data (https://github.com/develcool777/railtime)';
+export const USER_AGENT = 'raillineage-data (https://github.com/develcool777/raillineage)';
 
 /** Nominatim's usage policy allows a request a second: the wait between cities, ms. */
 export const NOMINATIM_PAUSE_MS = 1100;

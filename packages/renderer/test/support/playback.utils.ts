@@ -1,8 +1,8 @@
-import { engineOf } from '@railtime/network/engine.utils';
-import { NetworkFacts } from '@railtime/network/facts.service';
-import type { FactsAt } from '@railtime/network/moment.service';
-import type { TrainService } from '@railtime/network/trains.service';
-import type { Network } from '@railtime/schema/network.types';
+import { engineOf } from '@raillineage/network/engine.utils';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import type { FactsAt } from '@raillineage/network/moment.service';
+import type { TrainService } from '@raillineage/network/trains.service';
+import type { Network } from '@raillineage/schema/network.types';
 import type { NetworkSnapshot } from '../../src/layers/snapshot.types';
 import { buildNetworkSnapshot } from '../../src/layers/snapshot.utils';
 import type { RenderState } from '../../src/layers/style.types';

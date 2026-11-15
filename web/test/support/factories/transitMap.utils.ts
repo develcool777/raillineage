@@ -1,6 +1,6 @@
-import { fakeMap } from '@railtime/renderer/testing/fakeMap';
-import { TransitMap } from '@railtime/renderer/transitMap.service';
-import type { TransitMapListeners, TransitMapOptions } from '@railtime/renderer/transitMap.types';
+import { fakeMap } from '@raillineage/renderer/testing/fakeMap';
+import { TransitMap } from '@raillineage/renderer/transitMap.service';
+import type { TransitMapListeners, TransitMapOptions } from '@raillineage/renderer/transitMap.types';
 
 /** A command a stand-in map was given: its name and what it was given. */
 export type MapCommand = { name: string; args: unknown[] };

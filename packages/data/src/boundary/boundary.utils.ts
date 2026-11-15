@@ -1,6 +1,6 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { parseBoundary } from '@railtime/schema/boundary.schema';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { parseBoundary } from '@raillineage/schema/boundary.schema';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { setTimeout as sleep } from 'node:timers/promises';
 import type { City, Report } from '../city.types.ts';

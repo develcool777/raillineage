@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-  import { yearOf } from '@railtime/core/date.utils';
-  import type { PlanInfo } from '@railtime/network/facts.types';
-  import type { TimeState } from '@railtime/renderer/transitMap.types';
+  import { yearOf } from '@raillineage/core/date.utils';
+  import type { PlanInfo } from '@raillineage/network/facts.types';
+  import type { TimeState } from '@raillineage/renderer/transitMap.types';
   import { PLAN_STATUSES } from '~/constants/plan.constants';
   import { pluralOf } from '~/utils/format.utils';
 

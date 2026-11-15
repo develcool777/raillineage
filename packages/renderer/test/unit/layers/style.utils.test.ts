@@ -1,6 +1,6 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { lineId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { lineId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { atZoom, byZoom, highlightedOpacity, highlightedWidth, offsetFor, resolveLine, sideBySideOffset } from '../../../src/layers/style.utils';
 import { UNTOUCHED_BASE } from '../../../src/steps/animation.constants';

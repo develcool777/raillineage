@@ -1,4 +1,4 @@
-import type { Mode } from '@railtime/schema/network.types';
+import type { Mode } from '@raillineage/schema/network.types';
 import type { TrainProfile } from './trains.types';
 
 // Where these figures come from. "The manual" is the Transit Capacity and Quality of Service Manual,

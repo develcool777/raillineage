@@ -1,8 +1,8 @@
-import { NetworkFacts } from '@railtime/network/facts.service';
-import { AROUND_TINY } from '@railtime/network/testing/boundaries';
-import { planOnlyNetwork } from '@railtime/network/testing/planOnlyNetwork';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { planId } from '@railtime/schema/testing/ids';
+import { NetworkFacts } from '@raillineage/network/facts.service';
+import { AROUND_TINY } from '@raillineage/network/testing/boundaries';
+import { planOnlyNetwork } from '@raillineage/network/testing/planOnlyNetwork';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { planId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { INSIGHTS_DRAW_MS, INSIGHTS_STAGGER_MS, INSIGHTS_START_MS } from '~/features/video/insights/insights.constants';
 import { countUp, coverageTitleOf, insightsMotionOf, linesTitleOf, planGainOf, sharesOf, videoInsightsOf } from '~/features/video/insights/insights.utils';

@@ -1,4 +1,4 @@
-import type { Theme } from '@railtime/network/facts.types';
+import type { Theme } from '@raillineage/network/facts.types';
 import type { Credit } from '../transitMap.types';
 import type { Palette } from './theme.types';
 

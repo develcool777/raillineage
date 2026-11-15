@@ -66,10 +66,10 @@
 </template>
 
 <script setup lang="ts">
-  import { YEAR_MS, yearOf } from '@railtime/core/date.utils';
-  import { clamp } from '@railtime/core/number.utils';
-  import type { ChangeInfo } from '@railtime/network/facts.types';
-  import type { TimeState } from '@railtime/renderer/transitMap.types';
+  import { YEAR_MS, yearOf } from '@raillineage/core/date.utils';
+  import { clamp } from '@raillineage/core/number.utils';
+  import type { ChangeInfo } from '@raillineage/network/facts.types';
+  import type { TimeState } from '@raillineage/renderer/transitMap.types';
   import { useElementSize } from '@vueuse/core';
   import { computed, ref, useTemplateRef } from 'vue';
   import { TICK_LOOK, TIMELINE_LABEL_GAP_PX } from '~/features/explorer/time/time.constants';

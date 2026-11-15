@@ -1,4 +1,4 @@
-import { stationId } from '@railtime/schema/testing/ids';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { overlaySubjectOf } from '../../../src/overlay/controller.service';
 

@@ -1,7 +1,7 @@
-import { keysOf } from '@railtime/core/collection.utils';
-import { required } from '@railtime/core/required.utils';
-import { AROUND_TINY } from '@railtime/network/testing/boundaries';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
+import { keysOf } from '@raillineage/core/collection.utils';
+import { required } from '@raillineage/core/required.utils';
+import { AROUND_TINY } from '@raillineage/network/testing/boundaries';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
 import { createPinia, setActivePinia } from 'pinia';
 import { describe, expect, test } from 'vitest';
 import { timeAt } from '@test/support/factories/timeState.utils';

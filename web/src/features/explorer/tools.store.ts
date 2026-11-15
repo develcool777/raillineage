@@ -1,8 +1,8 @@
-import { COVERAGE_DEFAULT_METRES } from '@railtime/network/coverage.constants';
-import type { CoverageDistance } from '@railtime/network/facts.types';
-import type { OverlayResult } from '@railtime/renderer/transitMap.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { StationId } from '@railtime/schema/network.types';
+import { COVERAGE_DEFAULT_METRES } from '@raillineage/network/coverage.constants';
+import type { CoverageDistance } from '@raillineage/network/facts.types';
+import type { OverlayResult } from '@raillineage/renderer/transitMap.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { StationId } from '@raillineage/schema/network.types';
 import { defineStore } from 'pinia';
 import { computed, markRaw, ref, shallowRef } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';

@@ -11,7 +11,7 @@ const run = (date: string, score: number): ScoreEntry => ({ date, score, killed:
 describe('RepoUtils', () => {
   let root = '';
   beforeEach(() => {
-    root = mkdtempSync(join(tmpdir(), 'railtime-mutation-'));
+    root = mkdtempSync(join(tmpdir(), 'raillineage-mutation-'));
   });
   afterEach(() => rmSync(root, { recursive: true, force: true }));
 

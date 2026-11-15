@@ -1,4 +1,4 @@
-import type { LngLat } from '@railtime/core/geometry.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
 import type { MapProps } from '../transitMap.types';
 
 /** Where the 3D camera looks from, following a line as it is drawn. */

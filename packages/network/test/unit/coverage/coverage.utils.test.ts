@@ -1,7 +1,7 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import { stationId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import { stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { COVERAGE_BANDS } from '../../../src/coverage/coverage.constants';
 import { CoverageGrid } from '../../../src/coverage/coverage.service';

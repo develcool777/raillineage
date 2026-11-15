@@ -1,7 +1,7 @@
-import { required } from '@railtime/core/required.utils';
-import { byCodeUnits } from '@railtime/core/text.utils';
-import type { Network } from '@railtime/schema/network.types';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import { required } from '@raillineage/core/required.utils';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import type { Network } from '@raillineage/schema/network.types';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { NetworkIndex } from '../../../src/engine/index.service';
 import { Timeline } from '../../../src/engine/timeline.service';

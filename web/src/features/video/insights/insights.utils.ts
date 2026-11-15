@@ -1,7 +1,7 @@
-import { COVERAGE_DEFAULT_METRES } from '@railtime/network/coverage.constants';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { CoverageInfo } from '@railtime/network/facts.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
+import { COVERAGE_DEFAULT_METRES } from '@raillineage/network/coverage.constants';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { CoverageInfo } from '@raillineage/network/facts.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
 import { INSIGHTS_DRAW_MS, INSIGHTS_LINES, INSIGHTS_PLACES, INSIGHTS_STAGGER_MS, INSIGHTS_START_MS } from '~/features/video/insights/insights.constants';
 import type { InsightsPanel, PanelMotion, PlanGain, VideoInsights } from '~/features/video/insights/insights.types';
 import { FADE_MS, SCENE_MS } from '~/features/video/video.constants';

@@ -1,7 +1,7 @@
-import type { IsoDate } from '@railtime/core/date.types';
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { CityIndexEntry } from '@railtime/schema/cityIndex.types';
-import type { LineId, NetworkId, PlanId, PlanStatus, StationId } from '@railtime/schema/network.types';
+import type { IsoDate } from '@raillineage/core/date.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { CityIndexEntry } from '@raillineage/schema/cityIndex.types';
+import type { LineId, NetworkId, PlanId, PlanStatus, StationId } from '@raillineage/schema/network.types';
 
 // The shapes of the answers: what the engine works out and everyone reads. Nothing here imports the
 // engine, so the engine can say what it answers with.

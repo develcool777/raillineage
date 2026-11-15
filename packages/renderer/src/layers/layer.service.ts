@@ -1,4 +1,4 @@
-import { required } from '@railtime/core/required.utils';
+import { required } from '@raillineage/core/required.utils';
 import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl';
 import { OVERLAY_SOURCE_MAX_ZOOM } from './ids.constants';
 import { emptyCollection } from './snapshot.utils';

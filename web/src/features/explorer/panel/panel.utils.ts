@@ -1,6 +1,6 @@
-import { toTimestamp, yearOf } from '@railtime/core/date.utils';
-import { byCodeUnits } from '@railtime/core/text.utils';
-import type { LineDetails, PlanInfo, StationInfo } from '@railtime/network/facts.types';
+import { toTimestamp, yearOf } from '@raillineage/core/date.utils';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import type { LineDetails, PlanInfo, StationInfo } from '@raillineage/network/facts.types';
 import { PLAN_STATUSES } from '~/constants/plan.constants';
 import { SECTIONS } from '~/features/explorer/explorer.constants';
 import type { Section, SectionEntry } from '~/features/explorer/explorer.types';

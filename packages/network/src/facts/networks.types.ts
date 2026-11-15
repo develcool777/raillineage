@@ -1,4 +1,4 @@
-import type { LineId, Network } from '@railtime/schema/network.types';
+import type { LineId, Network } from '@raillineage/schema/network.types';
 import type { LineGap } from '../engine/engine.types';
 
 /** The network with some lines hidden, and the stretches of time each line left is out with them: what the engine is made from. */

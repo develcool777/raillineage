@@ -1,5 +1,5 @@
-import type { NetworkEngine } from '@railtime/network/engine.service';
-import type { LineId } from '@railtime/schema/network.types';
+import type { NetworkEngine } from '@raillineage/network/engine.service';
+import type { LineId } from '@raillineage/schema/network.types';
 import type { BaseNetwork } from '../steps/animation.types';
 
 /** Everything that decides how a line looks in a frame. */

@@ -1,4 +1,4 @@
-import type { YearStats } from '@railtime/network/facts.types';
+import type { YearStats } from '@raillineage/network/facts.types';
 import { counted, formatNumber } from '~/utils/format.utils';
 import type { GrowthMetric } from '~/utils/growth.types';
 

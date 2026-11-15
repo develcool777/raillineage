@@ -1,5 +1,5 @@
-import type { IsoDate } from '@railtime/core/date.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { IsoDate } from '@raillineage/core/date.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { NetworkIndex } from '../engine/index.service';
 import type { Playheads } from '../engine/playheads.service';
 import type { Timeline } from '../engine/timeline.service';

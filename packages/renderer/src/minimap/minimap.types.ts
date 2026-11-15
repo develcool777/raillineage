@@ -1,4 +1,4 @@
-import type { Bounds } from '@railtime/core/geometry.types';
+import type { Bounds } from '@raillineage/core/geometry.types';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 import type { Palette } from '../layers/theme.types';
 import type { CreateMap } from '../transitMap.types';

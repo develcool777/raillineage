@@ -1,5 +1,5 @@
 {
-  "name": "railtime",
+  "name": "raillineage",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -9,8 +9,8 @@
     "node": ">=24.15.0"
   },
   "scripts": {
-    "dev": "pnpm --filter @railtime/web dev",
-    "build": "pnpm --filter @railtime/web build",
+    "dev": "pnpm --filter @raillineage/web dev",
+    "build": "pnpm --filter @raillineage/web build",
     "type-check": "pnpm -r type-check",
     "test-unit": "vitest",
     "test-unit-ci": "vitest run",
@@ -20,12 +20,12 @@
     "format-check": "prettier --check .",
     "code-quality:dead-code": "knip",
     "code-quality:duplication": "jscpd",
-    "data:boundary": "pnpm --filter @railtime/data boundary",
-    "data:summaries": "pnpm --filter @railtime/data summaries",
-    "data:previews": "pnpm --filter @railtime/data previews",
-    "video:record": "pnpm --filter @railtime/video record",
+    "data:boundary": "pnpm --filter @raillineage/data boundary",
+    "data:summaries": "pnpm --filter @raillineage/data summaries",
+    "data:previews": "pnpm --filter @raillineage/data previews",
+    "video:record": "pnpm --filter @raillineage/video record",
     "test-unit-coverage": "vitest run --coverage",
-    "test-bench": "pnpm --filter @railtime/data test-bench",
+    "test-bench": "pnpm --filter @raillineage/data test-bench",
     "test-mutation": "node packages/tooling/src/cli.mutation.ts"
   },
   "devDependencies": {

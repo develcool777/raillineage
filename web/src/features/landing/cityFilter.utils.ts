@@ -1,4 +1,4 @@
-import type { CityIndexEntry } from '@railtime/schema/cityIndex.types';
+import type { CityIndexEntry } from '@raillineage/schema/cityIndex.types';
 import type { CITIES } from '~/constants/city.constants';
 import type { CityFilter } from './cityFilter.types';
 

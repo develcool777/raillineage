@@ -1,9 +1,9 @@
-import { YEAR_MS } from '@railtime/core/date.utils';
-import { clamp } from '@railtime/core/number.utils';
-import { required } from '@railtime/core/required.utils';
-import type { NetworkEngine } from '@railtime/network/engine.service';
-import type { Step } from '@railtime/network/engine.types';
-import type { Playhead } from '@railtime/network/facts.types';
+import { YEAR_MS } from '@raillineage/core/date.utils';
+import { clamp } from '@raillineage/core/number.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { NetworkEngine } from '@raillineage/network/engine.service';
+import type { Step } from '@raillineage/network/engine.types';
+import type { Playhead } from '@raillineage/network/facts.types';
 import { UNTOUCHED_BASE } from '../steps/animation.constants';
 import type { BaseNetwork, Phase } from '../steps/animation.types';
 import { CAMERA_PRE_SECONDS, FAST_YEARS_PER_SECOND, SLOW_YEARS_PER_SECOND } from './player.constants';

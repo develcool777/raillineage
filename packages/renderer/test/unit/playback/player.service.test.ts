@@ -1,8 +1,8 @@
-import { YEAR_MS, toTimestamp } from '@railtime/core/date.utils';
-import { engineOf } from '@railtime/network/engine.utils';
-import { planOnlyNetwork } from '@railtime/network/testing/planOnlyNetwork';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { lineId, planId } from '@railtime/schema/testing/ids';
+import { YEAR_MS, toTimestamp } from '@raillineage/core/date.utils';
+import { engineOf } from '@raillineage/network/engine.utils';
+import { planOnlyNetwork } from '@raillineage/network/testing/planOnlyNetwork';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { lineId, planId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { FAST_YEARS_PER_SECOND, SLOW_YEARS_PER_SECOND } from '../../../src/playback/player.constants';
 import { Player } from '../../../src/playback/player.service';

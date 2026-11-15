@@ -114,7 +114,7 @@ map rests: today, or the plan built. Anything else opens at rest (`Playheads.mom
 - **A decision** (what the panel's top says, when the timeline opens): a pure function in the
   part's `*.utils.ts`, tested in `web/test/unit/features/explorer/<part>/`, used by a store's getter
   or action. A value goes in the one store that owns it; a composable holds none.
-- **A fact** (a count, a station's neighbours, what a plan adds): `@railtime/network`, never here.
+- **A fact** (a count, a station's neighbours, what a plan adds): `@raillineage/network`, never here.
 - **Something the map shows**: a field in the explorer store's `mapPropsOf` (and in the renderer's `MapProps`).
 - **A setting a link carries**: a line in `ADDRESS_SETTINGS` (its parameter, its values, its default),
   in `ExplorerSettings`, and in `parseSettings` (`address.utils.ts`).

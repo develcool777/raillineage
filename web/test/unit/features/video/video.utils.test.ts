@@ -1,9 +1,9 @@
-import { COVERAGE_DEFAULT_METRES } from '@railtime/network/coverage.constants';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { ChangeInfo, PlanInfo } from '@railtime/network/facts.types';
-import { AROUND_TINY } from '@railtime/network/testing/boundaries';
-import type { PlanStatus } from '@railtime/schema/network.types';
-import { planId } from '@railtime/schema/testing/ids';
+import { COVERAGE_DEFAULT_METRES } from '@raillineage/network/coverage.constants';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { ChangeInfo, PlanInfo } from '@raillineage/network/facts.types';
+import { AROUND_TINY } from '@raillineage/network/testing/boundaries';
+import type { PlanStatus } from '@raillineage/schema/network.types';
+import { planId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { INSIGHTS_COLUMN_VW } from '~/features/video/insights/insights.constants';
 import { FADE_MS, PLAN_END_VW, PLAN_INTRO_MS, SCENE_MS, VIDEO_SPEED } from '~/features/video/video.constants';

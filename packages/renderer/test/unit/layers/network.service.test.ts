@@ -1,6 +1,6 @@
-import { toTimestamp } from '@railtime/core/date.utils';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import { lineId } from '@railtime/schema/testing/ids';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import { lineId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { BOLD_PLANNED_DASHES, LAYERS, PLANNED_DASHES, SOURCES, UNFOCUSED_OPACITY } from '../../../src/layers/ids.constants';
 import { ActiveStepLayer, NetworkLayer } from '../../../src/layers/network.service';

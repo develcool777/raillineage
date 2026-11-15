@@ -1,6 +1,6 @@
-import { pushTo } from '@railtime/core/collection.utils';
-import { required } from '@railtime/core/required.utils';
-import type { LineId } from '@railtime/schema/network.types';
+import { pushTo } from '@raillineage/core/collection.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { LineId } from '@raillineage/schema/network.types';
 import type { TrackSegment } from '../engine/engine.types';
 import { rideKmAt, rideSeconds, rideSecondsTo } from './motion.utils.ts';
 import { CYCLE_SECONDS, TRACK_USE, TRAIN_PROFILES } from './trains.constants.ts';

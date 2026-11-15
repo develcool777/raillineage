@@ -1,4 +1,4 @@
-import type { StationId } from '@railtime/schema/network.types';
+import type { StationId } from '@raillineage/schema/network.types';
 import type { StationLines } from './snapshot.types';
 
 /** Everything the station layer needs for one frame. */

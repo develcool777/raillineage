@@ -1,8 +1,8 @@
-import { endOfYear, yearOf } from '@railtime/core/date.utils';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { Moment, Playhead, StepInfo } from '@railtime/network/facts.types';
-import type { TimeState } from '@railtime/renderer/transitMap.types';
-import { arrivalTimeOf } from '@railtime/renderer/transitMap.utils';
+import { endOfYear, yearOf } from '@raillineage/core/date.utils';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { Moment, Playhead, StepInfo } from '@raillineage/network/facts.types';
+import type { TimeState } from '@raillineage/renderer/transitMap.types';
+import { arrivalTimeOf } from '@raillineage/renderer/transitMap.utils';
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';

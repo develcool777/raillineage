@@ -1,4 +1,4 @@
-import type { Bounds } from '@railtime/core/geometry.types';
+import type { Bounds } from '@raillineage/core/geometry.types';
 import type { GeoJSONSource, Map as MapLibreMap } from 'maplibre-gl';
 import { recolorBasemap } from '../layers/basemap.utils';
 import type { FeatureCollection, LineFeature, NetworkSnapshot } from '../layers/snapshot.types';

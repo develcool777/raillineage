@@ -1,4 +1,4 @@
-import type { Network, PlanId } from '@railtime/schema/network.types';
+import type { Network, PlanId } from '@raillineage/schema/network.types';
 import { NetworkFacts } from '../../src/facts/facts.service';
 import type { FactsAt } from '../../src/facts/moment.service';
 

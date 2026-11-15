@@ -1,7 +1,7 @@
-import { entriesOf, fromEntriesOf, keysOf, pairsOf } from '@railtime/core/collection.utils';
-import { required } from '@railtime/core/required.utils';
-import type { Line, LineId, Network, Plan, PlanId, Segment, Station } from '@railtime/schema/network.types';
-import { samePair } from '@railtime/schema/track.utils';
+import { entriesOf, fromEntriesOf, keysOf, pairsOf } from '@raillineage/core/collection.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { Line, LineId, Network, Plan, PlanId, Segment, Station } from '@raillineage/schema/network.types';
+import { samePair } from '@raillineage/schema/track.utils';
 import type { LineGap } from '../engine/engine.types';
 import { lineColorOf } from '../engine/lineColor.utils.ts';
 import { gapsOf, lineWithout, runsOutside, stationOutside } from './aliases.utils.ts';

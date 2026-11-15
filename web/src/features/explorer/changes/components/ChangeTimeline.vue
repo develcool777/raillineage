@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { ChangeInfo } from '@railtime/network/facts.types';
+  import type { ChangeInfo } from '@raillineage/network/facts.types';
   import { changeState } from '~/features/explorer/changes/changes.utils';
 
   defineProps<{

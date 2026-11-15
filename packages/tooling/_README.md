@@ -1,4 +1,4 @@
-# @railtime/tooling
+# @raillineage/tooling
 
 The repo's own tools: the house's lint rules, which read types, and `pnpm test-mutation`. Nothing here
 ships; nothing in `src/` of another package imports it.
@@ -15,7 +15,7 @@ them under the `house` plugin, and each `eslint/*.config.js` turns on its own:
 | `house/checked-ids`         | `idRules.utils.ts`        | a string made an id only where it is checked                     |
 | `house/branded-spread-key`  | `idRules.utils.ts`        | no id key beside a spread, which TypeScript checks nothing under |
 | `house/branded-record-keys` | `idRules.utils.ts`        | a record keyed by ids walked with `keysOf`/`entriesOf`           |
-| `house/served-files`        | `idRules.utils.ts`        | a city's file typed only at its door (`@railtime/schema`)        |
+| `house/served-files`        | `idRules.utils.ts`        | a city's file typed only at its door (`@raillineage/schema`)     |
 | `house/store-returns-state` | `storeRules.utils.ts`     | a setup store returns all its state                              |
 | `house/store-shape`         | `storeRules.utils.ts`     | a store's headings, their order, its actions' capitals           |
 | `house/mirrored-tests`      | `fileRules.utils.ts`      | a test and its source file named for each other, both ways       |

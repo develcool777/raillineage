@@ -1,4 +1,4 @@
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { CloseStep, IdentityStep, InfillStep, LineSegment, OpenStep, RenameStep, StationCloseStep } from './engine.types';
 
 /** A step before the timeline numbers it, and marks it planned by its time. */

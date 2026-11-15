@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { PlanInfo } from '@railtime/network/facts.types';
+  import type { PlanInfo } from '@raillineage/network/facts.types';
   import { computed } from 'vue';
   import { PLAN_STATUSES } from '~/constants/plan.constants';
   import { PLAN_INTRO_TOP_VMIN } from '~/features/video/video.constants';

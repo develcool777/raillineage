@@ -1,10 +1,10 @@
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { Theme } from '@railtime/network/facts.types';
-import type { TransitMap } from '@railtime/renderer/transitMap.service';
-import type { MapProps, OverlayRequest, Padding, ViewMode } from '@railtime/renderer/transitMap.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { LineId, PlanId, StationId } from '@railtime/schema/network.types';
-import type { VideoPageState } from '@railtime/video/videoPage.types';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { Theme } from '@raillineage/network/facts.types';
+import type { TransitMap } from '@raillineage/renderer/transitMap.service';
+import type { MapProps, OverlayRequest, Padding, ViewMode } from '@raillineage/renderer/transitMap.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { LineId, PlanId, StationId } from '@raillineage/schema/network.types';
+import type { VideoPageState } from '@raillineage/video/videoPage.types';
 import type { Chrome, PanelView, PlayerSettings, Section, SheetSnap, TimeMode } from '~/features/explorer/explorer.types';
 
 /**

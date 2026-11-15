@@ -1,8 +1,8 @@
-import { hiddenNetwork } from '@railtime/network/testing/hiddenNetwork';
-import { planOnlyNetwork } from '@railtime/network/testing/planOnlyNetwork';
-import { tinyNetwork } from '@railtime/network/testing/tinyNetwork';
-import type { Network } from '@railtime/schema/network.types';
-import { lineId, networkId, planId } from '@railtime/schema/testing/ids';
+import { hiddenNetwork } from '@raillineage/network/testing/hiddenNetwork';
+import { planOnlyNetwork } from '@raillineage/network/testing/planOnlyNetwork';
+import { tinyNetwork } from '@raillineage/network/testing/tinyNetwork';
+import type { Network } from '@raillineage/schema/network.types';
+import { lineId, networkId, planId } from '@raillineage/schema/testing/ids';
 import { createPinia, setActivePinia } from 'pinia';
 import { beforeEach, describe, expect, test } from 'vitest';
 import { useNetworkStore } from '~/features/explorer/network.store';

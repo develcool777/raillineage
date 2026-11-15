@@ -1,7 +1,7 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { Network } from '@railtime/schema/network.types';
-import { asNetwork } from '@railtime/schema/testing/ids';
-import type { WrittenSegment, WrittenStation } from '@railtime/schema/testing/ids';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { Network } from '@raillineage/schema/network.types';
+import { asNetwork } from '@raillineage/schema/testing/ids';
+import type { WrittenSegment, WrittenStation } from '@raillineage/schema/testing/ids';
 
 /** About 1 km of longitude at 51.5° north, the test line's latitude. */
 const ONE_KM = 0.0144;

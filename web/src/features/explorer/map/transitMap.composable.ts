@@ -1,5 +1,5 @@
-import { required } from '@railtime/core/required.utils';
-import { TransitMap } from '@railtime/renderer/transitMap.service';
+import { required } from '@raillineage/core/required.utils';
+import { TransitMap } from '@raillineage/renderer/transitMap.service';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import { onBeforeUnmount, onMounted, watch } from 'vue';
 import { useExplorerStore } from '~/features/explorer/explorer.store';

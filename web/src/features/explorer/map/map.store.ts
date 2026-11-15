@@ -1,5 +1,5 @@
-import type { TransitMap } from '@railtime/renderer/transitMap.service';
-import type { Credit, MapView } from '@railtime/renderer/transitMap.types';
+import type { TransitMap } from '@raillineage/renderer/transitMap.service';
+import type { Credit, MapView } from '@raillineage/renderer/transitMap.types';
 import { defineStore } from 'pinia';
 import { markRaw, shallowRef } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';

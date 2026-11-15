@@ -1,5 +1,5 @@
-import type { Network } from '@railtime/schema/network.types';
-import { asNetwork } from '@railtime/schema/testing/ids';
+import type { Network } from '@raillineage/schema/network.types';
+import { asNetwork } from '@raillineage/schema/testing/ids';
 
 /**
  * A metro never built: no track, two plans. `first` runs a red line A–B–C; `second` a blue line A–D.

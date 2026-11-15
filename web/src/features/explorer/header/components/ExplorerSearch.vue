@@ -21,8 +21,8 @@
 </template>
 
 <script setup lang="ts">
-  import type { LineInfo, StationSummary } from '@railtime/network/facts.types';
-  import type { LineId, StationId } from '@railtime/schema/network.types';
+  import type { LineInfo, StationSummary } from '@raillineage/network/facts.types';
+  import type { LineId, StationId } from '@raillineage/schema/network.types';
   import { computed, ref } from 'vue';
   import { CITIES } from '~/constants/city.constants';
   import { lineColor } from '~/utils/format.utils';

@@ -1,5 +1,5 @@
-import { planOnlyNetwork } from '@railtime/network/testing/planOnlyNetwork';
-import { arrivalTimeOf } from '@railtime/renderer/transitMap.utils';
+import { planOnlyNetwork } from '@raillineage/network/testing/planOnlyNetwork';
+import { arrivalTimeOf } from '@raillineage/renderer/transitMap.utils';
 import { describe, expect, test } from 'vitest';
 import { openExplorer } from '@test/support/factories/explorer.utils';
 import { timeAt } from '@test/support/factories/timeState.utils';

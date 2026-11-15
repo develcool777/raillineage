@@ -1,5 +1,5 @@
-import type { LineColor, LineInfo } from '@railtime/network/facts.types';
-import type { LineId, NetworkId } from '@railtime/schema/network.types';
+import type { LineColor, LineInfo } from '@raillineage/network/facts.types';
+import type { LineId, NetworkId } from '@raillineage/schema/network.types';
 
 /** A line in the Lines panel: on the map, or hidden in its place, only named. */
 type LineEntry = {

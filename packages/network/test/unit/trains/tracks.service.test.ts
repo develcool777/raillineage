@@ -1,4 +1,4 @@
-import { lineId } from '@railtime/schema/testing/ids';
+import { lineId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { TrackTimetable } from '../../../src/trains/tracks.service';
 import { CYCLE_SECONDS, TRACK_USE, TRAIN_PROFILES } from '../../../src/trains/trains.constants';

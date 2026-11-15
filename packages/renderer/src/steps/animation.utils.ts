@@ -1,10 +1,10 @@
-import { pushTo } from '@railtime/core/collection.utils';
-import type { LngLat } from '@railtime/core/geometry.types';
-import { sliceAlong } from '@railtime/core/geometry.utils';
-import { clamp } from '@railtime/core/number.utils';
-import { required } from '@railtime/core/required.utils';
-import type { Growth, LineSegment, SegmentPlan } from '@railtime/network/engine.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import { pushTo } from '@raillineage/core/collection.utils';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { sliceAlong } from '@raillineage/core/geometry.utils';
+import { clamp } from '@raillineage/core/number.utils';
+import { required } from '@raillineage/core/required.utils';
+import type { Growth, LineSegment, SegmentPlan } from '@raillineage/network/engine.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import { emptyCollection } from '../layers/snapshot.utils';
 import { CHASE_AHEAD_KM, CHASE_BEHIND_KM, CHASE_SMOOTHING_KM } from './animation.constants';
 import type { BaseNetwork, ChaseTarget, GrowthMove, GrowthPace, StepDrawing, Stretch } from './animation.types';

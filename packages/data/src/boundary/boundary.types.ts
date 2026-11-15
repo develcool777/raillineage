@@ -1,4 +1,4 @@
-import type { LngLat } from '@railtime/core/geometry.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
 
 /** An outline as GeoJSON gives it: one polygon, or several. */
 export type OutlineGeometry = { type: 'Polygon'; coordinates: LngLat[][] } | { type: 'MultiPolygon'; coordinates: LngLat[][][] };

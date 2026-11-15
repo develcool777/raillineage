@@ -1,5 +1,5 @@
-import type { RouteInfo, RouteLegInfo } from '@railtime/network/facts.types';
-import { lineId, stationId } from '@railtime/schema/testing/ids';
+import type { RouteInfo, RouteLegInfo } from '@raillineage/network/facts.types';
+import { lineId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { ROUTE_STRENGTHS } from '~/features/explorer/route/route.constants';
 import { rideSummary, routeDifference, routeStrengths, routeSummary, routeVia } from '~/features/explorer/route/route.utils';

@@ -1,4 +1,4 @@
-import { pushTo } from '@railtime/core/collection.utils';
+import { pushTo } from '@raillineage/core/collection.utils';
 import { CYCLE_SECONDS } from '../../src/trains/trains.constants';
 import type { TrainService } from '../../src/trains/trains.service';
 import { passSeconds } from '../../src/trains/trains.utils';

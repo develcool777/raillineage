@@ -1,4 +1,4 @@
-import type { CameraMode } from '@railtime/renderer/transitMap.types';
+import type { CameraMode } from '@raillineage/renderer/transitMap.types';
 import type { PlayerSettings } from '~/features/explorer/explorer.types';
 import type { TickMark } from '~/features/explorer/time/timeline.types';
 

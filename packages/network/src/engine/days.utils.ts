@@ -1,6 +1,6 @@
-import { entriesOf } from '@railtime/core/collection.utils';
-import { toTimestamp } from '@railtime/core/date.utils';
-import type { Station, StationId } from '@railtime/schema/network.types';
+import { entriesOf } from '@raillineage/core/collection.utils';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import type { Station, StationId } from '@raillineage/schema/network.types';
 import type { NetworkIndex } from './index.service';
 import type { StationStops } from './stops.service';
 import type { DayChanges } from './timeline.types';

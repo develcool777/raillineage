@@ -1,4 +1,4 @@
-import type { Bounds } from '@railtime/core/geometry.types';
+import type { Bounds } from '@raillineage/core/geometry.types';
 import { describe, expect, test, vi } from 'vitest';
 import type { FeatureCollection } from '../../../src/layers/snapshot.types';
 import { PALETTES } from '../../../src/layers/theme.constants';

@@ -1,5 +1,5 @@
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { Playhead } from '@railtime/network/facts.types';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { Playhead } from '@raillineage/network/facts.types';
 import type { MapProps, TimeState } from './transitMap.types';
 
 /**

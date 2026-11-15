@@ -219,7 +219,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { Network } from '@railtime/schema/network.types';
+  import type { Network } from '@raillineage/schema/network.types';
   import { storeToRefs } from 'pinia';
   import { useTemplateRef } from 'vue';
   import { useRoute, useRouter, useRuntimeConfig } from '#imports';

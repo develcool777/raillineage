@@ -52,9 +52,9 @@
 </template>
 
 <script setup lang="ts">
-  import { yearOf } from '@railtime/core/date.utils';
-  import type { LineInfo, NetworkChoice } from '@railtime/network/facts.types';
-  import type { LineId } from '@railtime/schema/network.types';
+  import { yearOf } from '@raillineage/core/date.utils';
+  import type { LineInfo, NetworkChoice } from '@raillineage/network/facts.types';
+  import type { LineId } from '@raillineage/schema/network.types';
   import { computed, ref } from 'vue';
   import type { LineGroup } from '~/features/explorer/lines/line.types';
   import { lineGroups } from '~/features/explorer/lines/line.utils';

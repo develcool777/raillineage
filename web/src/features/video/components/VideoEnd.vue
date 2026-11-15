@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { NetworkStats } from '@railtime/network/facts.types';
+  import type { NetworkStats } from '@raillineage/network/facts.types';
   import { INSIGHTS_CLEAR_VW } from '~/features/video/insights/insights.constants';
   import { countOf } from '~/utils/count.utils';
   import { pluralOf } from '~/utils/format.utils';

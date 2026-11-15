@@ -1,8 +1,8 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import { sliceAlong } from '@railtime/core/geometry.utils';
-import { clamp } from '@railtime/core/number.utils';
-import type { LineSegment, SegmentPlan, StationCloseStep, Step } from '@railtime/network/engine.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import { sliceAlong } from '@raillineage/core/geometry.utils';
+import { clamp } from '@raillineage/core/number.utils';
+import type { LineSegment, SegmentPlan, StationCloseStep, Step } from '@raillineage/network/engine.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import { lineFeature, pointFeature } from '../layers/snapshot.utils';
 import { offsetFor, resolveLine } from '../layers/style.utils';
 import { easeInOut } from '../support/drawing.utils';

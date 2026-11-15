@@ -1,8 +1,8 @@
-import type { LngLat } from '@railtime/core/geometry.types';
-import type { NetworkFacts } from '@railtime/network/facts.service';
-import type { CoverageDistance, CoverageInfo, Moment, NetworkStats, Playhead, ReachInfo, RouteInfo, StepInfo, Theme } from '@railtime/network/facts.types';
-import type { CityBoundary } from '@railtime/schema/boundary.types';
-import type { LineId, StationId } from '@railtime/schema/network.types';
+import type { LngLat } from '@raillineage/core/geometry.types';
+import type { NetworkFacts } from '@raillineage/network/facts.service';
+import type { CoverageDistance, CoverageInfo, Moment, NetworkStats, Playhead, ReachInfo, RouteInfo, StepInfo, Theme } from '@raillineage/network/facts.types';
+import type { CityBoundary } from '@raillineage/schema/boundary.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { Map as MapLibreMap, MapOptions } from 'maplibre-gl';
 
 /** `follow` frames each change, `overview` the change plus the network so far, `free` leaves the camera alone. */

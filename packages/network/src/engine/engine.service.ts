@@ -1,5 +1,5 @@
-import type { LineId, Network, PlanId } from '@railtime/schema/network.types';
-import { buildPlan } from '@railtime/schema/plan.utils';
+import type { LineId, Network, PlanId } from '@raillineage/schema/network.types';
+import { buildPlan } from '@raillineage/schema/plan.utils';
 import type { NetworkStats } from '../facts/facts.types';
 import { trainRunsAt } from '../trains/routes.utils.ts';
 import { TrainService } from '../trains/trains.service.ts';

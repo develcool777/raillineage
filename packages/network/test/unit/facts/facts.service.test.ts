@@ -1,8 +1,8 @@
-import { keysOf } from '@railtime/core/collection.utils';
-import { toTimestamp } from '@railtime/core/date.utils';
-import { byCodeUnits } from '@railtime/core/text.utils';
-import type { PlanId } from '@railtime/schema/network.types';
-import { lineId, planId, stationId } from '@railtime/schema/testing/ids';
+import { keysOf } from '@raillineage/core/collection.utils';
+import { toTimestamp } from '@raillineage/core/date.utils';
+import { byCodeUnits } from '@raillineage/core/text.utils';
+import type { PlanId } from '@raillineage/schema/network.types';
+import { lineId, planId, stationId } from '@raillineage/schema/testing/ids';
 import { describe, expect, test } from 'vitest';
 import { engineOf } from '../../../src/engine/engine.utils';
 import { NetworkFacts } from '../../../src/facts/facts.service';

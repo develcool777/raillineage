@@ -1,5 +1,5 @@
-import type { Network } from '@railtime/schema/network.types';
-import { servedNetwork } from '@railtime/schema/served.utils';
+import type { Network } from '@raillineage/schema/network.types';
+import { servedNetwork } from '@raillineage/schema/served.utils';
 import type { Ref } from 'vue';
 import { useFetch, useRuntimeConfig } from '#imports';
 import { networkUrlOf } from '~/utils/city.utils';

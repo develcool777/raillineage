@@ -1,4 +1,4 @@
-import type { RecordedWindow } from '@railtime/video/videoPage.types';
+import type { RecordedWindow } from '@raillineage/video/videoPage.types';
 import { onBeforeUnmount, onMounted } from 'vue';
 import { recordedStateOf } from '~/features/explorer/explorer.utils';
 import { useMapStore } from '~/features/explorer/map/map.store';
@@ -17,7 +17,7 @@ export const useRecordedExplorer = (): void => {
 
   onMounted(() => {
     const page = window as Window & RecordedWindow;
-    page.railtimeVideo = {
+    page.raillineageVideo = {
       state: () =>
         recordedStateOf({
           status: mapStore.map?.status ?? 'loading',
@@ -31,6 +31,6 @@ export const useRecordedExplorer = (): void => {
   });
 
   onBeforeUnmount(() => {
-    delete (window as Window & RecordedWindow).railtimeVideo;
+    delete (window as Window & RecordedWindow).raillineageVideo;
   });
 };
