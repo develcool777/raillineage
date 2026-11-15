@@ -22,7 +22,12 @@
           </span>
         </template>
         <UPageGrid>
-          <CityCard v-for="city in cities" :key="city.value" :city="city.value" :summary="citySummaryOf(city.value)" :eager="EAGER_CITIES.has(city.value)" />
+          <CityCard
+            v-for="city in cities"
+            :key="city.value"
+            :city="city.value"
+            :summary="citySummaryOf(city.value)"
+            :preload="PRELOADED_CITIES.has(city.value)" />
         </UPageGrid>
       </UPageSection>
       <UEmpty
@@ -55,8 +60,8 @@
   const route = useRoute();
   if (isCity(route.query.city)) await navigateTo(`/${route.query.city}/`, { replace: true });
 
-  /** The first row's cards: their pictures load at once, the rest as they are scrolled to. */
-  const EAGER_CITIES = new Set(CITIES.slice(0, 4).map(city => city.value));
+  /** The first row's cards: their pictures fetched at once, the rest as they are scrolled to. */
+  const PRELOADED_CITIES = new Set(CITIES.slice(0, 4).map(city => city.value));
 
   const filter = ref<CityFilter>({ ...NO_FILTER });
 
