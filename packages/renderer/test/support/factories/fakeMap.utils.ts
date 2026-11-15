@@ -1,7 +1,7 @@
 import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec';
 import type { CustomLayerInterface, CustomRenderMethodInput, LayerSpecification, Map as MapLibreMap } from 'maplibre-gl';
-import { fakeGl } from './fakeGl.utils';
 import type { FakeLayer, FakeMap } from '../fakeMap.types';
+import { fakeGl } from './fakeGl.utils';
 
 /** The GeoJSON geometries a source may hold. */
 const GEOMETRIES = new Set(['Point', 'MultiPoint', 'LineString', 'MultiLineString', 'Polygon', 'MultiPolygon']);

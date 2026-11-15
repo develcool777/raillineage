@@ -2,11 +2,11 @@ import { boundsOf } from '@railtime/core/geometry.utils';
 import { engineOf } from '@railtime/network/engine.utils';
 import type { Playhead } from '@railtime/network/facts.types';
 import type { CityBoundary } from '@railtime/schema/boundary.types';
-import { coverageDrawing, reachStops, reachTrack, routeStops, routeTrack } from './overlay.utils';
+import type { PointFeature, ReachStopProperties, RouteFeature } from '../layers/snapshot.types';
 import { OPENING_MAX_ZOOM, ROUTE_NAME_ROOM, SELECTED_STATION_ZOOM, SELECT_FLY_MS } from '../transitMap.constants';
 import type { OverlayRequest, OverlayResult } from '../transitMap.types';
 import type { OverlayDrawing, OverlayParts } from './controller.types';
-import type { PointFeature, ReachStopProperties, RouteFeature } from '../layers/snapshot.types';
+import { coverageDrawing, reachStops, reachTrack, routeStops, routeTrack } from './overlay.utils';
 
 /**
  * What is drawn over the network: a route, a reach or the city's coverage, as the props ask. Works it

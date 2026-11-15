@@ -1,8 +1,8 @@
 import type { LngLat } from '@railtime/core/geometry.types';
 import { required } from '@railtime/core/required.utils';
+import type { LineId, Network, PlanSection, PlanTrack, Segment, Station, StationId } from '../format/network.types';
 import type { Heading, SectionWorks } from './build.types';
 import { curveBetween, headingOf, samePair, splitTrack } from './track.utils.ts';
-import type { LineId, Network, PlanSection, PlanTrack, Segment, Station, StationId } from '../format/network.types';
 
 /**
  * Builds plan sections on a network, keeping track of segments as objects, so splitting one never

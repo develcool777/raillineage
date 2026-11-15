@@ -4,10 +4,10 @@ import { required } from '@railtime/core/required.utils';
 import type { NetworkEngine } from '@railtime/network/engine.service';
 import type { Step } from '@railtime/network/engine.types';
 import type { Playhead } from '@railtime/network/facts.types';
-import { CAMERA_PRE_SECONDS, FAST_YEARS_PER_SECOND, SLOW_YEARS_PER_SECOND } from './player.constants';
-import type { ActivePlayback, AnimationFactory, PlayerEvent, PlayerSettings } from './player.types';
 import { UNTOUCHED_BASE } from '../steps/animation.constants';
 import type { BaseNetwork, Phase } from '../steps/animation.types';
+import { CAMERA_PRE_SECONDS, FAST_YEARS_PER_SECOND, SLOW_YEARS_PER_SECOND } from './player.constants';
+import type { ActivePlayback, AnimationFactory, PlayerEvent, PlayerSettings } from './player.types';
 
 /**
  * Plays the timeline: the clock runs between dates, stops on a date, and plays that date's steps one

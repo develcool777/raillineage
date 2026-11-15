@@ -5,11 +5,11 @@ import { boundsOf, cumulativeDistances } from '@railtime/core/geometry.utils';
 import { required } from '@railtime/core/required.utils';
 import type { Line, LineId, Network, Segment, SegmentLine, Station, StationId } from '@railtime/schema/network.types';
 import type { BuiltSection } from '@railtime/schema/plan.types';
+import type { LineColor } from '../facts/facts.types';
 import type { LineGap, LineSegment, TrackSegment } from './engine.types';
 import { outsideGaps } from './gaps.utils.ts';
 import { lineColorOf } from './lineColor.utils.ts';
 import { orientSegments } from './orientation.utils.ts';
-import type { LineColor } from '../facts/facts.types';
 
 /**
  * The network, indexed for drawing: segments with their distances and direction of travel

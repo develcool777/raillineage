@@ -2,11 +2,11 @@ import { RADIANS_PER_DEGREE } from '@railtime/core/geometry.constants';
 import type { Bounds, LngLat } from '@railtime/core/geometry.types';
 import { offsetKm } from '@railtime/core/geometry.utils';
 import type { MapOptions } from 'maplibre-gl';
-import { MIN_TURN_KM, TURN_RATE } from './camera.constants';
-import type { Chase } from './camera.types';
 import type { ChaseTarget } from '../steps/animation.types';
 import { OPENING_MAX_ZOOM, OPENING_SIDE_PADDING } from '../transitMap.constants';
 import type { MapView, Padding } from '../transitMap.types';
+import { MIN_TURN_KM, TURN_RATE } from './camera.constants';
+import type { Chase } from './camera.types';
 
 /**
  * Where the map opens: a view the app linked to, or the whole network, fitted clear of the title, the

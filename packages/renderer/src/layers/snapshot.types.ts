@@ -1,7 +1,7 @@
 import type { LngLat } from '@railtime/core/geometry.types';
 import type { LineId, StationId } from '@railtime/schema/network.types';
-import type { SideBySide } from './style.types';
 import type { RouteStopKind } from '../overlay/overlay.types';
+import type { SideBySide } from './style.types';
 
 /** Everything already on the map at a cursor. Rebuilt only when the cursor, the theme or what the step playing asks of it change. */
 export type NetworkSnapshot = {

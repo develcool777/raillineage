@@ -2,11 +2,11 @@ import { entriesOf, fromEntriesOf, keysOf, pairsOf } from '@railtime/core/collec
 import { required } from '@railtime/core/required.utils';
 import type { Line, LineId, Network, Plan, PlanId, Segment, Station } from '@railtime/schema/network.types';
 import { samePair } from '@railtime/schema/track.utils';
+import type { LineGap } from '../engine/engine.types';
+import { lineColorOf } from '../engine/lineColor.utils.ts';
 import { gapsOf, lineWithout, runsOutside, stationOutside } from './aliases.utils.ts';
 import type { NetworkChoice } from './facts.types';
 import type { ShownNetwork } from './networks.types';
-import type { LineGap } from '../engine/engine.types';
-import { lineColorOf } from '../engine/lineColor.utils.ts';
 
 /**
  * Whether a network was never built: no track of its own, only plans.

@@ -3,9 +3,9 @@ import type { LngLat } from '@railtime/core/geometry.types';
 import { cumulativeDistances, offsetKm, sliceAlong } from '@railtime/core/geometry.utils';
 import { clamp } from '@railtime/core/number.utils';
 import { required } from '@railtime/core/required.utils';
+import type { Segment } from '../format/network.types';
 import type { Heading } from './build.types';
 import { HANDLE_SHARE, CURVE_STEP_KM, HEADING_SPAN_KM } from './track.constants.ts';
-import type { Segment } from '../format/network.types';
 
 /**
  * Whether two pieces of track join the same two stations, either way round.

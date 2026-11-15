@@ -5,6 +5,15 @@ import type { CityBoundary } from '@railtime/schema/boundary.types';
 import { isLineIn, isPlanIn, isStationIn } from '@railtime/schema/ids.utils';
 import type { LineId, Network, PlanId, StationId } from '@railtime/schema/network.types';
 import { buildPlan } from '@railtime/schema/plan.utils';
+import { CoverageMeasure } from '../coverage/coverage.service.ts';
+import { captionOf } from '../engine/caption.utils.ts';
+import { ENGINE } from '../engine/engine.constants.ts';
+import { NetworkEngine } from '../engine/engine.service.ts';
+import type { NetworkHistory } from '../engine/history.types';
+import { busiestDecade, networkAt, networkHistory, openingsByDecade } from '../engine/history.utils.ts';
+import type { NetworkIndex } from '../engine/index.service';
+import type { Timeline } from '../engine/timeline.service';
+import { RouteFinder } from '../route/finder.service.ts';
 import type {
   ChangeInfo,
   LineColor,
@@ -23,15 +32,6 @@ import { FactsAt } from './moment.service.ts';
 import type { MomentSource } from './moment.types';
 import type { ShownNetwork } from './networks.types';
 import { firstPlanOf, isPlanOnly, linesHiddenAtFirst, linesNamed, networkChoicesOf, withLinesHidden } from './networks.utils.ts';
-import { CoverageMeasure } from '../coverage/coverage.service.ts';
-import { captionOf } from '../engine/caption.utils.ts';
-import { ENGINE } from '../engine/engine.constants.ts';
-import { NetworkEngine } from '../engine/engine.service.ts';
-import type { NetworkHistory } from '../engine/history.types';
-import { busiestDecade, networkAt, networkHistory, openingsByDecade } from '../engine/history.utils.ts';
-import type { NetworkIndex } from '../engine/index.service';
-import type { Timeline } from '../engine/timeline.service';
-import { RouteFinder } from '../route/finder.service.ts';
 
 /**
  * A city's network, its history and its plans, and every fact about them: what it is and was on any

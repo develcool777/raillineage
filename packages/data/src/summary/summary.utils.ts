@@ -5,9 +5,9 @@ import { NetworkFacts } from '@railtime/network/facts.service';
 import type { CityIndex, CityIndexEntry } from '@railtime/schema/cityIndex.types';
 import type { Network } from '@railtime/schema/network.types';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { SUMMARY_DAY } from './summary.constants.ts';
 import type { City, Report } from '../city.types.ts';
 import { SUMMARIES_PATH, cities, readNetwork } from '../city.utils.ts';
+import { SUMMARY_DAY } from './summary.constants.ts';
 
 /**
  * One city, summed up for the landing page: its name and country, and its network's summary
