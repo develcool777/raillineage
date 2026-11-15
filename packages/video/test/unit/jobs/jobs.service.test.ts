@@ -16,6 +16,7 @@ const REQUEST: RecordingRequest = {
   fps: 60,
   width: 1920,
   height: 1080,
+  scale: 2,
   seconds: 900,
   rehearse: true,
   name: 'kyiv-2070.mp4',

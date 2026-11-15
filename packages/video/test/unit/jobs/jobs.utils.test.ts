@@ -12,6 +12,7 @@ const REQUEST: RecordingRequest = {
   fps: 60,
   width: 1920,
   height: 1080,
+  scale: 2,
   seconds: 900,
   rehearse: true,
   name: 'kyiv-2070-2d.mp4',
@@ -68,6 +69,8 @@ describe('JobsUtils', () => {
         '60',
         '--size',
         '1920x1080',
+        '--scale',
+        '2',
         '--seconds',
         '900',
         '--query',
@@ -83,6 +86,7 @@ describe('JobsUtils', () => {
         fps: 60,
         width: 1920,
         height: 1080,
+        scale: 2,
         seconds: 900,
         rehearse: false,
         out: files.out,
@@ -106,7 +110,9 @@ describe('JobsUtils', () => {
       expect(() => requestOf({ ...REQUEST, city: 'kyiv; rm -rf /' })).toThrow('the city is an id');
       expect(() => requestOf({ ...REQUEST, query: 'plan=a b' })).toThrow("the query is an address's");
       expect(() => requestOf({ ...REQUEST, fps: 0 })).toThrow('the frame rate is a whole number from 1 to 120');
-      expect(() => requestOf({ ...REQUEST, width: 4000 })).toThrow('the width is a whole number from 1 to 3840');
+      expect(() => requestOf({ ...REQUEST, width: 4000, scale: 1 })).toThrow('the width is a whole number from 1 to 3840');
+      expect(() => requestOf({ ...REQUEST, width: 2560 })).toThrow('the width is a whole number from 1 to 1920');
+      expect(() => requestOf({ ...REQUEST, scale: 3 })).toThrow('the scale is a whole number from 1 to 2');
       expect(() => requestOf({ ...REQUEST, height: 1080.5 })).toThrow('the height is a whole number');
       expect(() => requestOf({ ...REQUEST, seconds: 7200 })).toThrow('in seconds, is a whole number from 1 to 3600');
       expect(() => requestOf({ ...REQUEST, rehearse: 'yes' })).toThrow('rehearse is true or false');

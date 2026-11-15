@@ -31,7 +31,7 @@ const scopeOf = (): RecordingScope => ({
 
 describe('RecorderUtils', () => {
   describe('recordingOf', () => {
-    test("records the city's video page at 1080p, 60 frames a second, for up to 15 minutes, from the app run by pnpm dev, into videos/", () => {
+    test("records the city's video page laid out at 1080p and drawn at twice it (4K), 60 frames a second, for up to 15 minutes, from the app run by pnpm dev, into videos/", () => {
       expect(recordingOf(['kyiv'], TYPED_IN)).toEqual({
         city: 'kyiv',
         page: 'video',
@@ -39,6 +39,7 @@ describe('RecorderUtils', () => {
         fps: 60,
         width: 1920,
         height: 1080,
+        scale: 2,
         seconds: 900,
         origin: 'http://localhost:5180',
         query: '',
@@ -57,6 +58,8 @@ describe('RecorderUtils', () => {
         '30',
         '--size',
         '1080x1920',
+        '--scale',
+        '1',
         '--seconds',
         '45',
         '--query',
@@ -71,6 +74,7 @@ describe('RecorderUtils', () => {
         fps: 30,
         width: 1080,
         height: 1920,
+        scale: 1,
         seconds: 45,
         origin: 'http://localhost:3000',
         query: 'mapOnly=1',
@@ -93,6 +97,7 @@ describe('RecorderUtils', () => {
       expect(() => recordingOf(['kyiv', '--fps', '0'], TYPED_IN)).toThrow('--fps takes a whole number, not 0');
       expect(() => recordingOf(['kyiv', '--seconds', '1.5'], TYPED_IN)).toThrow('--seconds takes a whole number');
       expect(() => recordingOf(['kyiv', '--size', '1920'], TYPED_IN)).toThrow('--size takes width x height');
+      expect(() => recordingOf(['kyiv', '--scale', '1.5'], TYPED_IN)).toThrow('--scale takes a whole number, not 1.5');
       expect(() => recordingOf(['kyiv', '--origin', 'localhost'], TYPED_IN)).toThrow('--origin takes an address');
       expect(() => recordingOf(['kyiv', '--page', 'landing'], TYPED_IN)).toThrow('--page takes video or explorer, not landing');
     });
@@ -131,11 +136,11 @@ describe('RecorderUtils', () => {
   });
 
   describe('launchOptionsOf', () => {
-    test('starts the Chrome installed, at the size asked, stating the motion a recording wants, leaving Ctrl+C to the recorder', () => {
+    test('starts the Chrome installed, the page at the size asked, drawn at its scale, stating the motion a recording wants, leaving Ctrl+C to the recorder', () => {
       expect(launchOptionsOf(recordingOf(['kyiv', '--size', '1280x720'], TYPED_IN))).toEqual({
         channel: 'chrome',
         viewport: { width: 1280, height: 720 },
-        deviceScaleFactor: 1,
+        deviceScaleFactor: 2,
         reducedMotion: 'no-preference',
         handleSIGINT: false,
         handleSIGTERM: false,
@@ -195,8 +200,13 @@ describe('RecorderUtils', () => {
       const args = ffmpegArgsOf(recordingOf(['kyiv', '--fps', '30'], TYPED_IN));
       expect(args.join(' ')).toContain('-f image2pipe -framerate 30 -c:v mjpeg -i -');
       expect(args.join(' ')).toContain('-c:v libx264');
-      expect(args.join(' ')).toContain('-pix_fmt yuv420p');
       expect(args.at(-1)).toMatch(/\/packages\/video\/videos\/kyiv\.mp4$/);
+    });
+
+    test("writes HD's standard colour, and says so in the file, so a player shows it as the page did", () => {
+      const command = ffmpegArgsOf(recordingOf(['kyiv'], TYPED_IN)).join(' ');
+      expect(command).toContain('scale=out_color_matrix=bt709:out_range=tv,format=yuv420p');
+      expect(command).toContain('setparams=range=tv:colorspace=bt709:color_primaries=bt709:color_trc=bt709');
     });
   });
 

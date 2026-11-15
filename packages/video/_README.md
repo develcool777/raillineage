@@ -10,6 +10,7 @@ pnpm video:record kyiv                           # or by the command: into packa
 pnpm video:record kyiv --query "plan=<id>" --out kyiv-plan.mp4   # a plan of the city's as its ending; a bare name goes in videos/
 pnpm video:record kyiv --page explorer --query "mapOnly=1" --seconds 60
 pnpm video:record kyiv --query "view=2d"         # flat
+pnpm video:record kyiv --scale 1                 # 1080p a pixel to a pixel, faster, rather than 4K
 ```
 
 Its arguments are read in `recorder.utils.ts` (`recordingOf`); its defaults, the command's and the
@@ -35,6 +36,11 @@ page's alike, are `recording.constants.ts`'s, which takes nothing of Node's, so 
   look at is in Chrome's cache; the clock moves the same way both times, so the take finds them there.
   Chrome's profile is kept between recordings (`packages/video/.cache/`), so a city recorded again
   finds them already.
+- **As sharp as a Retina screen.** The page is laid out at its size (`--size`, 1920 × 1080) and drawn
+  at twice it (`--scale 2`, Chrome's device pixels), so the video is 4K and shows the page as a Retina
+  screen does, its text and lines as fine; `--scale 1` draws a pixel to a pixel, faster.
+- **HD's colour.** ffmpeg writes BT.709, video range, and says so in the file (`ffmpegArgsOf`): a JPEG's
+  own colour, kept, is full range by an older standard, which players guess at, many wrongly.
 - **Nothing lost.** The video is written beside its file, hidden (`videos/.kyiv.mp4`), and takes its
   name only once whole: a video already of that name stays until a finished one replaces it, never lost
   to one cancelled or failed.

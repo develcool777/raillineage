@@ -9,6 +9,9 @@ export const RECORDER_GONE = 'The recorder stopped before it finished: what it s
 /** The largest side a video may have, pixels: 4K's. */
 export const LARGEST_SIDE = 3840;
 
+/** The most pixels drawn to each of the page's, each way: a Retina screen's. */
+export const MOST_SCALE = 2;
+
 /** The longest a video may run, seconds: an hour. */
 export const LONGEST_SECONDS = 60 * 60;
 

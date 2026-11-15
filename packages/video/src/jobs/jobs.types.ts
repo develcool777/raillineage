@@ -12,9 +12,11 @@ export type RecordingRequest = {
   query: string;
   /** Frames a second. */
   fps: number;
-  /** The video's size, in pixels. */
+  /** The page's size, in its own pixels; the video's is this times `scale`. */
   width: number;
   height: number;
+  /** Pixels drawn to each of the page's, each way: 2 for 4K from 1080p. */
+  scale: number;
   /** The longest it runs, seconds: it ends with the video before then. */
   seconds: number;
   /** Played through once first, so the take finds every tile in the cache. */

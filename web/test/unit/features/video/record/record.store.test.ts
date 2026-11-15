@@ -9,7 +9,7 @@ import { useRecordStore } from '~/features/video/record/record.store';
 const RECORDING: RecordingStatus = { pid: 42, city: 'kyiv', out: '/videos/kyiv.mp4', phase: 'recording', seconds: 12, limit: 900, error: null };
 
 /** What the page asks to record. */
-const SETTINGS: RecordingRequest = { city: 'kyiv', query: '', fps: 60, width: 1920, height: 1080, seconds: 900, rehearse: true, name: 'kyiv.mp4' };
+const SETTINGS: RecordingRequest = { city: 'kyiv', query: '', fps: 60, width: 1920, height: 1080, scale: 2, seconds: 900, rehearse: true, name: 'kyiv.mp4' };
 
 /**
  * The store, with a stand-in for the dev server that answers each request as told, and keeps what it was asked.

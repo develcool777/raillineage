@@ -1,5 +1,5 @@
 import type { RecordingStatus } from '../recorder/recorder.types.ts';
-import { LARGEST_SIDE, LONGEST_SECONDS, MOST_FPS, RECORDER_GONE, RUNNING_PHASES } from './jobs.constants.ts';
+import { LARGEST_SIDE, LONGEST_SECONDS, MOST_FPS, MOST_SCALE, RECORDER_GONE, RUNNING_PHASES } from './jobs.constants.ts';
 import type { ByteRange, RecordingRequest } from './jobs.types.ts';
 
 /** A city's id, as the address names it. */
@@ -58,6 +58,8 @@ export const argsOf = (request: RecordingRequest, files: { out: string; status: 
   String(request.fps),
   '--size',
   `${request.width}x${request.height}`,
+  '--scale',
+  String(request.scale),
   '--seconds',
   String(request.seconds),
   ...(request.rehearse ? [] : ['--no-rehearse']),
@@ -108,12 +110,16 @@ export const requestOf = (body: unknown): RecordingRequest => {
   if (typeof body !== 'object' || body === null) throw new TypeError('say what to record');
   const given = body as Record<string, unknown>;
   if (typeof given.rehearse !== 'boolean') throw new TypeError('rehearse is true or false');
+  const scale = wholeOf(given.scale, 'the scale', MOST_SCALE);
+  // The video's sides, the page's drawn at its scale, are what may be no larger than 4K's.
+  const largest = Math.floor(LARGEST_SIDE / scale);
   return {
     city: textOf(given.city, CITY_ID, 'the city is an id, as an address names it'),
     query: textOf(given.query, QUERY, "the query is an address's, plan=…&view=…"),
     fps: wholeOf(given.fps, 'the frame rate', MOST_FPS),
-    width: wholeOf(given.width, 'the width', LARGEST_SIDE),
-    height: wholeOf(given.height, 'the height', LARGEST_SIDE),
+    width: wholeOf(given.width, 'the width', largest),
+    height: wholeOf(given.height, 'the height', largest),
+    scale,
     seconds: wholeOf(given.seconds, 'the longest it runs, in seconds,', LONGEST_SECONDS),
     rehearse: given.rehearse,
     name: textOf(given.name, VIDEO_NAME, 'the file is a name ending .mp4, of letters, digits, - and _'),
