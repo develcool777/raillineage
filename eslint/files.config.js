@@ -13,6 +13,8 @@ const SOURCE_FILE = '+([a-z])*([a-zA-Z0-9])?(.@(service|utils|composable|store))
  * named for the surface it opens; or a support file's `.utils.ts`/`.types.ts`/`.constants.ts`.
  */
 const TEST_FILE = '+([a-z])*([a-zA-Z0-9])?(.@(service|utils|constants|schema|composable|store|entry)).@(test|spec|bench|e2e|utils|types|constants)';
+/** A component's spec: the component's own name, `LinesSection.spec.ts` for `LinesSection.vue`, rendered in happy-dom. */
+const COMPONENT_SPEC = '+([A-Z])*([a-zA-Z0-9]).spec';
 /** A command's file name. */
 const SCRIPT_FILE = 'cli?(.+([a-zA-Z0-9]))';
 /** What files and folders are called, and where each kind lives. */
@@ -54,6 +56,12 @@ export const filesConfig = [
         },
       ],
     },
+  },
+  // A component's spec takes the component's name, in place of a test's (the later block wins).
+  {
+    files: ['web/test/unit/**/components/*.spec.ts'],
+    plugins: { 'check-file': checkFile },
+    rules: { 'check-file/filename-naming-convention': ['error', { '**/*.ts': COMPONENT_SPEC }] },
   },
   // A test and the file it tests are named for each other, suffix and all, as in dataroom-ui
   // (`house/mirrored-tests`): every test names a source file that is there, and each service, utils
