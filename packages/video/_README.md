@@ -3,6 +3,7 @@
 A city's video page (`web`'s `/video/<city>`, under `pnpm dev` only) recorded frame by frame into an
 MP4: from the page itself, its panel's Record button, or from the command. What a video shows is
 `web`'s (`features/video/`); this package only records a page, by its city and its address's query.
+And a video's thumbnail (`pnpm video:thumbnail`), the explorer photographed with its words over it.
 
 ```bash
 pnpm dev                                         # the app; open /video (the header's Video) to record from the page
@@ -11,6 +12,7 @@ pnpm video:record kyiv --query "plan=<id>" --out kyiv-plan.mp4   # a plan of the
 pnpm video:record kyiv --page explorer --query "mapOnly=1" --seconds 60
 pnpm video:record kyiv --query "view=2d"         # flat
 pnpm video:record kyiv --scale 1                 # 1080p a pixel to a pixel, faster, rather than 4K
+pnpm video:thumbnail kyiv --plan kyiv-2070 --hook "WHAT IF?"   # a thumbnail: videos/kyiv-kyiv-2070.thumbnail.jpg
 ```
 
 Its arguments are read in `recorder.utils.ts` (`recordingOf`); its defaults, the command's and the
@@ -23,6 +25,9 @@ page's alike, are `recording.constants.ts`'s, which takes nothing of Node's, so 
 | `recorder/cli.ts`                | `pnpm video:record`: the arguments in, Ctrl+C as a cancel                                                  |
 | `jobs/jobs.service.ts`           | `RecordingJobs`: recordings started from elsewhere (the video page, through the dev server), one at a time |
 | `jobs/jobs.utils.ts`             | Pure, the page's too: a request checked, the command's arguments for it, whether one runs, a file's range  |
+| `thumbnail/thumbnail.service.ts` | `ThumbnailShooter`: a thumbnail, the explorer photographed with its words over it                          |
+| `thumbnail/thumbnail.utils.ts`   | Pure: the arguments, the words, the track's points, the framing, the explorer's address, the bare style    |
+| `thumbnail/cli.ts`               | `pnpm video:thumbnail`: the arguments in                                                                   |
 
 ## How it records (`recorder.service.ts`, `VideoRecorder`)
 
@@ -58,6 +63,29 @@ carries requests here). Each recording is the command run as a process of its ow
 it (`argsOf`, which `recordingOf` reads back), so a restart of the dev server stops none; its status file
 (`.cache/recording.json`) says how it goes, its log (`.cache/recording.log`) what it said, for one that
 fails; Cancel is Ctrl+C. One records at a time.
+
+## A thumbnail (`thumbnail.service.ts`, `ThumbnailShooter`)
+
+A YouTube thumbnail, ready to upload: a city's whole network, today's or with a plan built (`--plan`), in
+the app's own explorer, map only, so its lines and stations are the app's; and over it, on the left, its
+words and RailLineage's mark.
+
+- **Framed to the right side.** The whole track is fitted into `NETWORK_AREA`, clear of the words on
+  the left and of the edges a phone may crop. The explorer frames a network for its own panels, so this
+  reads the city's network from `data` (a plan built by `schema`'s `buildPlan`) for its extent: the one
+  thing this package knows of a city. The framing goes in the address (`map=`).
+- **Bold at phone size, sharp at 4K.** A small page (512 × 288) drawn at 7.5 device pixels to each: the
+  lines keep their usual width, so in a 3840 × 2160 picture they stand out.
+- **Bare and navy.** The basemap's style is answered without its roads, buildings, borders and names
+  (`bareStyleOf`); a layer laid over the page in `lighten` turns its dark ground navy and leaves the
+  lines' colours (`THUMBNAIL_CSS`), which also hides the page's buttons and links.
+- **Its words, the city's own.** The network's name as the title (`KYIV METRO`), the year in big yellow
+  (the one in the plan's name, `Kyiv 2070`; with no plan, the year the network opened) and a hook if one
+  is given (`--hook "WHAT IF?"`); `--title` and `--year` choose others, and a long line is set smaller to
+  fit (`wordsOf`, `wordsLayerOf`). They are laid out at the thumbnails' design size, 1280 × 720, and
+  scaled onto the page, in Outfit, the wordmark's typeface, waited for. `--no-words` leaves the map alone,
+  for a design of one's own.
+- **Taken once drawn.** The explorer's handle says when the map is ready and drawn, as for a recording.
 
 ## Traps
 

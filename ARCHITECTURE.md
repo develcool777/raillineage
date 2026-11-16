@@ -14,7 +14,7 @@ rule here broken changes this file first.
 | `renderer` | **Drawing**: a network on a map, and playing its history                      | core, network, schema, MapLibre            |
 | `data`     | **Storage**: every city's files, and the commands that keep them              | core, schema, network, renderer (pictures) |
 | `web`      | **The app**: what is open, the layout, how numbers and dates are written      | all of them                                |
-| `video`    | **Videos of the app**: a page of it recorded frame by frame, as an MP4        | — (the app, served; Chrome; ffmpeg)        |
+| `video`    | **Videos of the app**: a page of it recorded frame by frame, as an MP4        | core, schema, data (a thumbnail's framing) |
 | `tooling`  | **The repo's own tools**: `pnpm test-mutation`, the house's typed lint rules  | — (ESLint and Stryker read it)             |
 
 - **A fact is asked of `network`, never worked out where it is needed.** A count, a length, a
@@ -31,7 +31,11 @@ rule here broken changes this file first.
   page's Record button records through `video` too: `web/modules/videoRecorder.ts`, under `pnpm dev`
   only, carries its requests to `RecordingJobs`, which runs each recording as the command, a process of
   its own. `video` owns recording whole, its arguments, defaults, checks and status; `web` sends a city
-  and its page's query.
+  and its page's query. Beside the app, served, it takes Chrome and ffmpeg.
+- **A video's thumbnail is `video`'s too, and the one thing it knows of a city is its track's extent.**
+  `pnpm video:thumbnail` photographs the explorer, map only, bare and tinted, with the whole network
+  fitted to one side of the picture and its words on the other: the explorer frames a network for its own panels, so `video` reads
+  the city's network from `data` (with a plan built by `schema`) to frame it, and nothing more.
 - **A helper used in two packages lives once, in `core`, the bottom of the stack.** Never a copy: a
   date, a distance, a bounding box, `clamp`, `pushTo`, `required`, and the coordinate and date types.
   Within one package, one helper too: the app's counts and numbers are `web/src/utils/format.utils.ts`.

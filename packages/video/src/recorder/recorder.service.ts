@@ -8,6 +8,7 @@ import { type BrowserContext, chromium, type Page } from 'playwright-core';
 import { BROWSER_PROFILE, DRAWN_POLL_MS, DRAWN_TIMEOUT_MS, FRAME_QUALITY, OPEN_TIMEOUT_MS, WARM_UP_SECONDS } from './recorder.constants.ts';
 import type { RecorderOptions, Recording, RecordingPhase } from './recorder.types.ts';
 import {
+  assertServed,
   drawnOnceHeld,
   ffmpegArgsOf,
   ffmpegPathOf,
@@ -99,7 +100,7 @@ export class VideoRecorder {
    * @returns How long the video is, seconds.
    */
   private async take(recording: Recording): Promise<number> {
-    await this.checkServed(recording.origin);
+    await assertServed(recording.origin);
     const ffmpeg = this.ffmpegPath();
     try {
       const page = await this.open(recording);
@@ -151,20 +152,6 @@ export class VideoRecorder {
   private tell(recording: Recording, phase: RecordingPhase, seconds: number, error: string | null = null): void {
     if (recording.status === null) return;
     new StatusFile(recording.status).write(statusOf(recording, process.pid, phase, seconds, error));
-  }
-
-  /**
-   * Fails at once, and says what to do, when nothing serves the app.
-   *
-   * @param origin - Where the app should be served.
-   * @throws {Error} When nothing answers there.
-   */
-  private async checkServed(origin: string): Promise<void> {
-    try {
-      await fetch(origin, { method: 'HEAD' });
-    } catch (error) {
-      throw new Error(`nothing serves the app at ${origin}: start it, or give another origin`, { cause: error });
-    }
   }
 
   /**

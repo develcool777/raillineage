@@ -36,7 +36,7 @@ const isPageKind = (text: string): text is RecordedPageKind => text === 'video' 
  * @returns Its origin (`http://localhost:5180`), whatever path followed it.
  * @throws {Error} For anything that is not an address.
  */
-const originOf = (text: string): string => {
+export const originOf = (text: string): string => {
   try {
     return new URL(text).origin;
   } catch (error) {
@@ -45,16 +45,16 @@ const originOf = (text: string): string => {
 };
 
 /**
- * Where the video goes: `videos/<city>.mp4` for none named, `videos/<name>` for a name alone, and a path
- * from the folder the command was run in.
+ * Where a command writes its file: `videos/<fallback>` for none named, `videos/<name>` for a name alone,
+ * and a path from the folder the command was run in.
  *
  * @param out - What `--out` says, if anything.
- * @param city - The city.
+ * @param fallback - The file's name where none is given.
  * @param cwd - The folder the command was run in.
  * @returns The file's path.
  */
-const outOf = (out: string | undefined, city: string, cwd: string): string => {
-  if (out === undefined) return join(VIDEOS_FOLDER, `${city}.mp4`);
+export const fileIn = (out: string | undefined, fallback: string, cwd: string): string => {
+  if (out === undefined) return join(VIDEOS_FOLDER, fallback);
   if (basename(out) === out) return join(VIDEOS_FOLDER, out);
   return resolve(cwd, out);
 };
@@ -102,9 +102,23 @@ export const recordingOf = (args: string[], cwd: string): Recording => {
     seconds: countOf('seconds', values.seconds, RECORDING_DEFAULTS.seconds),
     origin: originOf(values.origin ?? RECORDING_DEFAULTS.origin),
     query: (values.query ?? RECORDING_DEFAULTS.query).replace(/^\?/, ''),
-    out: outOf(values.out, city, cwd),
+    out: fileIn(values.out, `${city}.mp4`, cwd),
     status: values.status === undefined ? null : resolve(cwd, values.status),
   };
+};
+
+/**
+ * Fails at once, and says what to do, when nothing serves the app.
+ *
+ * @param origin - Where the app should be served.
+ * @throws {Error} When nothing answers there.
+ */
+export const assertServed = async (origin: string): Promise<void> => {
+  try {
+    await fetch(origin, { method: 'HEAD' });
+  } catch (error) {
+    throw new Error(`nothing serves the app at ${origin}: start it, or give another origin`, { cause: error });
+  }
 };
 
 /**

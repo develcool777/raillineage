@@ -2,11 +2,14 @@ import { describe, expect, test, vi } from 'vitest';
 import { FFMPEG_LOCATIONS, VIDEOS_FOLDER } from '../../../src/recorder/recorder.constants.ts';
 import type { RecordingScope } from '../../../src/recorder/recorder.types.ts';
 import {
+  assertServed,
   drawnOnceHeld,
   ffmpegArgsOf,
   ffmpegPathOf,
+  fileIn,
   installRecordingClock,
   launchOptionsOf,
+  originOf,
   pageUrlOf,
   recordingOf,
   statusOf,
@@ -116,6 +119,30 @@ describe('RecorderUtils', () => {
         error: null,
       });
       expect(statusOf(recording, 42, 'failed', 0, 'ffmpeg failed').error).toBe('ffmpeg failed');
+    });
+  });
+
+  describe('fileIn', () => {
+    test('writes into videos/ under its own name for none given, or a name alone; a path from where the command was typed', () => {
+      expect(fileIn(undefined, 'kyiv.thumbnail.jpg', TYPED_IN)).toBe(`${VIDEOS_FOLDER}/kyiv.thumbnail.jpg`);
+      expect(fileIn('cover.jpg', 'kyiv.thumbnail.jpg', TYPED_IN)).toBe(`${VIDEOS_FOLDER}/cover.jpg`);
+      expect(fileIn('covers/cover.jpg', 'kyiv.thumbnail.jpg', TYPED_IN)).toBe(`${TYPED_IN}/covers/cover.jpg`);
+    });
+  });
+
+  describe('originOf', () => {
+    test('reads where the app is served, whatever path follows it, and says what it takes otherwise', () => {
+      expect(originOf('http://localhost:3000/kyiv/')).toBe('http://localhost:3000');
+      expect(() => originOf('localhost')).toThrow('--origin takes an address (http://localhost:5180), not localhost');
+    });
+  });
+
+  describe('assertServed', () => {
+    test('passes when the app answers, and says to start it when nothing does', async () => {
+      vi.stubGlobal('fetch', () => Promise.resolve(new Response()));
+      await expect(assertServed('http://localhost:5180')).resolves.toBeUndefined();
+      vi.stubGlobal('fetch', () => Promise.reject(new TypeError('fetch failed')));
+      await expect(assertServed('http://localhost:5180')).rejects.toThrow('nothing serves the app at http://localhost:5180: start it, or give another origin');
     });
   });
 

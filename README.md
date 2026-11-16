@@ -16,7 +16,7 @@ pnpm dev                 # http://localhost:5180
 
 ## Commands
 
-```bash
+````bash
 pnpm dev                 # the web app
 pnpm build               # production build of the Nuxt app
 pnpm type-check          # every package (each its own `type-check`, run by pnpm -r)
@@ -42,7 +42,11 @@ pnpm video:record kyiv     # record its video page (/video/kyiv, from pnpm dev, 
                            # played from where it opens until the camera rests on the whole network, as the
                            # page itself says; --fps, --size 1080x1920, --scale 1 for a pixel to a pixel rather than
                            # 4K's twice, --seconds, --out)
-```
+pnpm video:thumbnail kyiv --plan kyiv-2070 --hook "WHAT IF?"  # a video's thumbnail, ready to upload: the whole
+                           # network, the plan built, in the explorer, bare and navy, on the right; KYIV METRO, 2070
+                           # (the plan's year) and the hook on the left; 4K, from pnpm dev, into
+                           # packages/video/videos/kyiv-kyiv-2070.thumbnail.jpg (no --plan: today's network, its
+                           # opening year; --title, --year to choose the words; --no-words: the map alone)
 
 ## How it's built
 
@@ -57,11 +61,12 @@ raillineage/
 │   ├── data/        every city's network, by country (cities/<country>/<city>/), their summaries
 │                    (cities/cities.json), pnpm data:summaries, and a test per city
 │   ├── tooling/     the repo's own tools: the house's lint rules, pnpm test-mutation
-│   └── video/       videos of the app: pnpm video:record, a page recorded frame by frame into an MP4
+│   └── video/       videos of the app: pnpm video:record, a page recorded frame by frame into an MP4;
+│                    pnpm video:thumbnail, the picture a video's thumbnail is made on
 ├── web/             the app: Nuxt 4 and Nuxt UI around the renderer; src/ by surface (features/explorer,
 │                    features/landing, features/seo), shared code at its top
 └── .github/         CI (checks on every pull request) and the Cloudflare deploy
-```
+````
 
 A city's network flows one way: `data` → `schema` validates it → `renderer` draws it → `web` puts
 controls around it. The landing page reads only the small index; a city's page loads its own network.

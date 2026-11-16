@@ -15,7 +15,8 @@
   },
   "exports": {
     "./cities.json": "./cities/cities.json",
-    "./preview.constants": "./src/preview/preview.constants.ts"
+    "./preview.constants": "./src/preview/preview.constants.ts",
+    "./city.utils": "./src/city.utils.ts"
   },
   "dependencies": {
     "@raillineage/core": "workspace:*",

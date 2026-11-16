@@ -198,7 +198,20 @@ importers:
         version: 5.1.0(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(happy-dom@21.0.4)(vite@8.3.5(@emnapi/core@1.11.2)(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
 
   packages/video:
+    dependencies:
+      '@raillineage/core':
+        specifier: workspace:*
+        version: link:../core
+      '@raillineage/data':
+        specifier: workspace:*
+        version: link:../data
+      '@raillineage/schema':
+        specifier: workspace:*
+        version: link:../schema
     devDependencies:
+      '@raillineage/network':
+        specifier: workspace:*
+        version: link:../network
       playwright-core:
         specifier: ^1.65.0
         version: 1.65.0
@@ -10266,7 +10279,7 @@ snapshots:
       obug: 3.0.0
       std-env: 4.3.0
       tinyrainbow: 3.2.0
-      vitest: 5.1.0(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(happy-dom@21.0.4)(vite@8.3.5(@emnapi/core@2.0.0-beta.2)(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
+      vitest: 5.1.0(@types/node@26.6.6)(@vitest/coverage-v8@5.1.0)(happy-dom@21.0.4)(vite@8.3.5(@emnapi/core@1.11.2)(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
 
   '@vitest/eslint-plugin@1.6.28(@typescript-eslint/eslint-plugin@8.72.2(@typescript-eslint/parser@8.72.2(eslint@10.14.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.14.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.14.0(jiti@2.7.0))(typescript@6.0.3)(vitest@5.1.0)':
     dependencies:
@@ -10303,6 +10316,7 @@ snapshots:
       magic-string: 1.4.5
     optionalDependencies:
       vite: 8.3.5(@emnapi/core@2.0.0-beta.2)(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)
+    optional: true
 
   '@vitest/spy@5.1.0': {}
 
@@ -14704,6 +14718,7 @@ snapshots:
       happy-dom: 21.0.4
     transitivePeerDependencies:
       - msw
+    optional: true
 
   vscode-jsonrpc@10.0.0: {}
 
