@@ -11,7 +11,17 @@ describe('CityCard', () => {
   test('links to the city at its address, with the slash the site publishes it at', async () => {
     await renderInApp(CityCard, { city: 'kyiv', summary: KYIV });
 
-    expect(screen.getByRole('link', { name: /Kyiv/ }).getAttribute('href')).toBe('/kyiv/');
+    expect(screen.getByRole('link', { name: 'Kyiv', exact: true }).getAttribute('href')).toBe('/kyiv/');
+  });
+
+  test('links to its overview too, the link naming the city, and says where each way in goes', async () => {
+    await renderInApp(CityCard, { city: 'kyiv', summary: KYIV });
+
+    const overview = screen.getByRole('link', { name: 'Kyiv metro overview: history, lines and plans' });
+    expect(overview.getAttribute('href')).toBe('/kyiv/overview/');
+    // Its words, for a search engine reading the link.
+    expect(overview.textContent).toContain('Kyiv metro Overview');
+    expect(screen.getByText('Open the map')).toBeTruthy();
   });
 
   test('says what the city has: its networks, a history to play, its plans, lines and stations', async () => {
@@ -27,6 +37,7 @@ describe('CityCard', () => {
     await renderInApp(CityCard, { city: 'kyiv', summary: { ...KYIV, planOnly: true, plans: 0 } });
 
     expect(screen.getByText('Never built')).toBeTruthy();
+    expect(screen.getByText('Open its plans')).toBeTruthy();
     expect(screen.queryByText('History to play')).toBeNull();
     expect(screen.queryByText(/→ today/)).toBeNull();
   });
