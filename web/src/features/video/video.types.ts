@@ -43,6 +43,8 @@ export type VideoOpening = {
   network: Network;
   size: VideoSize;
   viewMode: ViewMode;
+  /** How fast the history plays, as the address asks (`videoSpeedOf`). */
+  speed: number;
   outline: string;
   /** The plan the address names, to play and end on if the network has it; `null` for none. */
   plan: string | null;
@@ -55,6 +57,8 @@ export type VideoMapInput = {
   size: VideoSize;
   /** How the video was asked to be seen, while it plays. */
   viewMode: ViewMode;
+  /** How fast the history plays. */
+  speed: number;
   framing: VideoFraming;
   /** The city's outline, coverage's; `null` for none (yet). */
   boundary: CityBoundary | null;

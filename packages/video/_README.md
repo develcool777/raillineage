@@ -1,7 +1,7 @@
 # @raillineage/video
 
-A city's video page (`web`'s `/video/<city>`, under `pnpm dev` only) recorded frame by frame into an
-MP4: from the page itself, its panel's Record button, or from the command. What a video shows is
+A city's video page (`web`'s `/<city>/video/preview`, under `pnpm dev` only) recorded frame by frame
+into an MP4: from its setup page's Record button (`/<city>/video/`), or from the command. What a video shows is
 `web`'s (`features/video/`); this package only records a page, by its city and its address's query.
 And a video's thumbnail (`pnpm video:thumbnail`), the explorer photographed with its words over it.
 

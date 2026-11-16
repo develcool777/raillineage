@@ -16,12 +16,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
-    // The video pages (features/video) are for recording, under pnpm dev: the site built leaves them out.
+    // A city's video pages (features/video: /<city>/video/, its setup, and /<city>/video/preview, what is
+    // recorded) are for recording, under pnpm dev: the site built leaves them out, and with them all they use.
     // Their Record button's server side is modules/videoRecorder.ts, which Nuxt installs, as each file in modules/.
     (_options, nuxt) => {
       if (nuxt.options.dev) return;
       nuxt.hook('pages:extend', pages => {
-        const kept = pages.filter(page => !page.path.startsWith('/video'));
+        const kept = pages.filter(page => !page.path.split('/').includes('video'));
         pages.splice(0, pages.length, ...kept);
       });
     },

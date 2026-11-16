@@ -154,7 +154,7 @@ describe('RecorderUtils', () => {
 
   describe('pageUrlOf', () => {
     test("opens the city's video page or explorer, with the query given", () => {
-      expect(pageUrlOf(recordingOf(['kyiv'], TYPED_IN))).toBe('http://localhost:5180/video/kyiv');
+      expect(pageUrlOf(recordingOf(['kyiv'], TYPED_IN))).toBe('http://localhost:5180/kyiv/video/preview');
       expect(pageUrlOf(recordingOf(['kyiv', '--page', 'explorer'], TYPED_IN))).toBe('http://localhost:5180/kyiv');
       expect(pageUrlOf(recordingOf(['kyiv', '--page', 'explorer', '--query', 'mapOnly=1&speed=2'], TYPED_IN))).toBe(
         'http://localhost:5180/kyiv?mapOnly=1&speed=2',

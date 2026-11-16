@@ -30,8 +30,6 @@
 
     <template #right>
       <slot />
-      <!-- The video pages exist under pnpm dev only: so does their way in. -->
-      <UButton v-if="DEV" to="/video" label="Video" icon="i-lucide-clapperboard" color="neutral" variant="outline" class="max-sm:hidden" />
       <UColorModeButton color="neutral" variant="outline" />
     </template>
   </UHeader>
@@ -51,7 +49,4 @@
     /** At the right, before the colour mode's button. */
     default?: () => unknown;
   }>();
-
-  /** Whether the app runs under pnpm dev, which serves the video pages. */
-  const DEV = import.meta.dev;
 </script>

@@ -8,7 +8,7 @@ import { defineStore } from 'pinia';
 import { computed, markRaw, ref, shallowRef } from 'vue';
 import { STORE_IDS } from '~/constants/store.constants';
 import { insightsMotionOf, planGainOf, videoInsightsOf } from '~/features/video/insights/insights.utils';
-import { WHOLE_FIT_MS } from '~/features/video/video.constants';
+import { VIDEO_SPEED, WHOLE_FIT_MS } from '~/features/video/video.constants';
 import type { VideoBeat, VideoOpening, VideoSize } from '~/features/video/video.types';
 import { historySpan, pageStateOf, sceneEnded, videoLayersOf, videoMapPropsOf, videoPlanOf, videoScriptOf } from '~/features/video/video.utils';
 import { fetchAskedBoundary } from '~/utils/city.utils';
@@ -42,6 +42,8 @@ export const useVideoStore = defineStore(STORE_IDS.VIDEO, () => {
   const size = ref<VideoSize>({ width: 0, height: 0 });
   /** In 3D, or flat, while it plays. */
   const viewMode = ref<ViewMode>('3d');
+  /** How fast the history plays. */
+  const speed = ref(VIDEO_SPEED);
   /** The page's clock, ms: moved on each frame, by the recorder when one records it. */
   const now = ref(0);
   const sceneStartedAt = ref(0);
@@ -72,7 +74,16 @@ export const useVideoStore = defineStore(STORE_IDS.VIDEO, () => {
   const shown = computed(() => planFacts.value ?? facts.value);
   /** What the map shows, once there is a network. */
   const mapProps = computed(() =>
-    shown.value ? videoMapPropsOf({ facts: shown.value, size: size.value, viewMode: viewMode.value, framing: framing.value, boundary: boundary.value }) : null,
+    shown.value
+      ? videoMapPropsOf({
+          facts: shown.value,
+          size: size.value,
+          viewMode: viewMode.value,
+          speed: speed.value,
+          framing: framing.value,
+          boundary: boundary.value,
+        })
+      : null,
   );
   /** How much of each piece over the map shows this frame. */
   const layers = computed(() =>
@@ -182,6 +193,7 @@ export const useVideoStore = defineStore(STORE_IDS.VIDEO, () => {
     script.value = videoScriptOf(videoPlanOf(facts.value.plans(), facts.value.planOnly, opening.plan));
     size.value = opening.size;
     viewMode.value = opening.viewMode;
+    speed.value = opening.speed;
     void LOAD_BOUNDARY(opening.outline);
   };
   /**
@@ -252,6 +264,7 @@ export const useVideoStore = defineStore(STORE_IDS.VIDEO, () => {
     outlineSettled,
     size,
     viewMode,
+    speed,
     now,
     sceneStartedAt,
     time,

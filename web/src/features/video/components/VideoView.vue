@@ -27,28 +27,18 @@
       :shown="store.layers.end" />
     <VideoEnd v-else :name="cityName" :stats="store.time?.stats ?? null" :counted="store.endCounted" :address :shown="store.layers.end" />
     <MapCredits :credits="store.credits" plain class="absolute right-[2vmin] bottom-[1.2vmin] opacity-70" />
-    <VideoRecordPanel
-      v-if="panelShown"
-      :city="props.city"
-      :plans="store.facts?.plans() ?? []"
-      :planOnly="store.facts?.planOnly ?? false"
-      :plan="planAsked"
-      :view="viewAsked"
-      :ended="store.pageState === 'done'"
-      @preview="preview" />
   </div>
 </template>
 
 <script setup lang="ts">
   import type { Network } from '@raillineage/schema/network.types';
   import type { RecordedWindow } from '@raillineage/video/videoPage.types';
-  import { useEventListener } from '@vueuse/core';
-  import { computed, useTemplateRef } from 'vue';
-  import { navigateTo, useRoute, useRuntimeConfig } from '#imports';
+  import { computed, useTemplateRef, watch } from 'vue';
+  import { useRoute, useRuntimeConfig } from '#imports';
   import { useVideoMap } from '~/features/video/video.composable';
   import { MINIMAP_HEIGHT_VMIN, MINIMAP_TOP_VMIN } from '~/features/video/video.constants';
   import { useVideoStore } from '~/features/video/video.store';
-  import { spokenAddress, videoPlanAskedOf, videoViewOf } from '~/features/video/video.utils';
+  import { spokenAddress, videoPlanAskedOf, videoSpeedOf, videoViewOf } from '~/features/video/video.utils';
   import { boundaryUrlOf, cityNameOf, citySummaryOf } from '~/utils/city.utils';
 
   const props = defineProps<{
@@ -67,26 +57,25 @@
   const baseURL = useRuntimeConfig().app.baseURL;
   const viewAsked = computed(() => videoViewOf(route.query.view));
   const planAsked = computed(() => videoPlanAskedOf(route.query.plan));
+  const speedAsked = computed(() => videoSpeedOf(route.query.speed));
   useVideoMap({ container, minimapContainer }, () => ({
     network: props.network,
     viewMode: viewAsked.value,
+    speed: speedAsked.value,
     outline: `${baseURL}${boundaryUrlOf(props.city)}`,
     plan: planAsked.value,
   }));
 
-  // Recorded, the recorder starts it; watched, it waits on its panel, which sets it up, previews it and
-  // records it, and comes back when the preview ends. A recording never shows the panel.
+  // Recorded, the recorder starts it; watched (opened by hand, or framed by its setup page,
+  // `/<city>/video/`), it plays as soon as it is ready, once: opened afresh, it plays again.
   const recorded = Boolean((window as Window & RecordedWindow).raillineageRecorder);
-  const panelShown = computed(() => !recorded && (store.pageState === 'ready' || store.pageState === 'done'));
-  /** Plays the video here: from the start, or again, the page opened afresh, as a video plays once. */
-  const preview = async () => {
-    if (store.pageState === 'done') await navigateTo(route.fullPath, { external: true });
-    else store.START();
-  };
-  // Esc stops a preview: the page opens afresh, at its panel.
-  useEventListener(window, 'keydown', event => {
-    if (event.key === 'Escape' && !recorded && store.pageState === 'playing') void navigateTo(route.fullPath, { external: true });
-  });
+  watch(
+    () => store.pageState,
+    state => {
+      if (!recorded && state === 'ready') store.START();
+    },
+    { immediate: true },
+  );
 
   const cityName = computed(() => cityNameOf(props.city));
   const summary = computed(() => citySummaryOf(props.city));

@@ -15,7 +15,7 @@ import type { TransitMapMount } from '~/utils/transitMap.types';
  * between commands (its outline coming), and repeats a beat's as Vue flushes, which does nothing. Each
  * frame gives the store the page's clock (`performance.now`, which a recorder moves itself), and the
  * page's handle tells a recorder where the video is and whether its frame is drawn (`VideoPageHandle`).
- * The video waits to be started: recorded, by the recorder; watched, by its panel's Preview.
+ * The video waits to be started: recorded, by the recorder; watched, as soon as it is ready (`VideoView`).
  * Everything on the page that moves is worked out from that clock, never left to a CSS transition,
  * which runs on a clock no recorder moves. Client only.
  *
