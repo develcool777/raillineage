@@ -4,6 +4,8 @@ export { expect } from '@playwright/test';
 
 /** The stand-in basemap's glyph server: a host that never resolves, answered here. */
 const GLYPHS_HOST = 'basemap.invalid';
+/** Google AdSense's host, whose ad tag every page of the build loads (`nuxt.config.ts`). */
+const ADS_HOST = 'pagead2.googlesyndication.com';
 
 /** A basemap with nothing on it but its background and a glyph server: what the map needs to load. */
 const STAND_IN_STYLE = {
@@ -16,7 +18,7 @@ const STAND_IN_STYLE = {
 
 /**
  * Playwright's `test`, with each page kept to the build: a request outside it is answered by a stand-in
- * basemap (its style, and glyphs with no glyph in them), or refused, so no test waits on the tile server
+ * basemap (its style, and glyphs with no glyph in them), the ad tag by a script that does nothing, or refused, so no test waits on the tile server
  * or fails with it. And as the unit tests' setup does, an error the page throws or logs fails the test.
  */
 export const test = base.extend({
@@ -36,6 +38,7 @@ export const test = base.extend({
         const url = new URL(route.request().url());
         if (url.pathname.startsWith('/styles/')) return route.fulfill({ json: STAND_IN_STYLE });
         if (url.hostname === GLYPHS_HOST) return route.fulfill({ body: Buffer.alloc(0), contentType: 'application/x-protobuf' });
+        if (url.hostname === ADS_HOST) return route.fulfill({ body: '', contentType: 'text/javascript' });
         errors.push(`A request outside the build: ${url.href}`);
         return route.abort();
       },

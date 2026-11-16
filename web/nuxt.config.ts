@@ -6,6 +6,8 @@ import { CITIES } from './src/constants/city.constants';
 const SITE_URL = 'https://raillineage.com';
 /** The path the app is served under, with its slash: what public/'s files are fetched from. */
 const BASE_URL = process.env.NUXT_APP_BASE_URL ?? '/';
+/** The site's Google AdSense account, as its ad tag names it. */
+const ADSENSE_CLIENT = 'ca-pub-2880179911287957';
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-01',
@@ -73,6 +75,22 @@ export default defineNuxtConfig({
         { property: 'og:site_name', content: 'RailLineage' },
         { property: 'og:type', content: 'website' },
       ],
+    },
+  },
+  // Google AdSense, on the site built only: `pnpm dev`, and the videos recorded from it, show no ads.
+  // Its publisher id is in public/ads.txt too, which says who may sell the site's ad space. Visitors from
+  // the EEA, the UK and Switzerland are asked for their consent by the message AdSense serves (Privacy & messaging).
+  $production: {
+    app: {
+      head: {
+        script: [
+          {
+            src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`,
+            async: true,
+            crossorigin: 'anonymous',
+          },
+        ],
+      },
     },
   },
   // The site's address as published, whatever the app runs under: a video names it (`publishedUrl`).
