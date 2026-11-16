@@ -11,6 +11,7 @@ import type {
   LineDetails,
   LineDirection,
   LineInfo,
+  NamedLine,
   NetworkRecords,
   NetworkStats,
   Playhead,
@@ -88,6 +89,23 @@ export class FactsAt {
         ];
       })
       .toSorted((first, second) => first.name.localeCompare(second.name));
+  }
+
+  /**
+   * The lines to be had at each station on the map: those calling there, then those at the stations
+   * it has a transfer to, each once, as drawn; a line's diagram marks where it meets another.
+   *
+   * @returns Each station's lines.
+   */
+  public interchanges(): Map<StationId, NamedLine[]> {
+    const { cursor } = this.moment;
+    return new Map(
+      [...this.timeline.stationsOnMap(cursor)].map(station => {
+        const across = this.index.transfersAt(station).flatMap(other => this.timeline.linesCallingAt(other, cursor));
+        const lines = new Set([...this.timeline.linesCallingAt(station, cursor), ...across]);
+        return [station, [...lines].map(line => this.named(line))] as const;
+      }),
+    );
   }
 
   /**
@@ -305,7 +323,7 @@ export class FactsAt {
    * @param line - The line id.
    * @returns The line.
    */
-  private named(line: LineId): { id: LineId; name: string; color: LineInfo['color'] } {
+  private named(line: LineId): NamedLine {
     return { id: line, name: this.index.lineName(line), color: this.index.colorOf(line) };
   }
 }

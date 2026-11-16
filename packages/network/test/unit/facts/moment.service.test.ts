@@ -132,6 +132,19 @@ describe('FactsAt', () => {
     expect(queries.station(stationId('a')).transfers).toEqual([]);
   });
 
+  test('tells the lines to be had at each station: those calling there, then those a transfer away, each once', () => {
+    const facts = NetworkFacts.create(routeNetwork(), { today: toTimestamp('2026-01-01') });
+    const interchanges = facts.today().interchanges();
+    // B and G are a walk apart: red calls at B, green at G.
+    expect(interchanges.get(stationId('b'))?.map(line => line.id)).toEqual(['red', 'green']);
+    expect(interchanges.get(stationId('g'))?.map(line => line.id)).toEqual(['green', 'red']);
+    expect(interchanges.get(stationId('e'))?.map(line => line.id)).toEqual(['blue', 'green', 'yellow']);
+    expect(interchanges.get(stationId('d'))).toEqual([{ id: 'red', name: 'red line', color: { light: '#000000', dark: '#000000' } }]);
+    // A transfer to a station no line calls at yet adds nothing; a station no line calls at is not one.
+    const early = queriesOn('1935-01-01').queries.interchanges();
+    expect(early.get(stationId('d'))?.map(line => line.id)).toEqual(['red']);
+  });
+
   test('lists the stations a line calls at for a search, by name, with their colours', () => {
     const { queries } = queriesOn('1935-01-01');
     expect(queries.stations().map(station => [station.id, station.name, station.colors])).toEqual([

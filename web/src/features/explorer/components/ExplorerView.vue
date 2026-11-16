@@ -60,7 +60,7 @@
               v-else-if="lineDetails"
               :line="lineDetails"
               :changes="lineChanges"
-              :stationColors
+              :interchanges
               @station="store.PICK_STATION"
               @pickChange="timeStore.PICK({ kind: 'change', index: $event })" />
             <StationsSection v-else-if="section === 'stations'" :stations @open="store.PICK_STATION" />
@@ -289,7 +289,7 @@
     lineChanges,
     station,
     stations,
-    stationColors,
+    interchanges,
     stationDirections,
     linesOpened,
     routeStops,

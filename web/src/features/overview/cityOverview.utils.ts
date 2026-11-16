@@ -1,6 +1,7 @@
+import { fromEntriesOf } from '@raillineage/core/collection.utils';
 import { NetworkFacts } from '@raillineage/network/facts.service';
 import type { FactsAt } from '@raillineage/network/moment.service';
-import type { LineId, Network } from '@raillineage/schema/network.types';
+import type { LineId, Network, StationId } from '@raillineage/schema/network.types';
 import type { CityOverview, OverviewLine } from '~/features/overview/overview.types';
 import { changesByDecade } from '~/utils/changes.utils';
 
@@ -18,6 +19,18 @@ const overviewLineOf = (described: FactsAt, line: LineId): OverviewLine => {
   const { id, name, networkName, color, opened, stations, km, branches } = described.line(line);
   return { id, name, networkName, color, opened, stations, km, runs: branches };
 };
+
+/**
+ * Where more than one line is to be had, the lines there (`FactsAt.interchanges`), by their ids: all a
+ * line's diagram needs to say which others to change for, the rest of each line being on the page.
+ *
+ * @param described - The network at the moment described.
+ * @returns The lines at each interchange.
+ */
+const interchangesOf = (described: FactsAt): Partial<Record<StationId, LineId[]>> =>
+  fromEntriesOf(
+    [...described.interchanges()].filter(([, lines]) => lines.length > 1).map(([station, lines]) => [station, lines.map(line => line.id)] as const),
+  );
 
 /**
  * A city's overview: its network as the explorer opens on it (`NetworkFacts.planToOpen`), as built
@@ -40,6 +53,7 @@ export const cityOverviewOf = (city: string, network: Network): CityOverview => 
       .lines()
       .map(line => overviewLineOf(described, line.id))
       .filter(line => line.stations > 0),
+    interchanges: interchangesOf(described),
     growth: facts.hasHistory() ? facts.growth() : null,
     history: changesByDecade(changes.filter(change => change.time !== null)),
     plans: facts.plans(),

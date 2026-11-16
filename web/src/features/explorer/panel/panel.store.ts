@@ -1,4 +1,4 @@
-import type { LineDirection, Stop } from '@raillineage/network/facts.types';
+import type { LineDirection, NamedLine, Stop } from '@raillineage/network/facts.types';
 import type { LineId, StationId } from '@raillineage/schema/network.types';
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
@@ -52,8 +52,8 @@ export const usePanelStore = defineStore(STORE_IDS.EXPLORER_PANEL, () => {
   const linesOpened = computed(() => now.value?.linesOpened() ?? null);
   /** The stations on the map at the moment shown, for the sections and the search, playing too. */
   const stations = computed(() => settled.value?.stations() ?? []);
-  /** Each station's lines' colours, to mark a line's interchanges. */
-  const stationColors = computed(() => new Map(stations.value.map(entry => [entry.id, entry.colors])));
+  /** The lines to be had at each station on the map, there or a transfer away, to mark a line's interchanges. */
+  const interchanges = computed(() => settled.value?.interchanges() ?? new Map<StationId, NamedLine[]>());
   /**
    * A station named on the date shown.
    *
@@ -119,7 +119,7 @@ export const usePanelStore = defineStore(STORE_IDS.EXPLORER_PANEL, () => {
     stationDirections,
     linesOpened,
     stations,
-    stationColors,
+    interchanges,
     routeStops,
     reachStop,
     currentChange,
