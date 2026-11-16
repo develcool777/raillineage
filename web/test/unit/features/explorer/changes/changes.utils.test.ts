@@ -1,7 +1,8 @@
 import type { ChangeInfo } from '@raillineage/network/facts.types';
 import { describe, expect, test } from 'vitest';
 import { timeAt } from '@test/support/factories/timeState.utils';
-import { changeRows, changeState, changesByDecade, currentChangeIndex, findChanges } from '~/features/explorer/changes/changes.utils';
+import { changeRows, changeState, currentChangeIndex, findChanges } from '~/features/explorer/changes/changes.utils';
+import { changesByDecade } from '~/utils/changes.utils';
 
 /**
  * A change in the timeline.
@@ -22,17 +23,6 @@ const change = (index: number, year: number | null): ChangeInfo => ({
 const CHANGES = [change(0, 1863), change(1, 1868), change(2, 1933), change(3, 1933), change(4, null)];
 
 describe('ChangesUtils', () => {
-  describe('changesByDecade', () => {
-    test('puts each change under its decade, a plan’s under Plan', () => {
-      const groups = changesByDecade(CHANGES);
-      expect(groups.map(group => [group.decade, group.changes.map(entry => entry.index)])).toEqual([
-        ['1860s', [0, 1]],
-        ['1930s', [2, 3]],
-        ['Plan', [4]],
-      ]);
-    });
-  });
-
   describe('findChanges', () => {
     test('finds the changes holding every word typed, in their title, what they name or their year, accents and case aside', () => {
       const changes = [

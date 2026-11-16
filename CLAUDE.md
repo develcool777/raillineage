@@ -23,7 +23,9 @@ when it is over, and says a frame is drawn, the map answering: the tiles in view
 stands still with the clock; what a video shows stays in `web`; `pnpm video:thumbnail <city> [--plan <id>]`
 takes a video's thumbnail, the explorer map only at 4K with its words over it, the network framed from
 `data`, the one thing `video` knows of a city) and `web` (the app: the Nuxt 4 + Nuxt UI
-explorer, and the video page, `/video/<city>`, in 3D or flat with `?view=2d`, under `pnpm dev` only;
+explorer; each city's overview, `/<city>/overview/`, its network on one page to read, prerendered
+from its facts by the build's own server, `web/server/api/overviews/`, as the site is static files;
+and the video page, `/video/<city>`, in 3D or flat with `?view=2d`, under `pnpm dev` only;
 `pnpm video:record <city> --query "plan=<id>"` records a plan of the city's as its ending; or open
 `/video`, the header's Video under `pnpm dev`, whose panel picks the city, plan and view, previews and
 records, through `video`'s `RecordingJobs`, `web/modules/videoRecorder.ts` carrying its requests).

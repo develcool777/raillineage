@@ -11,7 +11,9 @@ import {
   fetchAskedBoundary,
   fetchBoundary,
   isCity,
+  networkFileOf,
   networkUrlOf,
+  overviewPathOf,
   previewUrlOf,
   socialUrlOf,
 } from '~/utils/city.utils';
@@ -41,10 +43,22 @@ describe('CityUtils', () => {
     });
   });
 
-  describe('networkUrlOf', () => {
+  describe('networkFileOf', () => {
     test("finds every city's dataset in its country's folder", () => {
+      expect(networkFileOf('tyne-and-wear')).toBe('united-kingdom/tyne-and-wear/tyne-and-wear.json');
+      for (const city of CITIES) expect(existsSync(`${SERVED}${networkFileOf(city.value)}`), city.value).toBe(true);
+    });
+  });
+
+  describe('overviewPathOf', () => {
+    test("publishes a city's overview under its page, with a slash", () => {
+      expect(overviewPathOf('kyiv')).toBe('/kyiv/overview/');
+    });
+  });
+
+  describe('networkUrlOf', () => {
+    test('serves a dataset under data/', () => {
       expect(networkUrlOf('tyne-and-wear')).toBe('data/united-kingdom/tyne-and-wear/tyne-and-wear.json');
-      for (const city of CITIES) expect(existsSync(`${SERVED}${networkUrlOf(city.value).replace(/^data\//, '')}`), city.value).toBe(true);
     });
 
     test('refuses a city it does not know, rather than give a path to nothing', () => {

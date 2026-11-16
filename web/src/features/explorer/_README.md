@@ -64,8 +64,9 @@ way only (ARCHITECTURE.md, `web`):
   `recorded.composable.ts` (under `pnpm dev`, the handle a recorder knows the page by: `VideoPageHandle`).
 - `shortcuts.constants.ts`: the keys, each the action a button elsewhere does; the keys listen for
   them (`shortcuts.composable.ts`) and the help lists them, from the one list.
-- `explorer.types.ts`, `explorer.constants.ts`, `format.utils.ts`: the sections, the time control's
-  modes, the sheet's snaps; the layout's sizes; dates and counts as the page writes them.
+- `explorer.types.ts`, `explorer.constants.ts`: the sections, the time control's modes, the sheet's
+  snaps; the layout's sizes. Dates and counts as the page writes them are the app's
+  (`~/utils/format.utils.ts`), as a city's overview writes them too.
 
 ## Where state lives
 

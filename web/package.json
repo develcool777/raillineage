@@ -43,6 +43,7 @@
     "@vue/test-utils": "^2.6.0",
     "h3": "^1.15.11",
     "happy-dom": "^21.0.4",
+    "nitropack": "2.13.6",
     "serve": "^14.2.7",
     "typescript": "6.0.3",
     "vue-component-type-helpers": "^3.3.14",

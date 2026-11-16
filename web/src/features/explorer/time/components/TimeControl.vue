@@ -74,9 +74,8 @@
   import type { TimeState } from '@raillineage/renderer/transitMap.types';
   import { computed } from 'vue';
   import type { PlayerSettings, TimeMode } from '~/features/explorer/explorer.types';
-  import { formatDay } from '~/features/explorer/format.utils';
   import type { TimelineTarget } from '~/features/explorer/time/timeline.types';
-  import { lineColor, pluralOf } from '~/utils/format.utils';
+  import { formatDay, lineColor, pluralOf } from '~/utils/format.utils';
 
   const props = defineProps<{
     /** The timeline, or the player playing the history. */

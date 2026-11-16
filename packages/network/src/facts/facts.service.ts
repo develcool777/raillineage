@@ -280,6 +280,19 @@ export class NetworkFacts {
   }
 
   /**
+   * The network as built, for the questions about it as it stands: today, as `summary` and `sketch`
+   * count it; a network never built, its first plan whole, whichever plan these facts build.
+   *
+   * @returns The questions, each answered for the network as built.
+   */
+  public built(): FactsAt {
+    const first = this.planOnly ? firstPlanOf(this.shown.network) : undefined;
+    if (first === undefined) return this.today();
+    if (first === this.plan) return this.asOf(this.playheads.end());
+    return NetworkFacts.create(this.stored, { plan: first, hidden: this.hidden, today: this.range.today }).built();
+  }
+
+  /**
    * The network at a moment, for the questions about it then.
    *
    * @param moment - The moment: the map's `time`.

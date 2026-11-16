@@ -30,6 +30,8 @@
 /* The brand green, as a palette: Nuxt UI's `primary` (app.config.ts), the green ui.nuxt.com itself uses. */
 @theme static {
   --font-sans: 'Inter', system-ui, sans-serif;
+  /* An article's body, a city's overview: Charter, as long reads are set, where the system has it; never a font to download. */
+  --font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, ui-serif, Georgia, serif;
 
   --color-brand-50: #effdf5;
   --color-brand-100: #d9fbe8;

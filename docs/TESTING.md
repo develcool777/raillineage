@@ -26,7 +26,7 @@ packages/data/
 web/test/unit/              mirrors web/src/ for its helpers (*.utils.ts), stores and components; they import as
                             the app does, from ~/, and test/support/ from @test/: a component's spec is named
                             for it, features/lines/components/LinesSection.spec.ts
-web/test/e2e/               the built site in Chromium (Playwright, `*.e2e.ts`, a file per surface: landing, explorer)
+web/test/e2e/               the built site in Chromium (Playwright, `*.e2e.ts`, a file per surface: landing, explorer, overview)
 ```
 
 - `network` and the renderer know no city: their tests use made-up networks (`tinyNetwork`). A check of a city's

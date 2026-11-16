@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { citySeo, landingSeo, pageUrl } from '~/features/seo/seo.utils';
+import { cityOverviewSeo, citySeo, landingSeo, pageUrl } from '~/features/seo/seo.utils';
 
 const BUILT = { name: 'Kyiv', country: 'ukraine', networks: ['Kyiv Metro'], openedYear: 1960, planOnly: false, plans: 2, lines: 3, stations: 52 };
 
@@ -32,6 +32,24 @@ describe('SeoUtils', () => {
       const seo = citySeo('kyiv', { ...BUILT, planOnly: true, openedYear: null, plans: 1, lines: 1 });
       expect(seo.title).toContain('never was');
       expect(seo.description).toContain('1 line and 52 stations');
+    });
+  });
+
+  describe('cityOverviewSeo', () => {
+    test("tells a network's story since its first year, at the city's overview, with the city's social card", () => {
+      const seo = cityOverviewSeo('kyiv', BUILT);
+      expect(seo.path).toBe('kyiv/overview');
+      expect(seo.title).toBe('Kyiv metro history: every line, station and opening since 1960 | RailLineage');
+      expect(seo.description).toContain('Kyiv Metro grew from its first line in 1960 to 3 lines and 52 stations');
+      expect(seo.description).toContain('its 2 plans');
+      expect(seo.image).toEqual(citySeo('kyiv', BUILT).image);
+      expect(seo.jsonLd).toMatchObject({ '@type': 'Article', headline: 'Kyiv metro history: every line, station and opening since 1960' });
+    });
+
+    test('says a network never built never was, and counts its plans', () => {
+      const seo = cityOverviewSeo('kyiv', { ...BUILT, planOnly: true, openedYear: null, plans: 3, lines: 1 });
+      expect(seo.title).toBe('Kyiv metro plans: the network never built | RailLineage');
+      expect(seo.description).toContain('3 plans in all');
     });
   });
 });

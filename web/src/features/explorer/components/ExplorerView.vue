@@ -13,6 +13,17 @@
         <UDashboardSearchButton label="Find a station or line…" color="neutral" class="w-full max-w-105" @click="store.OPEN_DIALOG('search')" />
       </template>
       <UButton v-if="phone" icon="i-lucide-search" color="neutral" variant="ghost" square aria-label="Search" @click="store.OPEN_DIALOG('search')" />
+      <!-- The city's overview, its story on one page to read; on a phone, its icon alone. -->
+      <UTooltip text="Its history, lines and plans, to read">
+        <UButton
+          :to="overviewPathOf(city)"
+          icon="i-lucide-book-open-text"
+          color="neutral"
+          variant="ghost"
+          :square="phone"
+          :label="phone ? undefined : 'Overview'"
+          :aria-label="phone ? 'Overview' : undefined" />
+      </UTooltip>
     </SiteHeader>
 
     <div class="relative flex min-h-0 flex-1">
@@ -236,7 +247,7 @@
   import { useExplorerShortcuts } from '~/features/explorer/shortcuts.composable';
   import { useTimeStore } from '~/features/explorer/time/time.store';
   import { useToolsStore } from '~/features/explorer/tools.store';
-  import { boundaryUrlOf } from '~/utils/city.utils';
+  import { boundaryUrlOf, overviewPathOf } from '~/utils/city.utils';
 
   const props = defineProps<{
     /** The city's network, as its file holds it. */

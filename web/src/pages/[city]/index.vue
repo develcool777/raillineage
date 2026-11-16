@@ -17,6 +17,7 @@
               height="170"
               class="border-default w-full rounded-xl border" />
             <p class="text-muted text-sm">{{ seo.description }}</p>
+            <ULink :to="overviewPathOf(city)" class="text-primary text-sm">Read its history, lines and plans</ULink>
             <p class="text-muted text-xs">Loading the map…</p>
           </div>
         </div>
@@ -30,7 +31,7 @@
   import { usePageSeo } from '~/features/seo/pageSeo.composable';
   import { citySeo } from '~/features/seo/seo.utils';
   import { useCityNetwork } from '~/utils/city.composable';
-  import { cityNameOf, citySummaryOf, isCity, previewUrlOf } from '~/utils/city.utils';
+  import { cityNameOf, citySummaryOf, isCity, overviewPathOf, previewUrlOf } from '~/utils/city.utils';
 
   // Only cities with a dataset have a page: any other address is a 404. Each city is a page of its
   // own, mounted afresh (its title and description with it); a plan in the address changes neither.

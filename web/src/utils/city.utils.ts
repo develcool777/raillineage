@@ -37,19 +37,28 @@ export const cityMenu = (): { type?: 'label'; label: string; value?: string }[][
   citiesByCountry().map(({ country, cities }) => [{ type: 'label' as const, label: country }, ...cities.map(({ label, value }) => ({ label, value }))]);
 
 /**
- * Where a city's dataset is served, under the site's base URL.
+ * Where a city's dataset is kept, among the cities' files (`packages/data/cities/`).
+ *
+ * @param city - A city id.
+ * @returns Its path there: `<country>/<city>/<city>.json`.
+ * @throws {Error} For a city not in the catalogue.
+ */
+export const networkFileOf = (city: string): string => {
+  const { country } = required(
+    CITIES.find(candidate => candidate.value === city),
+    `city ${city}`,
+  );
+  return `${slugOf(country)}/${city}/${city}.json`;
+};
+
+/**
+ * Where a city's dataset is served, under the site's base URL: the cities' files are served under `data/`.
  *
  * @param city - A city id.
  * @returns Its path, relative to the base URL: `data/<country>/<city>/<city>.json`.
  * @throws {Error} For a city not in the catalogue.
  */
-export const networkUrlOf = (city: string): string => {
-  const { country } = required(
-    CITIES.find(candidate => candidate.value === city),
-    `city ${city}`,
-  );
-  return `data/${slugOf(country)}/${city}/${city}.json`;
-};
+export const networkUrlOf = (city: string): string => `data/${networkFileOf(city)}`;
 
 /**
  * Where a city's outline is served, under the site's base URL: beside its dataset, if it has one.
@@ -85,6 +94,14 @@ export const socialUrlOf = (city: string): string => networkUrlOf(city).replace(
  * @returns Its name, as in the menu.
  */
 export const cityNameOf = (city: string): string => CITIES.find(candidate => candidate.value === city)?.label ?? city;
+
+/**
+ * A city's overview, as the site publishes it: with a slash, as every page.
+ *
+ * @param city - A city id.
+ * @returns Its path: `/<city>/overview/`.
+ */
+export const overviewPathOf = (city: string): string => `/${city}/overview/`;
 
 /**
  * A city's summary: its lines, stations, plans, when it began.

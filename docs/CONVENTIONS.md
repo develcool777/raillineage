@@ -141,10 +141,13 @@ nameCompare)` (`@raillineage/core/collection.utils`), not `a - b || nameCompare`
                           DecadeChart, CoverageChart, on YearChart's round years…; a number on rolling reels: ReelNumber draws a count,
                           CountingNumber counts to each value on the page's clock, which a recorder moves)
   constants/  utils/      what more than one surface needs: the city catalogue (CITIES, city.utils,
-                          its outline fetched), plans' statuses, how a number, a share, a walk or
-                          what a plan adds is written, a measure's growth
+                          its outline fetched), plans' statuses, how a number, a share, a walk, a day
+                          or what a plan adds is written, the changes by decade, a measure's growth
   features/<name>/        one product surface each: explorer (a city's map), landing (the city list),
-                          seo, video (a city's history as a video, to record, a script of beats worked
+                          overview (a city's network on one page to read, set as a long read, `/<city>/overview/`: its
+                          lines, every change and its plans, worked out as the site is built by the
+                          build's own server, `web/server/api/overviews/`, which nothing serves once
+                          published), seo, video (a city's history as a video, to record, a script of beats worked
                           out up front, `videoScriptOf`: its title, the history to today, the whole
                           network flat, its numbers on `insights/` panels round it, its coverage drawn,
                           and the end card over them; with `?plan=<id>` on past them, the plan played

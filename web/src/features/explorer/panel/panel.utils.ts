@@ -4,9 +4,8 @@ import type { LineDetails, PlanInfo, StationInfo } from '@raillineage/network/fa
 import { PLAN_STATUSES } from '~/constants/plan.constants';
 import { SECTIONS } from '~/features/explorer/explorer.constants';
 import type { Section, SectionEntry } from '~/features/explorer/explorer.types';
-import { formatDay } from '~/features/explorer/format.utils';
 import type { MarksInput, PanelTopContent, PlanLegend, PlanSummary, SectionTopInput } from '~/features/explorer/panel/panel.types';
-import { counted, formatPlanFacts, lineColor } from '~/utils/format.utils';
+import { counted, formatDay, formatPlanFacts, lineColor } from '~/utils/format.utils';
 
 /**
  * The top of a station's view: its name; under it, its names in other languages and the year its
