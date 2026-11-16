@@ -84,13 +84,16 @@ export default defineNuxtConfig({
   sitemap: { zeroRuntime: true, discoverImages: false },
   // Each city's dataset, packages/data/cities/<country>/<city>/<city>.json, served as it is kept
   // (/data/united-kingdom/london/london.json), with its pictures beside it.
-  // `nuxt generate` prerenders the landing page, About, Privacy, Terms and every city's page.
+  // `nuxt generate` prerenders the landing page, About, Privacy, Terms, and every city's page and overview.
   nitro: {
     publicAssets: [{ dir: fileURLToPath(new URL('../packages/data/cities', import.meta.url)), baseURL: '/data' }],
+    // The same files for the build's own server, which works out each city's overview as its page is
+    // prerendered (`server/api/overviews/`): the prerenderer serves none of the public ones.
+    serverAssets: [{ baseName: 'cities', dir: fileURLToPath(new URL('../packages/data/cities', import.meta.url)) }],
     prerender: {
       // Every page is listed here, so nothing is found by following links.
       crawlLinks: false,
-      routes: ['/', '/about', '/privacy', '/terms', ...CITIES.map(city => `/${city.value}`)],
+      routes: ['/', '/about', '/privacy', '/terms', ...CITIES.flatMap(city => [`/${city.value}`, `/${city.value}/overview`])],
     },
   },
   // Icons come with the site, from @iconify-json/lucide: a visitor's browser never asks Iconify for one.

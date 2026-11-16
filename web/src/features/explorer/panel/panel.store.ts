@@ -7,12 +7,12 @@ import { currentChangeIndex } from '~/features/explorer/changes/changes.utils';
 import { useExplorerStore } from '~/features/explorer/explorer.store';
 import type { PanelView } from '~/features/explorer/explorer.types';
 import { viewIn } from '~/features/explorer/explorer.utils';
-import { formatStats } from '~/features/explorer/format.utils';
 import { useNetworkStore } from '~/features/explorer/network.store';
 import { lineTop, marksOf, planLegendOf, planSummaryOf, sectionLabelOf, sectionTop, sectionsOf, stationTop } from '~/features/explorer/panel/panel.utils';
 import { useTimeStore } from '~/features/explorer/time/time.store';
 import { useToolsStore } from '~/features/explorer/tools.store';
 import type { RouteStops } from '~/features/explorer/tools.types';
+import { formatStats } from '~/utils/format.utils';
 
 /**
  * What the panel and the page around the map show: the sections, the line or station open, the

@@ -215,6 +215,19 @@ describe('NetworkFacts', () => {
     expect(NetworkFacts.create(planOnlyNetwork(), { today: TODAY, plan: planId('second') }).summary()).toMatchObject(summary);
   });
 
+  test('answers for the network as built: today, whichever plan is built on it', () => {
+    expect(factsOf(planId('extension')).built().stats()).toEqual(factsOf().today().stats());
+  });
+
+  test('answers for a network never built as its first plan whole, as its summary counts it, whichever plan is built', () => {
+    const summary = NetworkFacts.create(planOnlyNetwork(), { today: TODAY }).summary();
+    for (const plan of [undefined, planId('first'), planId('second')]) {
+      const built = NetworkFacts.create(planOnlyNetwork(), { ...(plan && { plan }), today: TODAY }).built();
+      expect(built.stats(), String(plan)).toMatchObject({ lines: summary.lines, stations: summary.stations });
+      expect([...built.linesOpened()], String(plan)).toEqual([lineId('red')]);
+    }
+  });
+
   test('leaves out of its sums the lines hidden, and the stations only they call at', () => {
     expect(NetworkFacts.create(hiddenNetwork(), { today: TODAY }).summary()).toMatchObject({ lines: 3, stations: 3 });
     expect(NetworkFacts.create(hiddenNetwork(), { today: TODAY, hidden: [] }).summary()).toMatchObject({ lines: 4, stations: 5 });

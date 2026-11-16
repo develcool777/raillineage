@@ -65,6 +65,7 @@ facts.change(index);
 facts.growth();
 facts.hasHistory();
 facts.today(); // the questions below, for today
+facts.built(); // the same, for the network as it stands: today, or one never built, its first plan whole
 const then = facts.asOf(time); // a FactsAt; time: a Playhead { cursor, time, progress }, as the map's `time` event gives it
 then.stations();
 then.station(id);
@@ -270,6 +271,13 @@ whole on the stand-in map (`test/unit/transitMap.service.spec.ts`).
 
 ## `web`: stores, and effects
 
+- **The site is static files**: every page is prerendered (`nuxt generate`), and Cloudflare serves
+  nothing but files. A page that is read rather than used, a city's overview, is there whole before any
+  script runs: its facts are asked as the site is built, of the build's own server
+  (`web/server/api/overviews/`, the cities' files its server assets), and written into the page with it,
+  so a visitor's browser never loads the network to read it. That server is the build's alone: nothing
+  it answers is published but in the pages. What it asks is in `cityOverview.utils.ts`, apart from the
+  page's helpers, as a server knows no browser.
 - **Stores are the one source of truth.** Every value lives in exactly one store, with all that is
   worked out from it (its getters), and changes only by that store's actions; their rules are pure
   functions in `*.utils.ts`, tested, and each store is tested (`test/unit/…/<name>.store.test.ts`, on a

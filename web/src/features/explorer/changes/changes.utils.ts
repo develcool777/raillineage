@@ -1,26 +1,9 @@
 import { yearOf } from '@raillineage/core/date.utils';
 import type { ChangeInfo } from '@raillineage/network/facts.types';
 import type { TimeState } from '@raillineage/renderer/transitMap.types';
-import type { ChangeGroup, ChangeRow, ChangeState } from '~/features/explorer/changes/changes.types';
-import { decadeHeading } from '~/features/explorer/format.utils';
+import type { ChangeRow, ChangeState } from '~/features/explorer/changes/changes.types';
 import { foldName } from '~/features/explorer/stations/station.utils';
-
-/**
- * The changes under a heading for each decade, in order; a plan's last, under "Plan".
- *
- * @param changes - The timeline's changes, in order.
- * @returns Each decade with its changes.
- */
-export const changesByDecade = (changes: ChangeInfo[]): ChangeGroup[] => {
-  const groups: ChangeGroup[] = [];
-  for (const change of changes) {
-    const decade = decadeHeading(change.time);
-    const group = groups.at(-1);
-    if (group?.decade === decade) group.changes.push(change);
-    else groups.push({ decade, changes: [change] });
-  }
-  return groups;
-};
+import type { ChangeGroup } from '~/utils/changes.types';
 
 /**
  * The changes a search finds: each word typed in its title, what it names or its year ("victoria 1968").

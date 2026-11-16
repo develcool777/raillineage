@@ -72,6 +72,18 @@ export const termsSeo = (): PageSeo => ({
 });
 
 /**
+ * A city's social card: the picture a link to its pages shows.
+ *
+ * @param city - The city's id.
+ * @returns The card.
+ */
+const socialCardOf = (city: string): NonNullable<PageSeo['image']> => ({
+  path: socialUrlOf(city),
+  ...SOCIAL_CARD,
+  alt: `Map of the ${cityNameOf(city)} network`,
+});
+
+/**
  * What a city's page says about itself: its network in a sentence, and its social card.
  *
  * @param city - The city's id.
@@ -91,7 +103,33 @@ export const citySeo = (city: string, entry: CityIndexEntry): PageSeo => {
     path: city,
     title,
     description,
-    image: { path: socialUrlOf(city), ...SOCIAL_CARD, alt: `Map of the ${name} network` },
+    image: socialCardOf(city),
     jsonLd: { '@context': 'https://schema.org', '@type': 'Map', name: `${name} metro`, description, mapType: 'https://schema.org/TransitMap' },
+  };
+};
+
+/**
+ * What a city's overview says about itself: its network's story in a sentence, and the city's social card.
+ *
+ * @param city - The city's id.
+ * @param entry - Its entry in the index of cities.
+ * @returns Its SEO.
+ */
+export const cityOverviewSeo = (city: string, entry: CityIndexEntry): PageSeo => {
+  const name = cityNameOf(city);
+  const size = `${counted(entry.lines, 'line')} and ${counted(entry.stations, 'station')}`;
+  const plans = entry.plans > 0 ? `, and its ${counted(entry.plans, 'plan')} for what could come next` : '';
+  const headline = entry.planOnly
+    ? `${name} metro plans: the network never built`
+    : `${name} metro history: every line, station and opening since ${entry.openedYear}`;
+  const description = entry.planOnly
+    ? `${name} never built a metro. Read every plan it has had, ${counted(entry.plans, 'plan')} in all, and what each would build: the first, ${size}.`
+    : `How ${entry.networks.join(', ')} grew from its first line in ${entry.openedYear} to ${size}: every line and its stations, every opening year by year${plans}.`;
+  return {
+    path: `${city}/overview`,
+    title: `${headline} | ${SITE_NAME}`,
+    description,
+    image: socialCardOf(city),
+    jsonLd: { '@context': 'https://schema.org', '@type': 'Article', headline, description, about: { '@type': 'Place', name } },
   };
 };
