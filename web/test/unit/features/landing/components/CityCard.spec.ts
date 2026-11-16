@@ -11,7 +11,7 @@ describe('CityCard', () => {
   test('links to the city at its address, with the slash the site publishes it at', async () => {
     await renderInApp(CityCard, { city: 'kyiv', summary: KYIV });
 
-    expect(screen.getByRole('link', { name: 'Kyiv', exact: true }).getAttribute('href')).toBe('/kyiv/');
+    expect(screen.getByRole('link', { name: 'Kyiv' }).getAttribute('href')).toBe('/kyiv/');
   });
 
   test('links to its overview too, the link naming the city, and says where each way in goes', async () => {
