@@ -9,7 +9,7 @@
         :items="group.lines.map(line => ({ value: line.id, line }))"
         :defaultValue="unfolded"
         :unmountOnHide="false"
-        :ui="{ trigger: 'py-2.5', body: 'flex flex-col gap-1 pb-3' }">
+        :ui="{ trigger: 'py-2.5', body: 'flex flex-col gap-1 pb-4' }">
         <template #leading="{ item }">
           <span class="h-1.5 w-5.5 flex-none rounded-full" :style="{ background: lineColor(item.line.color) }" />
         </template>
@@ -20,25 +20,32 @@
           </span>
         </template>
         <template #body="{ item }">
-          <!-- Its stops as the line runs them, drawn as its diagram is: a rail in its colour, a dot a station,
-               each the way to the station on the map. Then each branch, from the station it leaves. -->
-          <div v-for="(run, position) in item.line.runs" :key="position" class="flex flex-col gap-1">
-            <p v-if="position > 0" class="text-dimmed pt-2 text-xs">Branch from {{ run[0]?.name }}</p>
-            <ol class="sm:columns-2 sm:gap-x-8" :aria-label="position > 0 ? `Branch from ${run[0]?.name}` : `${item.line.name} stations`">
-              <li v-for="(stop, place) in run" :key="stop.id" class="relative break-inside-avoid ps-6">
-                <span
-                  class="absolute inset-s-1.25 w-0.5"
-                  :class="[place === 0 ? 'top-1/2' : 'top-0', place === run.length - 1 ? 'bottom-1/2' : 'bottom-0']"
-                  :style="{ background: lineColor(item.line.color) }" />
-                <span
-                  class="bg-default absolute inset-s-0 top-1/2 size-3 -translate-y-1/2 rounded-full border-2"
-                  :style="{ borderColor: lineColor(item.line.color) }" />
-                <ULink :to="mapLinkOf(city, { station: stop.id })" raw class="text-default hover:text-primary block py-1 text-sm transition-colors">
-                  {{ stop.name }}
-                </ULink>
-              </li>
-            </ol>
-          </div>
+          <!-- Its stops as its diagram draws them, each the way to the station on the map, with the other
+               lines to change for there: their colours, and their names (a screen reader's alone on a phone). -->
+          <LineDiagram
+            :runs="item.line.runs"
+            :color="lineColor(item.line.color)"
+            :isInterchange="station => othersAt(station, item.line).length > 0"
+            :label="`${item.line.name} stations`">
+            <template #stop="{ stop, terminus, rejoins }">
+              <ULink
+                :to="mapLinkOf(city, { station: stop.id })"
+                raw
+                class="hover:text-primary truncate text-sm transition-colors"
+                :class="terminus ? 'text-highlighted font-semibold' : 'text-default'">
+                {{ stop.name }}
+              </ULink>
+              <span v-if="rejoins" class="text-dimmed flex-none text-xs"><span class="sr-only">, </span>rejoins the line</span>
+              <span v-if="othersAt(stop.id, item.line).length > 0" class="text-muted flex flex-none items-center gap-2 text-xs">
+                <!-- Read as words too: "Teatralna, change for Syretsko-Pecherska". -->
+                <span class="sr-only">, change for </span>
+                <span v-for="(other, place) in othersAt(stop.id, item.line)" :key="other.id" class="inline-flex items-center gap-1">
+                  <span class="h-1 w-2.5 rounded-full" :style="{ background: lineColor(other.color) }" />
+                  <span class="max-sm:sr-only"><span v-if="place > 0" class="sr-only">, </span>{{ other.name }}</span>
+                </span>
+              </span>
+            </template>
+          </LineDiagram>
           <ULink :to="mapLinkOf(city, { line: item.line.id })" class="text-primary w-fit pt-2 text-sm">Show the line on the map</ULink>
         </template>
       </UAccordion>
@@ -47,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+  import type { LineId, StationId } from '@raillineage/schema/network.types';
   import { computed } from 'vue';
   import type { OverviewLine } from '~/features/overview/overview.types';
   import { lineFactsOf, linesByNetwork, mapLinkOf, unfoldedLinesOf } from '~/features/overview/overview.utils';
@@ -57,8 +65,20 @@
     city: string;
     /** Its lines. */
     lines: OverviewLine[];
+    /** Where more than one line is to be had: the lines there, by their ids. */
+    interchanges: Partial<Record<StationId, LineId[]>>;
   }>();
 
   const groups = computed(() => linesByNetwork(props.lines));
   const unfolded = computed(() => unfoldedLinesOf(props.lines));
+
+  /**
+   * The other lines to be had at a stop of a line, there or a transfer away: those to change for.
+   *
+   * @param station - The stop.
+   * @param line - The line it is on.
+   * @returns The others, in the network's order.
+   */
+  const othersAt = (station: StationId, line: OverviewLine): OverviewLine[] =>
+    props.lines.filter(other => other.id !== line.id && (props.interchanges[station] ?? []).includes(other.id));
 </script>

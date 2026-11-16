@@ -69,6 +69,7 @@ facts.built(); // the same, for the network as it stands: today, or one never bu
 const then = facts.asOf(time); // a FactsAt; time: a Playhead { cursor, time, progress }, as the map's `time` event gives it
 then.stations();
 then.station(id);
+then.interchanges(); // the lines to be had at each station, there or a transfer away
 then.line(id);
 then.directions(id);
 then.records(5);

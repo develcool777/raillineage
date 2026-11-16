@@ -5,27 +5,25 @@
 
     <template v-if="shown === 'stops'">
       <UEmpty v-if="line.branches.length === 0" icon="i-lucide-calendar-x" title="Not open yet" description="The line is not open on the date shown." />
-      <section v-for="(run, position) in line.branches" :key="position">
-        <h3 v-if="position > 0" class="eyebrow text-muted pb-1">Branch from {{ run[0]?.name }}</h3>
-        <!-- A line diagram: the line down the side, a stop at each station. -->
-        <ol class="relative -mx-2" role="list">
-          <span class="absolute top-4 bottom-4 left-4.25 w-1 rounded-full" :style="{ background: lineColor(line.color) }" />
-          <li v-for="(stop, place) in run" :key="`${stop.id}-${place}`" :class="{ 'opacity-60': position > 0 && place === 0 }">
-            <ListRow class="relative gap-3" @click="emit('station', stop.id)">
-              <span class="flex w-5 flex-none justify-center">
-                <span v-if="otherLines(stop.id).length > 0" class="bg-default size-3 rounded-full border-2 border-(--ui-text-highlighted)" />
-                <span v-else class="bg-default size-2.5 rounded-full border-2" :style="{ borderColor: lineColor(line.color) }" />
-              </span>
-              <span class="text-highlighted flex-1 truncate text-sm" :class="otherLines(stop.id).length > 0 ? 'font-semibold' : 'font-medium'">{{
-                stop.name
-              }}</span>
-              <span class="flex flex-none gap-0.5">
-                <span v-for="color in otherLines(stop.id)" :key="color" class="h-1 w-2.5 rounded-full" :style="{ background: color }" />
-              </span>
-            </ListRow>
-          </li>
-        </ol>
-      </section>
+      <!-- Its stops as its diagram draws them, each row opening its station. -->
+      <LineDiagram
+        v-else
+        :runs="line.branches"
+        :color="lineColor(line.color)"
+        :isInterchange="station => otherLines(station).length > 0"
+        :label="`${line.name} stops`">
+        <template #stop="{ stop, terminus, rejoins }">
+          <ListRow class="-ms-2 gap-3" @click="emit('station', stop.id)">
+            <span class="text-highlighted flex-1 truncate text-sm" :class="terminus || otherLines(stop.id).length > 0 ? 'font-semibold' : 'font-medium'">
+              {{ stop.name }}
+            </span>
+            <span v-if="rejoins" class="text-dimmed flex-none text-xs">rejoins the line</span>
+            <span class="flex flex-none gap-0.5">
+              <span v-for="other in otherLines(stop.id)" :key="other.id" class="h-1 w-2.5 rounded-full" :style="{ background: lineColor(other.color) }" />
+            </span>
+          </ListRow>
+        </template>
+      </LineDiagram>
     </template>
 
     <ChangeTimeline v-else :changes :titleOf="change => titleInLine(change.title, line.name)" @pick="emit('pickChange', $event)" />
@@ -33,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { ChangeInfo, LineColor, LineDetails } from '@raillineage/network/facts.types';
+  import type { ChangeInfo, LineDetails, NamedLine } from '@raillineage/network/facts.types';
   import type { StationId } from '@raillineage/schema/network.types';
   import { ref } from 'vue';
   import { titleInLine } from '~/features/explorer/lines/line.utils';
@@ -44,8 +42,8 @@
     line: LineDetails;
     /** The changes that made the line. */
     changes: ChangeInfo[];
-    /** Each station on the map's lines' colours, to mark the interchanges. */
-    stationColors: Map<StationId, LineColor[]>;
+    /** The lines to be had at each station on the map, there or a transfer away, to mark the interchanges. */
+    interchanges: Map<StationId, NamedLine[]>;
   }>();
   const emit = defineEmits<{ station: [station: StationId]; pickChange: [index: number] }>();
 
@@ -57,11 +55,10 @@
   ];
 
   /**
-   * The other lines' colours at a stop: none for a stop on this line alone.
+   * The other lines to be had at a stop, there or a transfer away: none for a stop on this line alone.
    *
    * @param station - The stop.
-   * @returns Their colours, as CSS.
+   * @returns The others.
    */
-  const otherLines = (station: StationId): string[] =>
-    (props.stationColors.get(station) ?? []).filter(color => color.light !== props.line.color.light || color.dark !== props.line.color.dark).map(lineColor);
+  const otherLines = (station: StationId): NamedLine[] => (props.interchanges.get(station) ?? []).filter(other => other.id !== props.line.id);
 </script>

@@ -1,5 +1,5 @@
 import type { ChangeInfo, LineColor, NetworkGrowth, NetworkStats, PlanInfo, Stop } from '@raillineage/network/facts.types';
-import type { LineId } from '@raillineage/schema/network.types';
+import type { LineId, StationId } from '@raillineage/schema/network.types';
 import type { ChangeGroup } from '~/utils/changes.types';
 
 /** One line on a city's overview, as it runs on the network described. */
@@ -33,6 +33,8 @@ export type CityOverview = {
   stats: NetworkStats;
   /** Its lines, in the network's order: those that run on it. */
   lines: OverviewLine[];
+  /** Where more than one line is to be had, at the station or a transfer away: the lines there, by their ids. */
+  interchanges: Partial<Record<StationId, LineId[]>>;
   /** How it grew, year by year and by decade; `null` for a network never built. */
   growth: NetworkGrowth | null;
   /** Every dated change, under its decade. */

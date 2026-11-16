@@ -51,6 +51,24 @@ test.describe('Overview', () => {
     await expect(page.getByRole('button', { name: /^1960s/ })).toHaveAttribute('aria-expanded', 'false');
   });
 
+  test('draws a line with its branches forking off and the lines to change for, a transfer away too', async ({ page }) => {
+    await page.goto('/london/overview/');
+
+    await page.getByRole('button', { name: /^Northern/ }).click();
+    const northern = page.getByRole('list', { name: 'Northern stations' });
+    // Mill Hill East under the station its branch leaves.
+    await expect(northern.getByRole('list', { name: 'Branch from Finchley Central' }).getByRole('link', { name: 'Mill Hill East' })).toBeVisible();
+    // Euston Square is a walk from Euston: its lines are to be had there too.
+    const euston = northern.getByRole('listitem').filter({ has: page.getByRole('link', { name: 'Euston', exact: true }) });
+    await expect(euston.first()).toContainText('change for');
+    await expect(euston.first()).toContainText('Metropolitan');
+
+    await page.goto('/kyiv/overview/');
+    await expect(page.getByRole('list', { name: 'Sviatoshynsko-Brovarska stations' }).getByRole('listitem').filter({ hasText: 'Teatralna' })).toContainText(
+      'Teatralna, change for Syretsko-Pecherska',
+    );
+  });
+
   test('keeps the address on the section read as it scrolls, each heading a link to its own', async ({ page }) => {
     await page.goto('/london/overview/');
 

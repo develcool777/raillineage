@@ -22,6 +22,7 @@ facts.playheads.hold(playhead); // its rules, in one place: the cursor to the ti
 const then = facts.asOf(playhead); // the map's `time` (a TimeState is a playhead), or one of facts.playheads; or facts.today(), or facts.built(): the network as it stands (one never built, its first plan whole)
 then.stations(); // the stations on the map then, for a search
 then.station(station); // its lines, when each opened and closed there, its former names, its transfers
+then.interchanges(); // the lines to be had at each station, there or a transfer away: where a line's diagram marks its interchanges
 then.line(line); // its stops in order, by branch, its km and its changes
 then.directions(station); // the stops either side, on each line
 then.routes(from, to); // up to three ways, fastest first: the fastest, the fewest changes, another way round; each ride timed as its line's trains run it

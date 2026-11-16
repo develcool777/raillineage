@@ -44,7 +44,7 @@
               </nav>
 
               <OverviewSection v-if="sections.lines" key="lines" :section="sections.lines">
-                <OverviewLines :city :lines="overview.lines" />
+                <OverviewLines :city :lines="overview.lines" :interchanges="overview.interchanges" />
               </OverviewSection>
 
               <OverviewSection v-if="sections.growth && overview.growth" key="growth" :section="sections.growth">

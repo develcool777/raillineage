@@ -72,8 +72,11 @@ export type StationInfo = {
 /** A name a station had, with its names in other languages, and the day it changed. */
 export type FormerNameInfo = { name: string; otherNames: string[]; until: IsoDate };
 
+/** A line by its id, its name as people say it, and its colours. */
+export type NamedLine = { id: LineId; name: string; color: LineColor };
+
 /** A station to change to, and the lines it has on the date shown. */
-export type TransferInfo = { id: StationId; name: string; lines: { id: LineId; name: string; color: LineColor }[] };
+export type TransferInfo = { id: StationId; name: string; lines: NamedLine[] };
 
 /** A line, for a legend or toggles. */
 export type LineInfo = {
