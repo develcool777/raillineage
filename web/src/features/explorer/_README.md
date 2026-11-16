@@ -22,7 +22,6 @@ work with: its composables, utilities, types and constants, named `<thing>.<role
 | `reach/`    | The Reach section: how far you get from a station, by time                                                                                               | `ReachSection`                                                                  |
 | `coverage/` | The Coverage section: how much of the city is near a station, its outline loaded on first opening (`LOAD_BOUNDARY`)                                      | `CoverageSection`                                                               |
 | `plans/`    | The Plans section, the plan shown and its legend                                                                                                         | `PlansSection`, `PlanLegend`                                                    |
-| `header/`   | The header's city picker and search                                                                                                                      | `CitySelect`, `ExplorerSearch`                                                  |
 | `help/`     | What you can do: the map's tools, time, the sections and the keys (`?`)                                                                                  | `ExplorerHelp`                                                                  |
 | `address/`  | The address: read at opening, then written from the explorer's `address` (`useExplorerAddress`); each setting's parameter (`ADDRESS_SETTINGS`)           | —                                                                               |
 
@@ -57,6 +56,8 @@ way only (ARCHITECTURE.md, `web`):
   moment shown, and what the tools' ids are called then (`routeStops`, `reachStop`). What changes only
   with a change (`stations`) is asked at a change, never at a frame of the clock. Nothing reads it.
 - `components/ExplorerView.vue`: the frame. It opens the stores on the network and the address, starts the effects, and lays out what the stores hold; it decides nothing itself.
+  Beside it, `components/ExplorerSearch.vue`, its header's search; its city picker is the site's
+  (`components/ui/CitySelect.vue`), which the video page's header has too.
 - The effects, each a composable that ties something outside Vue to the stores and holds nothing:
   `layout.composable.ts` (the screen and the theme in, full screen with map only, the panel's edge
   dragged), `map/transitMap.composable.ts` (the map made and taken down), `shortcuts.composable.ts`

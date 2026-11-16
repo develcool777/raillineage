@@ -29,11 +29,15 @@ the panel mounts, long before it shows.
 Two pages, under `pnpm dev` only (the site built leaves them out, `nuxt.config.ts`): the video,
 `/<city>/video/preview`, which a recorder records and starts itself, and which, watched, plays as soon as
 it is ready; and its setup, `/<city>/video/` (`record/components/VideoRecordSetup.vue`), which frames it
-at the size it records at, scaled to fit. The city and the plan and view are both pages' address (`videoAddressOf`): set up,
-the frame opens the video afresh. Record asks the dev server to record it
-(`record.store.ts`), which `@raillineage/video`'s `RecordingJobs` does, through
-`web/modules/videoRecorder.ts`; the page asks how it goes each second while it records. What it sends is
-the city and the query, never a plan or a view: those are the video's address, which only the app reads.
+at the size it records at, scaled to fit; its city is picked in the header (`CitySelect`). What a video
+shows, its plan, view and speed (`VideoAsked`), is both pages' address, read by `videoAskedOf` and
+written by `videoQueryOf` (`videoAddressOf`, `videoSetupAddressOf`), all in `video.utils.ts`: set up, the
+frame opens the video afresh. Record asks the dev server to record it (`record.store.ts`), which
+`@raillineage/video`'s `RecordingJobs` does, through `web/modules/videoRecorder.ts`; the page asks how it
+goes each second while it records. What it sends is the city and the query, never a plan or a view:
+those are the video's address, which only the app reads. The recorder's own rules, its sizes and
+longest, its defaults and where the video is, come from `@raillineage/video`'s `recording.constants.ts`
+and `recording.utils.ts`, which take nothing of Node's.
 
 A beat gives the map its props itself before what it commands (`ADVANCE`): a command acts on the props
 the map has, so the plan plays on the plan's network, and the whole network is framed flat.

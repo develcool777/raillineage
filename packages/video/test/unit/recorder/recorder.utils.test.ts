@@ -34,7 +34,7 @@ const scopeOf = (): RecordingScope => ({
 
 describe('RecorderUtils', () => {
   describe('recordingOf', () => {
-    test("records the city's video page laid out at 1080p and drawn at twice it (4K), 60 frames a second, for up to 15 minutes, from the app run by pnpm dev, into videos/", () => {
+    test("records the city's video page laid out at 1080p and drawn at twice it (4K), 60 frames a second, for up to an hour, from the app run by pnpm dev, into videos/", () => {
       expect(recordingOf(['kyiv'], TYPED_IN)).toEqual({
         city: 'kyiv',
         page: 'video',
@@ -43,7 +43,7 @@ describe('RecorderUtils', () => {
         width: 1920,
         height: 1080,
         scale: 2,
-        seconds: 900,
+        seconds: 3600,
         origin: 'http://localhost:5180',
         query: '',
         out: expect.stringMatching(/\/packages\/video\/videos\/kyiv\.mp4$/),
@@ -100,6 +100,7 @@ describe('RecorderUtils', () => {
       expect(() => recordingOf(['kyiv', '--fps', '0'], TYPED_IN)).toThrow('--fps takes a whole number, not 0');
       expect(() => recordingOf(['kyiv', '--seconds', '1.5'], TYPED_IN)).toThrow('--seconds takes a whole number');
       expect(() => recordingOf(['kyiv', '--size', '1920'], TYPED_IN)).toThrow('--size takes width x height');
+      expect(() => recordingOf(['kyiv', '--size', '1281x720'], TYPED_IN)).toThrow('--size takes even sides, as the video is encoded, not 1281x720');
       expect(() => recordingOf(['kyiv', '--scale', '1.5'], TYPED_IN)).toThrow('--scale takes a whole number, not 1.5');
       expect(() => recordingOf(['kyiv', '--origin', 'localhost'], TYPED_IN)).toThrow('--origin takes an address');
       expect(() => recordingOf(['kyiv', '--page', 'landing'], TYPED_IN)).toThrow('--page takes video or explorer, not landing');

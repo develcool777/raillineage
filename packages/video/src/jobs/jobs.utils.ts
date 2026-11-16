@@ -1,6 +1,8 @@
 import type { RecordingStatus } from '../recorder/recorder.types.ts';
-import { LARGEST_SIDE, LONGEST_SECONDS, MOST_FPS, MOST_SCALE, RECORDER_GONE, RUNNING_PHASES } from './jobs.constants.ts';
-import type { ByteRange, RecordingRequest } from './jobs.types.ts';
+import { LARGEST_SIDE, LONGEST_SECONDS } from '../recorder/recording.constants.ts';
+import { isEvenSide } from '../recorder/recording.utils.ts';
+import { MOST_FPS, MOST_SCALE, RECORDER_GONE, RUNNING_PHASES } from './jobs.constants.ts';
+import type { RecordingRequest } from './jobs.types.ts';
 
 /** A city's id, as the address names it. */
 const CITY_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -86,6 +88,21 @@ const wholeOf = (given: unknown, name: string, largest: number): number => {
 };
 
 /**
+ * A side of the page, from what a request gave: whole, as large as it may be, and even (`isEvenSide`).
+ *
+ * @param given - What it gave.
+ * @param name - What it is, for the error.
+ * @param largest - The most it may be.
+ * @returns The side.
+ * @throws {Error} For anything else.
+ */
+const sideOf = (given: unknown, name: string, largest: number): number => {
+  const side = wholeOf(given, name, largest);
+  if (!isEvenSide(side)) throw new Error(`${name} is even, as the video is encoded`);
+  return side;
+};
+
+/**
  * Text that matches a pattern, from what a request gave.
  *
  * @param given - What it gave.
@@ -117,31 +134,11 @@ export const requestOf = (body: unknown): RecordingRequest => {
     city: textOf(given.city, CITY_ID, 'the city is an id, as an address names it'),
     query: textOf(given.query, QUERY, "the query is an address's, plan=…&view=…"),
     fps: wholeOf(given.fps, 'the frame rate', MOST_FPS),
-    width: wholeOf(given.width, 'the width', largest),
-    height: wholeOf(given.height, 'the height', largest),
+    width: sideOf(given.width, 'the width', largest),
+    height: sideOf(given.height, 'the height', largest),
     scale,
     seconds: wholeOf(given.seconds, 'the longest it runs, in seconds,', LONGEST_SECONDS),
     rehearse: given.rehearse,
     name: textOf(given.name, VIDEO_NAME, 'the file is a name ending .mp4, of letters, digits, - and _'),
   };
-};
-
-/**
- * The part of a file a request's `Range` header asks for, so a video can be played from anywhere in it.
- *
- * @param header - The header, if any (`bytes=0-`, `bytes=100-199`, `bytes=-500`).
- * @param size - The file's size, bytes.
- * @returns Its first and last byte; `null` for the whole file, for no header or one this does not read.
- */
-export const byteRangeOf = (header: string | undefined, size: number): ByteRange | null => {
-  const match = /^bytes=(\d*)-(\d*)$/.exec(header ?? '');
-  if (!match) return null;
-  const [, first = '', last = ''] = match;
-  if (first === '') {
-    const suffix = Number(last);
-    return suffix > 0 && size > 0 ? { start: Math.max(0, size - suffix), end: size - 1 } : null;
-  }
-  const start = Number(first);
-  const end = last === '' ? size - 1 : Math.min(Number(last), size - 1);
-  return start <= end ? { start, end } : null;
 };

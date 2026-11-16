@@ -1,7 +1,6 @@
 import type { RecordingStatus } from '@raillineage/video/recorder.types';
 import { describe, expect, test } from 'vitest';
-import { clockOf, requestErrorOf, statusLineOf, videoAddressOf, videoNameOf, videoQueryOf } from '~/features/video/record/record.utils';
-import { VIDEO_SPEED } from '~/features/video/video.constants';
+import { clockOf, requestErrorOf, statusLineOf, videoNameOf } from '~/features/video/record/record.utils';
 
 /**
  * A recording's status, as its file says it.
@@ -21,24 +20,6 @@ const statusWith = (overrides: Partial<RecordingStatus> = {}): RecordingStatus =
 });
 
 describe('RecordUtils', () => {
-  describe('videoQueryOf', () => {
-    test('names the plan, and the view only when flat', () => {
-      expect(videoQueryOf({ plan: 'kyiv-2070', view: '3d', speed: VIDEO_SPEED })).toBe('plan=kyiv-2070');
-      expect(videoQueryOf({ plan: 'kyiv-2070', view: '2d', speed: VIDEO_SPEED })).toBe('plan=kyiv-2070&view=2d');
-      expect(videoQueryOf({ plan: null, view: '3d', speed: VIDEO_SPEED })).toBe('');
-      // Another speed than the video's own is said; its own never is.
-      expect(videoQueryOf({ plan: null, view: '3d', speed: 2 })).toBe('speed=2');
-      expect(videoQueryOf({ plan: 'kyiv-2070', view: '2d', speed: 1.25 })).toBe('plan=kyiv-2070&view=2d&speed=1.25');
-    });
-  });
-
-  describe('videoAddressOf', () => {
-    test("opens the city's video as it is recorded, as asked, with no ? for nothing asked", () => {
-      expect(videoAddressOf('kyiv', { plan: 'kyiv-2070', view: '2d', speed: VIDEO_SPEED })).toBe('/kyiv/video/preview?plan=kyiv-2070&view=2d');
-      expect(videoAddressOf('kyiv', { plan: null, view: '3d', speed: VIDEO_SPEED })).toBe('/kyiv/video/preview');
-    });
-  });
-
   describe('videoNameOf', () => {
     test("names the city and the plan, the city once where the plan's id starts with it, and a flat one -2d", () => {
       expect(videoNameOf('kyiv', null, '3d')).toBe('kyiv.mp4');

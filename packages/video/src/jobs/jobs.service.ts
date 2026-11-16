@@ -1,10 +1,10 @@
 import { spawn } from 'node:child_process';
-import { closeSync, createReadStream, existsSync, mkdirSync, openSync, readdirSync, statSync } from 'node:fs';
+import { closeSync, mkdirSync, openSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { LOG_FILE, RECORDER_COMMAND, STATUS_FILE, VIDEOS_FOLDER } from '../recorder/recorder.constants.ts';
 import { StatusFile } from '../recorder/statusFile.service.ts';
-import type { RecordedVideo, RecorderState, RecordingJobsOptions, RecordingRequest, VideoRead } from './jobs.types.ts';
-import { argsOf, byteRangeOf, isRunning, isVideoName, statusAsSeen } from './jobs.utils.ts';
+import type { RecorderState, RecordingJobsOptions, RecordingRequest } from './jobs.types.ts';
+import { argsOf, isRunning, statusAsSeen } from './jobs.utils.ts';
 
 /**
  * Whether a process is still running: one asked for no signal answers if it is there.
@@ -25,8 +25,7 @@ const isAlive = (pid: number): boolean => {
  * Recordings as jobs, for what starts them from elsewhere (the video page, through the dev server):
  * one at a time, each the recorder's command run as a process of its own, as one would type it, so it
  * goes on whatever started it does; how far it has got, from the status file it writes (`StatusFile`);
- * stopped as Ctrl+C stops it; and the videos made, listed and read for a player. What it says goes to
- * a log, for one that fails. It knows a recording by its page's city and query: what the page shows is
+ * stopped as Ctrl+C stops it. Each video is saved in the videos folder. What it says goes to a log, for one that fails. It knows a recording by its page's city and query: what the page shows is
  * the app's.
  */
 export class RecordingJobs {
@@ -38,7 +37,7 @@ export class RecordingJobs {
   private readonly statusPath: string;
   /** Where what the recording says goes. */
   private readonly logFile: string;
-  /** Where the videos are. */
+  /** Where the videos are saved. */
   private readonly videosFolder: string;
   /** Whether a process is still running. */
   private readonly alive: (pid: number) => boolean;
@@ -53,12 +52,12 @@ export class RecordingJobs {
   }
 
   /**
-   * The recording last started, as it goes or as it ended, and the videos made, newest first.
+   * The recording last started, as it goes or as it ended.
    *
    * @returns The state.
    */
   public state(): RecorderState {
-    return { status: statusAsSeen(this.status.read(), this.alive), videos: this.videos() };
+    return { status: statusAsSeen(this.status.read(), this.alive) };
   }
 
   /**
@@ -99,37 +98,5 @@ export class RecordingJobs {
     const { status } = this.state();
     if (status && isRunning(status)) process.kill(status.pid, 'SIGINT');
     return this.state();
-  }
-
-  /**
-   * A video made, or the part of it a player asks for.
-   *
-   * @param name - Its name.
-   * @param rangeHeader - The request's `Range` header, if any.
-   * @returns Its size, the part, and those bytes; `null` for a name no video may have, or none made.
-   */
-  public read(name: string, rangeHeader: string | undefined): VideoRead | null {
-    if (!isVideoName(name)) return null;
-    const path = join(this.videosFolder, name);
-    if (!existsSync(path)) return null;
-    const { size } = statSync(path);
-    const range = byteRangeOf(rangeHeader, size);
-    return { size, range, stream: range ? createReadStream(path, range) : createReadStream(path) };
-  }
-
-  /**
-   * The videos made, newest first: one still being written is hidden, so never among them.
-   *
-   * @returns Them.
-   */
-  private videos(): RecordedVideo[] {
-    if (!existsSync(this.videosFolder)) return [];
-    const videos: RecordedVideo[] = [];
-    for (const name of readdirSync(this.videosFolder)) {
-      if (!isVideoName(name)) continue;
-      const file = statSync(join(this.videosFolder, name));
-      videos.push({ name, bytes: file.size, modified: file.mtimeMs });
-    }
-    return videos.toSorted((first, second) => second.modified - first.modified);
   }
 }

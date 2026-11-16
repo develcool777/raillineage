@@ -38,7 +38,7 @@
   import { useVideoMap } from '~/features/video/video.composable';
   import { MINIMAP_HEIGHT_VMIN, MINIMAP_TOP_VMIN } from '~/features/video/video.constants';
   import { useVideoStore } from '~/features/video/video.store';
-  import { spokenAddress, videoPlanAskedOf, videoSpeedOf, videoViewOf } from '~/features/video/video.utils';
+  import { spokenAddress, videoAskedOf } from '~/features/video/video.utils';
   import { boundaryUrlOf, cityNameOf, citySummaryOf } from '~/utils/city.utils';
 
   const props = defineProps<{
@@ -51,19 +51,17 @@
   const store = useVideoStore();
   const container = useTemplateRef<HTMLElement>('container');
   const minimapContainer = useTemplateRef<HTMLElement>('minimapContainer');
-  // The video opens on the city's network, as its address asks: in 3D, or flat (`?view=2d`); on past
-  // today to a plan, if it names one (`?plan=<id>`).
+  // The video opens on the city's network, as its address asks (`videoAskedOf`): in 3D, or flat
+  // (`?view=2d`); at its own speed, or another (`?speed=`); on past today to a plan, if it names one (`?plan=<id>`).
   const route = useRoute();
   const baseURL = useRuntimeConfig().app.baseURL;
-  const viewAsked = computed(() => videoViewOf(route.query.view));
-  const planAsked = computed(() => videoPlanAskedOf(route.query.plan));
-  const speedAsked = computed(() => videoSpeedOf(route.query.speed));
+  const asked = computed(() => videoAskedOf(route.query));
   useVideoMap({ container, minimapContainer }, () => ({
     network: props.network,
-    viewMode: viewAsked.value,
-    speed: speedAsked.value,
+    viewMode: asked.value.view,
+    speed: asked.value.speed,
     outline: `${baseURL}${boundaryUrlOf(props.city)}`,
-    plan: planAsked.value,
+    plan: asked.value.plan,
   }));
 
   // Recorded, the recorder starts it; watched (opened by hand, or framed by its setup page,

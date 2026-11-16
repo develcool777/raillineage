@@ -13,14 +13,15 @@ import {
   sceneEnded,
   shownFor,
   spokenAddress,
+  videoAddressOf,
+  videoAskedOf,
   videoLayersOf,
   videoMapPropsOf,
   videoPaddingOf,
-  videoPlanAskedOf,
   videoPlanOf,
+  videoQueryOf,
   videoScriptOf,
-  videoSpeedOf,
-  videoViewOf,
+  videoSetupAddressOf,
 } from '~/features/video/video.utils';
 
 /**
@@ -261,29 +262,37 @@ describe('VideoUtils', () => {
     });
   });
 
-  describe('videoViewOf', () => {
-    test('sees the video in 3D, unless its address asks for flat', () => {
-      expect(videoViewOf(undefined)).toBe('3d');
-      expect(videoViewOf('3d')).toBe('3d');
-      expect(videoViewOf('2d')).toBe('2d');
+  describe('videoAskedOf', () => {
+    test('reads what the address asks: the plan as written, flat only if asked, a speed offered, a value repeated none', () => {
+      expect(videoAskedOf({})).toEqual({ plan: null, view: '3d', speed: VIDEO_SPEED });
+      expect(videoAskedOf({ plan: 'kyiv-2070', view: '2d', speed: '2' })).toEqual({ plan: 'kyiv-2070', view: '2d', speed: 2 });
+      expect(videoAskedOf({ speed: '1.25', view: '3d' })).toMatchObject({ view: '3d', speed: 1.25 });
+      expect(videoAskedOf({ speed: '3' }).speed).toBe(VIDEO_SPEED);
+      expect(videoAskedOf({ plan: ['kept', 'other'], speed: ['2'] })).toMatchObject({ plan: null, speed: VIDEO_SPEED });
     });
   });
 
-  describe('videoSpeedOf', () => {
-    test("plays at a speed its address asks for, if one offered, else at the video's own", () => {
-      expect(videoSpeedOf('2')).toBe(2);
-      expect(videoSpeedOf('1.25')).toBe(1.25);
-      expect(videoSpeedOf(undefined)).toBe(VIDEO_SPEED);
-      expect(videoSpeedOf('3')).toBe(VIDEO_SPEED);
-      expect(videoSpeedOf(['2'])).toBe(VIDEO_SPEED);
+  describe('videoQueryOf', () => {
+    test('writes what is asked as the address reads it back, the speed only if not the video’s own', () => {
+      expect(videoQueryOf({ plan: 'kyiv-2070', view: '3d', speed: VIDEO_SPEED })).toBe('plan=kyiv-2070');
+      expect(videoQueryOf({ plan: null, view: '3d', speed: VIDEO_SPEED })).toBe('');
+      const asked = { plan: 'kyiv-2070', view: '2d' as const, speed: 1.25 };
+      expect(videoQueryOf(asked)).toBe('plan=kyiv-2070&view=2d&speed=1.25');
+      expect(videoAskedOf(Object.fromEntries(new URLSearchParams(videoQueryOf(asked))))).toEqual(asked);
     });
   });
 
-  describe('videoPlanAskedOf', () => {
-    test('reads the plan an address names, and none for none, or one repeated', () => {
-      expect(videoPlanAskedOf('kept')).toBe('kept');
-      expect(videoPlanAskedOf(undefined)).toBeNull();
-      expect(videoPlanAskedOf(['kept', 'other'])).toBeNull();
+  describe('videoAddressOf', () => {
+    test("opens the city's video as it is recorded, as asked, with no ? for nothing asked", () => {
+      expect(videoAddressOf('kyiv', { plan: 'kyiv-2070', view: '2d', speed: VIDEO_SPEED })).toBe('/kyiv/video/preview?plan=kyiv-2070&view=2d');
+      expect(videoAddressOf('kyiv', { plan: null, view: '3d', speed: VIDEO_SPEED })).toBe('/kyiv/video/preview');
+    });
+  });
+
+  describe('videoSetupAddressOf', () => {
+    test("opens the city's video setup as asked, at the slash the site writes a page with", () => {
+      expect(videoSetupAddressOf('london', { plan: null, view: '2d', speed: 2 })).toBe('/london/video/?view=2d&speed=2');
+      expect(videoSetupAddressOf('kyiv', { plan: null, view: '3d', speed: VIDEO_SPEED })).toBe('/kyiv/video/');
     });
   });
 

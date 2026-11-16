@@ -6,7 +6,7 @@ into an MP4: from its setup page's Record button (`/<city>/video/`), or from the
 And a video's thumbnail (`pnpm video:thumbnail`), the explorer photographed with its words over it.
 
 ```bash
-pnpm dev                                         # the app; open /video (the header's Video) to record from the page
+pnpm dev                                         # the app; open /kyiv/video/ to set it up and record it from the page
 pnpm video:record kyiv                           # or by the command: into packages/video/videos/kyiv.mp4
 pnpm video:record kyiv --query "plan=<id>" --out kyiv-plan.mp4   # a plan of the city's as its ending; a bare name goes in videos/
 pnpm video:record kyiv --page explorer --query "mapOnly=1" --seconds 60
@@ -44,6 +44,11 @@ page's alike, are `recording.constants.ts`'s, which takes nothing of Node's, so 
 - **As sharp as a Retina screen.** The page is laid out at its size (`--size`, 1920 × 1080) and drawn
   at twice it (`--scale 2`, Chrome's device pixels), so the video is 4K and shows the page as a Retina
   screen does, its text and lines as fine; `--scale 1` draws a pixel to a pixel, faster.
+- **Its rules, shared with the page.** `recording.constants.ts` and `recording.utils.ts` take nothing of
+  Node's, so `web`'s setup page reads them too: the defaults, the largest side, the longest a video runs
+  (an hour, only a runaway's stop: a video ends itself, its length known only as it plays), where a
+  city's video is (`videoPagePathOf`), and that a side is even (`isEvenSide`), as the video is encoded:
+  the command and a request both refuse an odd one.
 - **HD's colour.** ffmpeg writes BT.709, video range, and says so in the file (`ffmpegArgsOf`): a JPEG's
   own colour, kept, is full range by an older standard, which players guess at, many wrongly.
 - **Nothing lost.** The video is written beside its file, hidden (`videos/.kyiv.mp4`), and takes its

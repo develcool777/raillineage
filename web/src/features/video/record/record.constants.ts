@@ -1,8 +1,8 @@
 import type { RecordSize } from './record.types';
 
 /**
- * Where the video page asks the dev server to record (`POST`), how it goes (`GET`) and to stop it
- * (`DELETE`), and fetches a video (`GET …/videos/<name>`): under `pnpm dev` only (`modules/videoRecorder.ts`).
+ * Where the video setup page asks the dev server to record (`POST`), how it goes (`GET`) and to stop it
+ * (`DELETE`): under `pnpm dev` only (`modules/videoRecorder.ts`).
  */
 export const RECORD_ROUTE = '/_video/record';
 
@@ -18,13 +18,6 @@ export const RECORD_SIZES: RecordSize[] = [
   { label: 'Shorts 4K · 9:16 · 2160 × 3840', width: 1080, height: 1920, scale: 2 },
   { label: 'Shorts · 9:16 · 1080 × 1920', width: 1080, height: 1920, scale: 1 },
 ];
-
-/**
- * The longest a recording from the setup page may run, seconds: only a runaway's stop, as a video ends
- * itself, its length known only as it plays (each camera move as long as its way). An hour, past any
- * city's history at the slowest speed and a plan after it.
- */
-export const RECORD_LIMIT_SECONDS = 60 * 60;
 
 /** The frame rates offered. */
 export const RECORD_FPS = [60, 30];

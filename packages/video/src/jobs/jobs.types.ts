@@ -1,4 +1,3 @@
-import type { Readable } from 'node:stream';
 import type { RecordingStatus } from '../recorder/recorder.types.ts';
 
 /**
@@ -25,25 +24,10 @@ export type RecordingRequest = {
   name: string;
 };
 
-/** A video in the videos folder. */
-export type RecordedVideo = {
-  name: string;
-  bytes: number;
-  /** When it was written, ms since 1970. */
-  modified: number;
-};
-
-/** The recordings as `RecordingJobs` says them: the one last started, as it goes or as it ended; and the videos made, newest first. */
+/** The recordings as `RecordingJobs` says them: the one last started, as it goes or as it ended. */
 export type RecorderState = {
   status: RecordingStatus | null;
-  videos: RecordedVideo[];
 };
-
-/** Part of a file asked for (an HTTP range), its first and last byte. */
-export type ByteRange = { start: number; end: number };
-
-/** A video read for a player: its size, the part asked for (`null` for all of it), and those bytes. */
-export type VideoRead = { size: number; range: ByteRange | null; stream: Readable };
 
 /** Where `RecordingJobs` finds the recorder's command and keeps its status, its log and its videos: the package's own, unless a test gives others. */
 export type RecordingJobsOptions = {

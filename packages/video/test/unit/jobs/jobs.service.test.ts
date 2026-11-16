@@ -1,7 +1,6 @@
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { text } from 'node:stream/consumers';
 import { describe, expect, onTestFinished, test } from 'vitest';
 import { RECORDER_GONE } from '../../../src/jobs/jobs.constants.ts';
 import { RecordingJobs } from '../../../src/jobs/jobs.service.ts';
@@ -60,19 +59,6 @@ const jobsApart = (alive?: (pid: number) => boolean) => {
   return { jobs, folder, statusFile, logFile, videosFolder };
 };
 
-/**
- * Writes a video, written at a given time.
- *
- * @param videosFolder - Where the videos are.
- * @param name - Its name.
- * @param seconds - When it was written, seconds since 1970.
- */
-const writeVideo = (videosFolder: string, name: string, seconds: number) => {
-  const path = join(videosFolder, name);
-  writeFileSync(path, '0123456789');
-  utimesSync(path, seconds, seconds);
-};
-
 describe('RecordingJobs', () => {
   test('starts the command on its own as asked, says it is starting, logs what it says, refuses another meanwhile, and stops it as Ctrl+C would', async () => {
     const { jobs, folder, statusFile, logFile, videosFolder } = jobsApart();
@@ -91,31 +77,9 @@ describe('RecordingJobs', () => {
     await expect.poll(() => jobs.state().status?.phase).toBe('cancelled');
   });
 
-  test('lists the videos made, newest first, but one being written, which is hidden', () => {
-    const { jobs, videosFolder } = jobsApart();
-    writeVideo(videosFolder, 'kyiv.mp4', 1000);
-    writeVideo(videosFolder, 'london.mp4', 3000);
-    writeVideo(videosFolder, '.kyiv-2070.mp4', 4000);
-    writeVideo(videosFolder, 'notes.txt', 5000);
-    expect(jobs.state()).toEqual({ status: null, videos: ['london.mp4', 'kyiv.mp4'].map(name => expect.objectContaining({ name, bytes: 10 })) });
-  });
-
   test('says a recording whose process has gone failed', () => {
     const { jobs, statusFile } = jobsApart(() => false);
     new StatusFile(statusFile).write({ pid: 42, city: 'kyiv', out: '/videos/kyiv.mp4', phase: 'recording', seconds: 12, limit: 900, error: null });
     expect(jobs.state().status).toMatchObject({ phase: 'failed', error: RECORDER_GONE });
-  });
-
-  test('reads a video made by its name, whole or the part asked for, never by a path out of the folder', async () => {
-    const { jobs, videosFolder } = jobsApart();
-    writeVideo(videosFolder, 'kyiv.mp4', 1000);
-    const whole = jobs.read('kyiv.mp4', undefined)!;
-    expect({ size: whole.size, range: whole.range }).toEqual({ size: 10, range: null });
-    await expect(text(whole.stream)).resolves.toBe('0123456789');
-    const part = jobs.read('kyiv.mp4', 'bytes=2-4')!;
-    expect(part.range).toEqual({ start: 2, end: 4 });
-    await expect(text(part.stream)).resolves.toBe('234');
-    expect(jobs.read('london.mp4', undefined)).toBeNull();
-    expect(jobs.read('../recorder.mjs', undefined)).toBeNull();
   });
 });

@@ -3,7 +3,7 @@ import { recordingOf } from './recorder.utils.ts';
 
 /** How the command is called. */
 const USAGE =
-  'usage: pnpm video:record <city> [--page video|explorer] [--no-rehearse] [--fps 60] [--size 1920x1080] [--scale 2] [--seconds 900] [--query "mapOnly=1"] [--origin http://localhost:5180] [--out file.mp4] [--status status.json]';
+  'usage: pnpm video:record <city> [--page video|explorer] [--no-rehearse] [--fps 60] [--size 1920x1080] [--scale 2] [--seconds 3600] [--query "mapOnly=1"] [--origin http://localhost:5180] [--out file.mp4] [--status status.json]';
 
 /** The recorder, saying how it goes on the console. */
 const recorder = new VideoRecorder({ report: console.log });
