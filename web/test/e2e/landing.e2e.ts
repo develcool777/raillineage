@@ -28,11 +28,20 @@ test.describe('Landing', () => {
 
     // From the keyboard: the card's link is laid over the whole card, with nothing of its own to see, so
     // Playwright will not click it, nor the title under it.
-    await page.getByRole('link', { name: 'Kyiv' }).focus();
+    await page.getByRole('link', { name: 'Kyiv', exact: true }).focus();
     await page.keyboard.press('Enter');
 
-    await expect(page).toHaveURL(/\/kyiv\/?$/);
+    await expect(page).toHaveURL(/\/kyiv\/$/);
     await expect(page.getByRole('region', { name: 'Map' })).toBeVisible();
+  });
+
+  test("opens a city's overview from its card", async ({ page }) => {
+    await page.goto('/');
+
+    await page.getByRole('link', { name: 'Kyiv metro overview: history, lines and plans', exact: true }).click();
+
+    await expect(page).toHaveURL(/\/kyiv\/overview\/$/);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Kyiv metro: history, lines and plans');
   });
 
   for (const path of ['/about/', '/privacy/', '/terms/']) {
