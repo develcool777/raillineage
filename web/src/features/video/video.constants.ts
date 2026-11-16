@@ -1,8 +1,11 @@
 import { INSIGHTS_CLEAR_VW } from '~/features/video/insights/insights.constants';
 import type { VideoFraming, VideoPadding, VideoScene } from '~/features/video/video.types';
 
-/** How fast the history plays: a little slower than the explorer's does at first, each change given time to be read. */
+/** How fast the history plays unless its address asks otherwise (`speed`): a little slower than the explorer's does at first, each change given time to be read. */
 export const VIDEO_SPEED = 1.5;
+
+/** The speeds a video can be asked to play at (`?speed=`), its setup page's choices. */
+export const VIDEO_SPEEDS: readonly number[] = [1, 1.25, 1.5, 2];
 
 /** How long the scenes that move on by themselves show, ms; the history and the plan end when their playback does. */
 export const SCENE_MS: Partial<Record<VideoScene, number>> = {

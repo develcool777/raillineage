@@ -3,7 +3,7 @@ import { COVERAGE_DEFAULT_METRES } from '@raillineage/network/coverage.constants
 import type { ChangeInfo, PlanInfo } from '@raillineage/network/facts.types';
 import type { MapProps, ViewMode } from '@raillineage/renderer/transitMap.types';
 import type { VideoPageState } from '@raillineage/video/videoPage.types';
-import { FADE_MS, PLAN_INTRO_MS, SCENE_MS, VIDEO_PADDING_SHARES, VIDEO_SPEED } from '~/features/video/video.constants';
+import { FADE_MS, PLAN_INTRO_MS, SCENE_MS, VIDEO_PADDING_SHARES, VIDEO_SPEED, VIDEO_SPEEDS } from '~/features/video/video.constants';
 import type { VideoBeat, VideoFraming, VideoLayers, VideoMapInput, VideoMoment, VideoPadding, VideoScene, VideoSize } from '~/features/video/video.types';
 import { fadedIn } from '~/utils/motion.utils';
 
@@ -207,6 +207,14 @@ export const videoPaddingOf = (size: VideoSize, framing: VideoFraming): VideoPad
 export const videoViewOf = (view: unknown): ViewMode => (view === '2d' ? '2d' : '3d');
 
 /**
+ * How fast a video's address asks it to play: one of the speeds offered (`VIDEO_SPEEDS`), or the video's own.
+ *
+ * @param speed - The address's `speed`.
+ * @returns The speed, 1 the explorer's normal.
+ */
+export const videoSpeedOf = (speed: unknown): number => VIDEO_SPEEDS.find(offered => String(offered) === speed) ?? VIDEO_SPEED;
+
+/**
  * The plan a video's address names, not yet checked against the network.
  *
  * @param plan - The address's `plan`.
@@ -215,7 +223,7 @@ export const videoViewOf = (view: unknown): ViewMode => (view === '2d' ? '2d' : 
 export const videoPlanAskedOf = (plan: unknown): string | null => (typeof plan === 'string' ? plan : null);
 
 /**
- * What the map shows in a video: the network, dark, at the video's pace, without the basemap's street
+ * What the map shows in a video: the network, dark, at the pace asked, without the basemap's street
  * names, framing clear of what lies over it; seen as asked while it plays, otherwise flat, with the
  * panels round it the city's coverage drawn within its outline, and beside a plan's end card the plan bold.
  *
@@ -228,7 +236,7 @@ export const videoMapPropsOf = (input: VideoMapInput): Pick<MapProps, 'facts'> &
   viewMode: input.framing === 'playing' ? input.viewMode : '2d',
   overlay: input.framing === 'insights' && input.boundary ? { kind: 'coverage', metres: COVERAGE_DEFAULT_METRES } : null,
   boundary: input.boundary,
-  speed: VIDEO_SPEED,
+  speed: input.speed,
   streetLabels: false,
   boldPlans: input.framing === 'ending',
   padding: videoPaddingOf(input.size, input.framing),

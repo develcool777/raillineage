@@ -6,7 +6,7 @@ import { createPinia, setActivePinia } from 'pinia';
 import { describe, expect, test } from 'vitest';
 import { timeAt } from '@test/support/factories/timeState.utils';
 import { mapOnStandIn, standInMap } from '@test/support/factories/transitMap.utils';
-import { SCENE_MS, WHOLE_FIT_MS } from '~/features/video/video.constants';
+import { SCENE_MS, VIDEO_SPEED, WHOLE_FIT_MS } from '~/features/video/video.constants';
 import { useVideoStore } from '~/features/video/video.store';
 
 /** How long each scene that moves on by itself shows, ms. */
@@ -26,7 +26,7 @@ describe('VideoStore', () => {
   const readyVideo = async (network = tinyNetwork(), plan: string | null = null) => {
     setActivePinia(createPinia());
     const store = useVideoStore();
-    store.OPEN({ network, size: { width: 1920, height: 1080 }, viewMode: '3d', outline: OUTLINE, plan });
+    store.OPEN({ network, size: { width: 1920, height: 1080 }, viewMode: '3d', speed: 2, outline: OUTLINE, plan });
     const { map, commands } = standInMap();
     store.ATTACH(map);
     store.MAP_READY();
@@ -63,6 +63,8 @@ describe('VideoStore', () => {
     store.TICK(TITLE_MS);
     expect(store.scene).toBe('history');
     expect(commands.at(-1)).toEqual({ name: 'play', args: [store.facts?.playheads.start()] });
+    // At the speed its address asked.
+    expect(store.mapProps?.speed).toBe(2);
 
     store.END_PLAYBACK();
     expect(store.scene).toBe('overview');
@@ -120,7 +122,7 @@ describe('VideoStore', () => {
     setActivePinia(createPinia());
     const store = useVideoStore();
     // No outline, so no coverage to paint on a canvas this test has not got.
-    store.OPEN({ network, size: { width: 1920, height: 1080 }, viewMode: '2d', outline: 'http://127.0.0.1:9/outline.json', plan: named });
+    store.OPEN({ network, size: { width: 1920, height: 1080 }, viewMode: '2d', speed: VIDEO_SPEED, outline: 'http://127.0.0.1:9/outline.json', plan: named });
     const { map, frame, ready } = mapOnStandIn(required(store.mapProps ?? undefined, 'the props'), { time: time => store.SET_TIME(time) });
     store.ATTACH(map);
     ready();

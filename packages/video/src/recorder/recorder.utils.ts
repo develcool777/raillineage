@@ -154,11 +154,11 @@ export const statusOf = (recording: Recording, pid: number, phase: RecordingPhas
  * The address of the page recorded.
  *
  * @param recording - The recording.
- * @returns The city's video page or explorer, with the query given.
+ * @returns The city's video as it is recorded (`/<city>/video/preview`) or its explorer, with the query given.
  */
 export const pageUrlOf = (recording: Recording): string => {
   const city = encodeURIComponent(recording.city);
-  const url = new URL(recording.page === 'video' ? `/video/${city}` : `/${city}`, recording.origin);
+  const url = new URL(recording.page === 'video' ? `/${city}/video/preview` : `/${city}`, recording.origin);
   url.search = recording.query;
   return url.href;
 };

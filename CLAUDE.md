@@ -25,10 +25,11 @@ takes a video's thumbnail, the explorer map only at 4K with its words over it, t
 `data`, the one thing `video` knows of a city) and `web` (the app: the Nuxt 4 + Nuxt UI
 explorer; each city's overview, `/<city>/overview/`, its network on one page to read, prerendered
 from its facts by the build's own server, `web/server/api/overviews/`, as the site is static files;
-and the video page, `/video/<city>`, in 3D or flat with `?view=2d`, under `pnpm dev` only;
-`pnpm video:record <city> --query "plan=<id>"` records a plan of the city's as its ending; or open
-`/video`, the header's Video under `pnpm dev`, whose panel picks the city, plan and view, previews and
-records, through `video`'s `RecordingJobs`, `web/modules/videoRecorder.ts` carrying its requests).
+and a city's video, under `pnpm dev` only: `/<city>/video/preview`, what is recorded, in 3D or flat
+with `?view=2d`; `pnpm video:record <city> --query "plan=<id>"` records a plan of the city's as its
+ending; or open `/<city>/video/`, its setup page, which picks the plan and view beside the video
+framed at the size it records at, and records, through `video`'s `RecordingJobs`,
+`web/modules/videoRecorder.ts` carrying its requests).
 `README.md` has the commands; `ARCHITECTURE.md` the contract between the parts;
 `packages/network/_README.md` steps and cursors; `packages/renderer/_README.md` the frame model.
 

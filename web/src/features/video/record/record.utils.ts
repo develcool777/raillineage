@@ -1,31 +1,34 @@
 import type { ViewMode } from '@raillineage/renderer/transitMap.types';
 import type { RecordingStatus } from '@raillineage/video/recorder.types';
+import { VIDEO_SPEED } from '~/features/video/video.constants';
+import type { VideoAsked } from './record.types';
 
 /**
- * The video page's address query: the plan it plays after its history, and flat if not 3D.
+ * The video page's address query: the plan it plays after its history, flat if not 3D, and its speed
+ * if not the video's own.
  *
- * @param plan - The plan, by its id; `null` for none.
- * @param view - In 3D, or flat.
- * @returns The query, without its `?`; empty for neither.
+ * @param asked - The plan, the view and the speed.
+ * @returns The query, without its `?`; empty for none of them.
  */
-export const videoQueryOf = (plan: string | null, view: ViewMode): string => {
+export const videoQueryOf = (asked: VideoAsked): string => {
   const query = new URLSearchParams();
-  if (plan !== null) query.set('plan', plan);
-  if (view === '2d') query.set('view', '2d');
+  if (asked.plan !== null) query.set('plan', asked.plan);
+  if (asked.view === '2d') query.set('view', '2d');
+  if (asked.speed !== VIDEO_SPEED) query.set('speed', String(asked.speed));
   return query.toString();
 };
 
 /**
- * A city's video page, as asked to show.
+ * A city's video as it is recorded (`/<city>/video/preview`), as asked to show: what the recorder
+ * records, and its setup page frames.
  *
  * @param city - The city, by its id.
- * @param plan - The plan, by its id; `null` for none.
- * @param view - In 3D, or flat.
+ * @param asked - The plan, the view and the speed.
  * @returns Its address.
  */
-export const videoAddressOf = (city: string, plan: string | null, view: ViewMode): string => {
-  const query = videoQueryOf(plan, view);
-  const page = `/video/${encodeURIComponent(city)}`;
+export const videoAddressOf = (city: string, asked: VideoAsked): string => {
+  const query = videoQueryOf(asked);
+  const page = `/${encodeURIComponent(city)}/video/preview`;
   return query ? `${page}?${query}` : page;
 };
 

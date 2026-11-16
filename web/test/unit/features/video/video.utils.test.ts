@@ -19,6 +19,7 @@ import {
   videoPlanAskedOf,
   videoPlanOf,
   videoScriptOf,
+  videoSpeedOf,
   videoViewOf,
 } from '~/features/video/video.utils';
 
@@ -216,7 +217,7 @@ describe('VideoUtils', () => {
   describe('videoMapPropsOf', () => {
     const facts = {} as NetworkFacts;
     const size = { width: 1920, height: 1080 };
-    const input = { facts, size, viewMode: '3d' as const, boundary: AROUND_TINY };
+    const input = { facts, size, viewMode: '3d' as const, speed: VIDEO_SPEED, boundary: AROUND_TINY };
 
     test("shows the network dark, seen as asked while it plays, at the video's pace, without street names, framing clear of what lies over it", () => {
       expect(videoMapPropsOf({ ...input, framing: 'playing' })).toEqual({
@@ -265,6 +266,16 @@ describe('VideoUtils', () => {
       expect(videoViewOf(undefined)).toBe('3d');
       expect(videoViewOf('3d')).toBe('3d');
       expect(videoViewOf('2d')).toBe('2d');
+    });
+  });
+
+  describe('videoSpeedOf', () => {
+    test("plays at a speed its address asks for, if one offered, else at the video's own", () => {
+      expect(videoSpeedOf('2')).toBe(2);
+      expect(videoSpeedOf('1.25')).toBe(1.25);
+      expect(videoSpeedOf(undefined)).toBe(VIDEO_SPEED);
+      expect(videoSpeedOf('3')).toBe(VIDEO_SPEED);
+      expect(videoSpeedOf(['2'])).toBe(VIDEO_SPEED);
     });
   });
 
