@@ -20,7 +20,9 @@ of them, `cities/cities.json`; and the commands that keep them, a folder each in
 on a clock only it moves, into an MP4 with ffmpeg, after a rehearsal that fetches every map tile the
 camera will look at into Chrome's own cache; it knows a page by its handle alone, which starts it, says
 when it is over, and says a frame is drawn, the map answering: the tiles in view, never motion, which
-stands still with the clock; what a video shows stays in `web`) and `web` (the app: the Nuxt 4 + Nuxt UI
+stands still with the clock; what a video shows stays in `web`; `pnpm video:thumbnail <city> [--plan <id>]`
+takes a video's thumbnail, the explorer map only at 4K with its words over it, the network framed from
+`data`, the one thing `video` knows of a city) and `web` (the app: the Nuxt 4 + Nuxt UI
 explorer, and the video page, `/video/<city>`, in 3D or flat with `?view=2d`, under `pnpm dev` only;
 `pnpm video:record <city> --query "plan=<id>"` records a plan of the city's as its ending; or open
 `/video`, the header's Video under `pnpm dev`, whose panel picks the city, plan and view, previews and

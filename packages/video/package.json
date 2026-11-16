@@ -8,7 +8,8 @@
     "type-check": "tsc --noEmit",
     "record": "node src/recorder/cli.ts",
     "test-unit": "vitest",
-    "test-unit-ci": "vitest run"
+    "test-unit-ci": "vitest run",
+    "thumbnail": "node src/thumbnail/cli.ts"
   },
   "exports": {
     "./videoPage.types": "./src/recorder/videoPage.types.ts",
@@ -18,7 +19,13 @@
     "./jobs.types": "./src/jobs/jobs.types.ts",
     "./jobs.utils": "./src/jobs/jobs.utils.ts"
   },
+  "dependencies": {
+    "@raillineage/core": "workspace:*",
+    "@raillineage/data": "workspace:*",
+    "@raillineage/schema": "workspace:*"
+  },
   "devDependencies": {
+    "@raillineage/network": "workspace:*",
     "playwright-core": "^1.65.0",
     "vitest": "^5.1.0"
   }
