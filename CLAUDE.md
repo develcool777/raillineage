@@ -26,8 +26,9 @@ takes a video's thumbnail, the explorer map only at 4K with its words over it, t
 explorer; each city's overview, `/<city>/overview/`, its network on one page to read, prerendered
 from its facts by the build's own server, `web/server/api/overviews/`, as the site is static files;
 and a city's video, under `pnpm dev` only: `/<city>/video/preview`, what is recorded, in 3D or flat
-with `?view=2d`; `pnpm video:record <city> --query "plan=<id>"` records a plan of the city's as its
-ending; or open `/<city>/video/`, its setup page, which picks the plan and view beside the video
+with `?view=2d`, at another speed with `?speed=`; `pnpm video:record <city> --query "plan=<id>"`
+records a plan of the city's as its ending; or open `/<city>/video/`, its setup page, its city picked
+in the header as the explorer's is, which sets the plan, view, speed, size and the rest beside the video
 framed at the size it records at, and records, through `video`'s `RecordingJobs`,
 `web/modules/videoRecorder.ts` carrying its requests).
 `README.md` has the commands; `ARCHITECTURE.md` the contract between the parts;

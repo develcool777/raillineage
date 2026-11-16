@@ -29,17 +29,17 @@ const storeAnswering = (answer: RecorderState | Error) => {
 
 describe('RecordStore', () => {
   test('keeps what the recorder says, and whether a video is being recorded', async () => {
-    const { store, asked } = storeAnswering({ status: RECORDING, videos: [{ name: 'kyiv.mp4', bytes: 10, modified: 1 }] });
+    const { store, asked } = storeAnswering({ status: RECORDING });
     expect(store.recording).toBe(false);
     await store.REFRESH();
     expect(asked).toEqual([{ url: RECORD_ROUTE }]);
-    expect(store.recorder.videos).toHaveLength(1);
+    expect(store.recorder.status).toEqual(RECORDING);
     expect(store.recording).toBe(true);
     expect(store.error).toBeNull();
   });
 
   test('asks it to record a video, and to stop it', async () => {
-    const { store, asked } = storeAnswering({ status: RECORDING, videos: [] });
+    const { store, asked } = storeAnswering({ status: RECORDING });
     await store.START(SETTINGS);
     await store.CANCEL();
     expect(asked).toEqual([
@@ -50,11 +50,11 @@ describe('RecordStore', () => {
 
   test('says why the recorder did not answer, keeping what it last said', async () => {
     const { store } = storeAnswering(Object.assign(new Error('400 Bad Request'), { data: { error: 'a video is being recorded: cancel it first' } }));
-    store.HEAR({ state: { status: RECORDING, videos: [] } });
+    store.HEAR({ state: { status: RECORDING } });
     await store.START(SETTINGS);
     expect(store.error).toBe('a video is being recorded: cancel it first');
     expect(store.recorder.status).toEqual(RECORDING);
-    store.HEAR({ state: { status: null, videos: [] } });
+    store.HEAR({ state: { status: null } });
     expect(store.error).toBeNull();
   });
 });

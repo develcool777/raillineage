@@ -1,10 +1,21 @@
 import { yearOf } from '@raillineage/core/date.utils';
 import { COVERAGE_DEFAULT_METRES } from '@raillineage/network/coverage.constants';
 import type { ChangeInfo, PlanInfo } from '@raillineage/network/facts.types';
-import type { MapProps, ViewMode } from '@raillineage/renderer/transitMap.types';
+import type { MapProps } from '@raillineage/renderer/transitMap.types';
+import { videoPagePathOf } from '@raillineage/video/recording.utils';
 import type { VideoPageState } from '@raillineage/video/videoPage.types';
 import { FADE_MS, PLAN_INTRO_MS, SCENE_MS, VIDEO_PADDING_SHARES, VIDEO_SPEED, VIDEO_SPEEDS } from '~/features/video/video.constants';
-import type { VideoBeat, VideoFraming, VideoLayers, VideoMapInput, VideoMoment, VideoPadding, VideoScene, VideoSize } from '~/features/video/video.types';
+import type {
+  VideoAsked,
+  VideoBeat,
+  VideoFraming,
+  VideoLayers,
+  VideoMapInput,
+  VideoMoment,
+  VideoPadding,
+  VideoScene,
+  VideoSize,
+} from '~/features/video/video.types';
 import { fadedIn } from '~/utils/motion.utils';
 
 /**
@@ -198,29 +209,64 @@ export const videoPaddingOf = (size: VideoSize, framing: VideoFraming): VideoPad
 };
 
 /**
- * How a video sees the map, as its address asks: in 3D, the city's buildings standing as the camera
- * comes down to each change, unless it asks for flat (`view=2d`).
+ * What a video's address asks it to show: the plan after its history (its id as written, not yet checked
+ * against the network: `videoPlanOf`), in 3D unless it asks for flat (`view=2d`), at the speed it asks if
+ * one offered (`VIDEO_SPEEDS`), else the video's own. A value repeated is none.
  *
- * @param view - The address's `view`.
- * @returns 3D, or flat.
+ * @param query - The address's query.
+ * @returns What it asks.
  */
-export const videoViewOf = (view: unknown): ViewMode => (view === '2d' ? '2d' : '3d');
+export const videoAskedOf = (query: Record<string, unknown>): VideoAsked => ({
+  plan: typeof query.plan === 'string' ? query.plan : null,
+  view: query.view === '2d' ? '2d' : '3d',
+  speed: VIDEO_SPEEDS.find(offered => String(offered) === query.speed) ?? VIDEO_SPEED,
+});
 
 /**
- * How fast a video's address asks it to play: one of the speeds offered (`VIDEO_SPEEDS`), or the video's own.
+ * A video's address query, as `videoAskedOf` reads it back: the plan, flat if not 3D, and the speed if
+ * not the video's own. The recorder is asked to record the video at it.
  *
- * @param speed - The address's `speed`.
- * @returns The speed, 1 the explorer's normal.
+ * @param asked - The plan, the view and the speed.
+ * @returns The query, without its `?`; empty for none of them.
  */
-export const videoSpeedOf = (speed: unknown): number => VIDEO_SPEEDS.find(offered => String(offered) === speed) ?? VIDEO_SPEED;
+export const videoQueryOf = (asked: VideoAsked): string => {
+  const query = new URLSearchParams();
+  if (asked.plan !== null) query.set('plan', asked.plan);
+  if (asked.view === '2d') query.set('view', '2d');
+  if (asked.speed !== VIDEO_SPEED) query.set('speed', String(asked.speed));
+  return query.toString();
+};
 
 /**
- * The plan a video's address names, not yet checked against the network.
+ * A page's address with a video's query, if it has one.
  *
- * @param plan - The address's `plan`.
- * @returns Its id as written, or `null` for none, or one repeated.
+ * @param path - The page's path.
+ * @param asked - The plan, the view and the speed.
+ * @returns The address.
  */
-export const videoPlanAskedOf = (plan: unknown): string | null => (typeof plan === 'string' ? plan : null);
+const addressOf = (path: string, asked: VideoAsked): string => {
+  const query = videoQueryOf(asked);
+  return query ? `${path}?${query}` : path;
+};
+
+/**
+ * A city's video as it is recorded (`videoPagePathOf`), as asked to show: what the recorder records,
+ * and its setup page frames.
+ *
+ * @param city - The city, by its id.
+ * @param asked - The plan, the view and the speed.
+ * @returns Its address.
+ */
+export const videoAddressOf = (city: string, asked: VideoAsked): string => addressOf(videoPagePathOf(city), asked);
+
+/**
+ * A city's video setup page (`/<city>/video/`), set up as asked.
+ *
+ * @param city - The city, by its id.
+ * @param asked - The plan, the view and the speed.
+ * @returns Its address.
+ */
+export const videoSetupAddressOf = (city: string, asked: VideoAsked): string => addressOf(`/${encodeURIComponent(city)}/video/`, asked);
 
 /**
  * What the map shows in a video: the network, dark, at the pace asked, without the basemap's street

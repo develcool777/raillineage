@@ -15,6 +15,7 @@
     "./videoPage.types": "./src/recorder/videoPage.types.ts",
     "./recorder.types": "./src/recorder/recorder.types.ts",
     "./recording.constants": "./src/recorder/recording.constants.ts",
+    "./recording.utils": "./src/recorder/recording.utils.ts",
     "./jobs.service": "./src/jobs/jobs.service.ts",
     "./jobs.types": "./src/jobs/jobs.types.ts",
     "./jobs.utils": "./src/jobs/jobs.utils.ts"

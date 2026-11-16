@@ -20,7 +20,7 @@
   import { statusLineOf } from '~/features/video/record/record.utils';
 
   const props = defineProps<{
-    /** The recording last started, and the videos made, newest first. */
+    /** The recording last started. */
     state: RecorderState;
     /** Why the recorder did not answer; `null` when it did. */
     error: string | null;

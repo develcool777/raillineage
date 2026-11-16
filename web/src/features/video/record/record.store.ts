@@ -24,15 +24,15 @@ const answerOf = async (request: Promise<RecorderState>): Promise<Answer> => {
 };
 
 /**
- * The recorder, as the video page sees it: the recording last started, as it goes or as it ended, and
- * the videos made, as the dev server last said (`RecordingJobs`, `pnpm dev` only); and what the page
+ * The recorder, as the video page sees it: the recording last started, as it goes or as it ended, as
+ * the dev server last said (`RecordingJobs`, `pnpm dev` only); and what the page
  * asks of it: how it goes, to start a video, to stop one. `record.composable.ts` asks how it goes while
  * one records.
  */
 export const useRecordStore = defineStore(STORE_IDS.VIDEO_RECORD, () => {
   // ---- State
-  /** The recording last started and the videos made, as last heard. */
-  const recorder = shallowRef<RecorderState>({ status: null, videos: [] });
+  /** The recording last started, as last heard. */
+  const recorder = shallowRef<RecorderState>({ status: null });
   /** Why the last request to the recorder failed; `null` once one succeeds. */
   const error = ref<string | null>(null);
 

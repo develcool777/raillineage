@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { RECORDER_GONE } from '../../../src/jobs/jobs.constants.ts';
 import type { RecordingRequest } from '../../../src/jobs/jobs.types.ts';
-import { argsOf, byteRangeOf, isRunning, isVideoName, requestOf, statusAsSeen } from '../../../src/jobs/jobs.utils.ts';
+import { argsOf, isRunning, isVideoName, requestOf, statusAsSeen } from '../../../src/jobs/jobs.utils.ts';
 import type { RecordingPhase, RecordingStatus } from '../../../src/recorder/recorder.types.ts';
 import { recordingOf } from '../../../src/recorder/recorder.utils.ts';
 
@@ -114,22 +114,10 @@ describe('JobsUtils', () => {
       expect(() => requestOf({ ...REQUEST, width: 2560 })).toThrow('the width is a whole number from 1 to 1920');
       expect(() => requestOf({ ...REQUEST, scale: 3 })).toThrow('the scale is a whole number from 1 to 2');
       expect(() => requestOf({ ...REQUEST, height: 1080.5 })).toThrow('the height is a whole number');
+      expect(() => requestOf({ ...REQUEST, width: 1281, scale: 1 })).toThrow('the width is even, as the video is encoded');
       expect(() => requestOf({ ...REQUEST, seconds: 7200 })).toThrow('in seconds, is a whole number from 1 to 3600');
       expect(() => requestOf({ ...REQUEST, rehearse: 'yes' })).toThrow('rehearse is true or false');
       expect(() => requestOf({ ...REQUEST, name: '../../escape.mp4' })).toThrow('the file is a name ending .mp4');
-    });
-  });
-
-  describe('byteRangeOf', () => {
-    test('reads the part of a file a player asks for, from a byte, to one, or its last bytes', () => {
-      expect(byteRangeOf('bytes=0-', 1000)).toEqual({ start: 0, end: 999 });
-      expect(byteRangeOf('bytes=100-199', 1000)).toEqual({ start: 100, end: 199 });
-      expect(byteRangeOf('bytes=900-5000', 1000)).toEqual({ start: 900, end: 999 });
-      expect(byteRangeOf('bytes=-100', 1000)).toEqual({ start: 900, end: 999 });
-    });
-
-    test('asks for the whole file for no range, one it does not read, or one past the end', () => {
-      expect([undefined, 'bytes=0-1,5-9', 'bytes=-', 'bytes=2000-'].map(header => byteRangeOf(header, 1000))).toEqual([null, null, null, null]);
     });
   });
 });

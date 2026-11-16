@@ -1,36 +1,5 @@
 import type { ViewMode } from '@raillineage/renderer/transitMap.types';
 import type { RecordingStatus } from '@raillineage/video/recorder.types';
-import { VIDEO_SPEED } from '~/features/video/video.constants';
-import type { VideoAsked } from './record.types';
-
-/**
- * The video page's address query: the plan it plays after its history, flat if not 3D, and its speed
- * if not the video's own.
- *
- * @param asked - The plan, the view and the speed.
- * @returns The query, without its `?`; empty for none of them.
- */
-export const videoQueryOf = (asked: VideoAsked): string => {
-  const query = new URLSearchParams();
-  if (asked.plan !== null) query.set('plan', asked.plan);
-  if (asked.view === '2d') query.set('view', '2d');
-  if (asked.speed !== VIDEO_SPEED) query.set('speed', String(asked.speed));
-  return query.toString();
-};
-
-/**
- * A city's video as it is recorded (`/<city>/video/preview`), as asked to show: what the recorder
- * records, and its setup page frames.
- *
- * @param city - The city, by its id.
- * @param asked - The plan, the view and the speed.
- * @returns Its address.
- */
-export const videoAddressOf = (city: string, asked: VideoAsked): string => {
-  const query = videoQueryOf(asked);
-  const page = `/${encodeURIComponent(city)}/video/preview`;
-  return query ? `${page}?${query}` : page;
-};
 
 /**
  * The file a video is saved as: the city, the plan (named once where its id starts with the city's), and

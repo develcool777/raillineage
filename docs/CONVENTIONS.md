@@ -140,7 +140,8 @@ nameCompare)` (`@raillineage/core/collection.utils`), not `a - b || nameCompare`
   components/ui/          components every surface uses (SiteHeader, MapCredits, the charts: GrowthChart,
                           DecadeChart, CoverageChart, on YearChart's round years…; a number on rolling reels: ReelNumber draws a count,
                           CountingNumber counts to each value on the page's clock, which a recorder moves;
-                          a line's diagram: LineDiagram, its branches forking off, each stop's row its surface's)
+                          a line's diagram: LineDiagram, its branches forking off, each stop's row its surface's;
+                          the header's city picker, CitySelect, the explorer's and the video page's)
   constants/  utils/      what more than one surface needs: the city catalogue (CITIES, city.utils,
                           its outline fetched), plans' statuses, how a number, a share, a walk, a day
                           or what a plan adds is written, the changes by decade, a measure's growth

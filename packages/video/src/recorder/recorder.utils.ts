@@ -4,6 +4,7 @@ import type { BrowserType } from 'playwright-core';
 import { FFMPEG_LOCATIONS, VIDEOS_FOLDER } from './recorder.constants.ts';
 import type { DrawnScope, RecordedPageKind, Recording, RecordingPhase, RecordingScope, RecordingStatus } from './recorder.types.ts';
 import { RECORDING_DEFAULTS } from './recording.constants.ts';
+import { isEvenSide, videoPagePathOf } from './recording.utils.ts';
 
 /**
  * A whole number at least 1, from an argument.
@@ -89,6 +90,9 @@ export const recordingOf = (args: string[], cwd: string): Recording => {
   if (!city || positionals.length > 1) throw new Error('name one city');
   const size = /^(\d+)x(\d+)$/.exec(values.size ?? `${RECORDING_DEFAULTS.width}x${RECORDING_DEFAULTS.height}`);
   if (!size) throw new Error(`--size takes width x height (1920x1080), not ${values.size}`);
+  const width = countOf('size', size[1], RECORDING_DEFAULTS.width);
+  const height = countOf('size', size[2], RECORDING_DEFAULTS.height);
+  if (!isEvenSide(width) || !isEvenSide(height)) throw new Error(`--size takes even sides, as the video is encoded, not ${values.size}`);
   const page = values.page ?? RECORDING_DEFAULTS.page;
   if (!isPageKind(page)) throw new Error(`--page takes video or explorer, not ${page}`);
   return {
@@ -96,8 +100,8 @@ export const recordingOf = (args: string[], cwd: string): Recording => {
     page,
     rehearse: values.rehearse ?? RECORDING_DEFAULTS.rehearse,
     fps: countOf('fps', values.fps, RECORDING_DEFAULTS.fps),
-    width: countOf('size', size[1], RECORDING_DEFAULTS.width),
-    height: countOf('size', size[2], RECORDING_DEFAULTS.height),
+    width,
+    height,
     scale: countOf('scale', values.scale, RECORDING_DEFAULTS.scale),
     seconds: countOf('seconds', values.seconds, RECORDING_DEFAULTS.seconds),
     origin: originOf(values.origin ?? RECORDING_DEFAULTS.origin),
@@ -158,7 +162,7 @@ export const statusOf = (recording: Recording, pid: number, phase: RecordingPhas
  */
 export const pageUrlOf = (recording: Recording): string => {
   const city = encodeURIComponent(recording.city);
-  const url = new URL(recording.page === 'video' ? `/${city}/video/preview` : `/${city}`, recording.origin);
+  const url = new URL(recording.page === 'video' ? videoPagePathOf(recording.city) : `/${city}`, recording.origin);
   url.search = recording.query;
   return url.href;
 };

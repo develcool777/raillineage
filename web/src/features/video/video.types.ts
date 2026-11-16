@@ -63,3 +63,13 @@ export type VideoMapInput = {
   /** The city's outline, coverage's; `null` for none (yet). */
   boundary: CityBoundary | null;
 };
+
+/** What a video is asked to show, as its address says it: the plan after its history, the view, the speed. */
+export type VideoAsked = {
+  /** The plan, by its id; `null` for none. */
+  plan: string | null;
+  /** In 3D, or flat. */
+  view: ViewMode;
+  /** How fast the history plays. */
+  speed: number;
+};

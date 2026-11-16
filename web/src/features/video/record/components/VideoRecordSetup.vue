@@ -32,13 +32,18 @@
           <h2 class="text-highlighted text-sm font-semibold">What it shows</h2>
         </template>
         <VideoSetting label="Then a plan" :tip="TIPS.plan">
-          <USelect :modelValue="plan ?? NO_PLAN" :items="planItems" :disabled="props.planOnly" class="w-full" @update:modelValue="pickPlan" />
+          <USelect
+            :modelValue="asked.plan ?? NO_PLAN"
+            :items="planItems"
+            :disabled="props.planOnly || props.plans === null"
+            class="w-full"
+            @update:modelValue="pickPlan" />
         </VideoSetting>
         <VideoSetting label="View" :tip="TIPS.view">
-          <UTabs :modelValue="view" :items="VIEWS" :content="false" class="w-full" aria-label="View" @update:modelValue="pickView" />
+          <UTabs :modelValue="asked.view" :items="VIEWS" :content="false" class="w-full" aria-label="View" @update:modelValue="pickView" />
         </VideoSetting>
         <VideoSetting label="Speed" :tip="TIPS.speed">
-          <USelect :modelValue="speed" :items="SPEED_ITEMS" class="w-full" @update:modelValue="pickSpeed" />
+          <USelect :modelValue="asked.speed" :items="SPEED_ITEMS" class="w-full" @update:modelValue="pickSpeed" />
         </VideoSetting>
       </UCard>
 
@@ -51,10 +56,10 @@
         </VideoSetting>
         <template v-if="sizeIndex === CUSTOM_SIZE">
           <VideoSetting label="Width, px" :tip="TIPS.custom">
-            <UInputNumber v-model="customWidth" :min="SIZE_LIMITS.min" :max="SIZE_LIMITS.max" :step="2" class="w-full" />
+            <UInputNumber v-model="customWidth" :min="SMALLEST_SIDE" :max="LARGEST_SIDE" :step="2" class="w-full" />
           </VideoSetting>
           <VideoSetting label="Height, px" :tip="TIPS.custom">
-            <UInputNumber v-model="customHeight" :min="SIZE_LIMITS.min" :max="SIZE_LIMITS.max" :step="2" class="w-full" />
+            <UInputNumber v-model="customHeight" :min="SMALLEST_SIDE" :max="LARGEST_SIDE" :step="2" class="w-full" />
           </VideoSetting>
         </template>
         <VideoSetting label="Frame rate" :tip="TIPS.fps">
@@ -83,25 +88,25 @@
 
 <script setup lang="ts">
   import type { PlanInfo } from '@raillineage/network/facts.types';
-  import type { ViewMode } from '@raillineage/renderer/transitMap.types';
   import { isVideoName } from '@raillineage/video/jobs.utils';
-  import { RECORDING_DEFAULTS } from '@raillineage/video/recording.constants';
+  import { LARGEST_SIDE, RECORDING_DEFAULTS } from '@raillineage/video/recording.constants';
+  import { evenSideOf } from '@raillineage/video/recording.utils';
   import { useElementSize, useWindowSize } from '@vueuse/core';
   import { computed, ref, useTemplateRef, watch } from 'vue';
   import { useRoute, useRouter } from '#imports';
   import { useRecorderPolling } from '~/features/video/record/record.composable';
-  import { RECORD_FPS, RECORD_LIMIT_SECONDS, RECORD_SIZES } from '~/features/video/record/record.constants';
+  import { RECORD_FPS, RECORD_SIZES } from '~/features/video/record/record.constants';
   import { useRecordStore } from '~/features/video/record/record.store';
-  import type { VideoAsked } from '~/features/video/record/record.types';
-  import { videoAddressOf, videoNameOf, videoQueryOf } from '~/features/video/record/record.utils';
+  import { videoNameOf } from '~/features/video/record/record.utils';
   import { VIDEO_SPEED, VIDEO_SPEEDS } from '~/features/video/video.constants';
-  import { videoPlanAskedOf, videoSpeedOf, videoViewOf } from '~/features/video/video.utils';
+  import type { VideoAsked } from '~/features/video/video.types';
+  import { videoAddressOf, videoAskedOf, videoPlanOf, videoQueryOf, videoSetupAddressOf } from '~/features/video/video.utils';
 
   const props = defineProps<{
     /** The city, by its id. */
     city: string;
-    /** Its plans, one of which it can play after its history. */
-    plans: PlanInfo[];
+    /** Its plans, one of which it can play after its history; `null` while its network loads. */
+    plans: PlanInfo[] | null;
     /** Whether it was never built, so its plan is its history. */
     planOnly: boolean;
   }>();
@@ -114,8 +119,8 @@
   ];
   /** The size menu's "of one's own", its width and height then typed in. */
   const CUSTOM_SIZE = -1;
-  /** A size of one's own, each way, px: even, as the video's encoding takes it. */
-  const SIZE_LIMITS = { min: 320, max: 3840 };
+  /** The smallest side of a size of one's own, px; the largest is the recorder's (`LARGEST_SIDE`). */
+  const SMALLEST_SIDE = 320;
   const SIZE_ITEMS = [...RECORD_SIZES.map((entry, index) => ({ label: entry.label, value: index })), { label: 'Custom…', value: CUSTOM_SIZE }];
   const FPS_ITEMS = RECORD_FPS.map(rate => ({ label: `${rate} fps`, value: rate }));
   const SPEED_ITEMS = VIDEO_SPEEDS.map(offered => ({ label: offered === VIDEO_SPEED ? `${offered}× (its own)` : `${offered}×`, value: offered }));
@@ -125,13 +130,13 @@
     view: 'While it plays: 3D tilts the camera over the buildings; flat looks straight down. The scenes between, the whole network and its numbers, are flat either way.',
     speed: `How fast the history plays: ${VIDEO_SPEED}× is the video's own, each change given time to be read. Faster makes a shorter video.`,
     size: "The video's size. 4K lays the page out as 1080p and draws it twice as sharp, as a Retina screen; the others draw it a pixel to a pixel, which records faster. Custom takes any size.",
-    custom: "The video's size, drawn a pixel to a pixel: even, as it is encoded, an odd one rounded to the next.",
+    custom: "The video's size, drawn a pixel to a pixel: even, as it is encoded, an odd one taken down to the next.",
     fps: 'Frames a second in the video: 60 is smoother, 30 a smaller file and a faster recording.',
     rehearse:
       'Plays the video through once first, unrecorded, fetching every map tile the camera will see, so no frame of the take waits on one. Twice as long, every frame sharp.',
     file: 'Saved in packages/video/videos/, replacing one of the same name. Named for the video shown, until renamed.',
   };
-  /** The most of the window's height the stage takes, so a vertical video fits with the recordings under it. */
+  /** The most of the window's height the preview takes, so a vertical video fits with its buttons. */
   const FRAME_HEIGHT_SHARE = 0.7;
 
   const record = useRecordStore();
@@ -140,16 +145,19 @@
   // What it shows is the page's address, as the video's own is: a link to it opens it set up so.
   const route = useRoute();
   const router = useRouter();
-  const view = computed((): ViewMode => videoViewOf(route.query.view));
-  const speed = computed(() => videoSpeedOf(route.query.speed));
-  /** The plan asked for, once it is known to be one of the city's; a city never built plays its own. */
-  const plan = computed(() => {
-    const asked = videoPlanAskedOf(route.query.plan);
-    return !props.planOnly && props.plans.some(entry => entry.id === asked) ? asked : null;
+  /**
+   * What the video is asked to show: the page's address says it, its plan the one the video will play
+   * (`videoPlanOf`), as asked until the city's plans have come.
+   */
+  const asked = computed((): VideoAsked => {
+    const address = videoAskedOf(route.query);
+    const plan = props.plans === null ? address.plan : (videoPlanOf(props.plans, props.planOnly, address.plan)?.id ?? null);
+    return { ...address, plan };
   });
-  const planItems = computed(() => [{ label: 'None: end on today', value: NO_PLAN }, ...props.plans.map(entry => ({ label: entry.name, value: entry.id }))]);
-  /** What the video is asked to show: the page's address says it. */
-  const asked = computed((): VideoAsked => ({ plan: plan.value, view: view.value, speed: speed.value }));
+  const planItems = computed(() => [
+    { label: 'None: end on today', value: NO_PLAN },
+    ...(props.plans ?? []).map(entry => ({ label: entry.name, value: entry.id })),
+  ]);
   const previewAddress = computed(() => videoAddressOf(props.city, asked.value));
 
   /**
@@ -158,7 +166,7 @@
    * @param changed - What changes of the plan, the view and the speed.
    */
   const setUp = async (changed: Partial<VideoAsked>) => {
-    await router.replace({ query: Object.fromEntries(new URLSearchParams(videoQueryOf({ ...asked.value, ...changed }))) });
+    await router.replace(videoSetupAddressOf(props.city, { ...asked.value, ...changed }));
   };
   /**
    * Sets another plan after the history, or none.
@@ -194,20 +202,21 @@
       ),
     ),
   );
-  const customWidth = ref(RECORDING_DEFAULTS.width);
-  const customHeight = ref(RECORDING_DEFAULTS.height);
-  /** The page's size as it lays out, and how sharp it is drawn: a preset's, or one's own, made even, a pixel to a pixel. */
+  // A field cleared is `null` until typed in again: its size is the default's meanwhile.
+  const customWidth = ref<number | null>(RECORDING_DEFAULTS.width);
+  const customHeight = ref<number | null>(RECORDING_DEFAULTS.height);
+  /** The page's size as it lays out, and how sharp it is drawn: a preset's, or one's own, made even (`evenSideOf`), a pixel to a pixel. */
   const size = computed(() => {
     const preset = RECORD_SIZES[sizeIndex.value];
     if (preset) return preset;
-    return { width: Math.round(customWidth.value / 2) * 2, height: Math.round(customHeight.value / 2) * 2, scale: 1 };
+    return { width: evenSideOf(customWidth.value ?? RECORDING_DEFAULTS.width), height: evenSideOf(customHeight.value ?? RECORDING_DEFAULTS.height), scale: 1 };
   });
   const fps = ref(RECORDING_DEFAULTS.fps);
   const rehearse = ref(RECORDING_DEFAULTS.rehearse);
   // Named for the video shown, until renamed.
   const name = ref('');
   watch(
-    () => videoNameOf(props.city, plan.value, view.value),
+    () => videoNameOf(props.city, asked.value.plan, asked.value.view),
     named => {
       name.value = named;
     },
@@ -226,12 +235,13 @@
   const startRecording = async () => {
     await record.START({
       city: props.city,
-      query: videoQueryOf({ ...asked.value, plan: props.planOnly ? null : plan.value }),
+      query: videoQueryOf(asked.value),
       fps: fps.value,
       width: size.value.width,
       height: size.value.height,
       scale: size.value.scale,
-      seconds: RECORD_LIMIT_SECONDS,
+      // As long as it plays: the recorder's longest is only a runaway's stop.
+      seconds: RECORDING_DEFAULTS.seconds,
       rehearse: rehearse.value,
       name: name.value,
     });
