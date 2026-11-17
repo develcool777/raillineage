@@ -27,7 +27,7 @@
     "maplibre-gl": "^6.17.0"
   },
   "devDependencies": {
-    "@maplibre/maplibre-gl-style-spec": "^26.6.0",
+    "@maplibre/maplibre-gl-style-spec": "^26.7.0",
     "@types/geojson": "7946.0.16",
     "happy-dom": "^21.0.4",
     "vitest": "^5.1.0"
