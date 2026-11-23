@@ -15,8 +15,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.152",
-    "@nuxt/ui": "^4.12.0",
+    "@iconify-json/lucide": "^1.2.157",
+    "@nuxt/ui": "^4.13.0",
     "@nuxtjs/robots": "^7.0.2",
     "@nuxtjs/sitemap": "^9.1.0",
     "@pinia/nuxt": "^1.0.3",
@@ -29,16 +29,16 @@
     "@tanstack/charts": "1.5.0",
     "@tanstack/vue-virtual": "3.13.52",
     "@vueuse/core": "^15.0.0",
-    "maplibre-gl": "^6.17.0",
+    "maplibre-gl": "^6.19.0",
     "nuxt": "^4.6.4",
     "pinia": "^4.1.0",
     "tailwindcss": "^4.3.5",
-    "vue": "^3.5.45"
+    "vue": "^3.5.46"
   },
   "devDependencies": {
     "@nuxt/test-utils": "^4.4.0",
-    "@playwright/test": "^1.65.0",
-    "@testing-library/user-event": "^14.6.10",
+    "@playwright/test": "^1.65.1",
+    "@testing-library/user-event": "^14.6.13",
     "@testing-library/vue": "^8.1.0",
     "@vue/test-utils": "^2.6.0",
     "h3": "^2.0.8",

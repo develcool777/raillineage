@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@raillineage/network": "workspace:*",
-    "playwright-core": "^1.65.0",
-    "vitest": "^5.1.0"
+    "playwright-core": "^1.65.1",
+    "vitest": "^5.1.1"
   }
 }
